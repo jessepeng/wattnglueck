@@ -2,10 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="10dp"
     tools:context=".HomeScreen" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/textZaehler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -14,10 +15,11 @@
         android:textSize="24dp" />
 
     <TextView
+        android:id="@+id/textStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/textZaehler"
         android:layout_marginTop="32dp"
         android:text="@string/home_status"
         android:textSize="24dp" />
