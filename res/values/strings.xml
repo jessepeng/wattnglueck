@@ -9,5 +9,6 @@
     <string name="menu_vertrag">Mein Vertrag</string>
     <string name="menu_abrechnung">Jahresabrechnung</string>
     <string name="menu_about">Über</string>
+    <string name="testausgabe">DB Testausgabe</string>
 
 </resources>
