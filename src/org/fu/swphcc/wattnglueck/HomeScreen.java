@@ -5,9 +5,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import android.app.Activity;
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,8 +17,6 @@ public class HomeScreen extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//hiermit kann auf die Datenbank zugegriffen werden
-		Database db = new Database(this);
 		
 		Date today = new Date();
 		String todayString = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMAN).format(today);
@@ -40,8 +36,8 @@ public class HomeScreen extends Activity {
 		return true;
 	}
 	
-	public void onClick(View v) {
-		
+	public void statusClick(View v) {
+		startActivity(new Intent(this, Status.class));
 	}
 
 }
