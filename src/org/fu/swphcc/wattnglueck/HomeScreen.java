@@ -4,8 +4,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.widget.TextView;
 
 public class HomeScreen extends Activity {
@@ -19,6 +21,9 @@ public class HomeScreen extends Activity {
 		TextView statusView = (TextView) findViewById(R.id.textStatus); 
 		String showDate = getString(R.string.home_status).replace("$date", todayString);
 		statusView.setText(showDate);
+		TextView fontView = (TextView) findViewById(R.id.textFont);
+		Typeface customFont = Typeface.createFromAsset(getAssets(), "MankSans-Medium.ttf");
+		fontView.setTypeface(customFont);
 	}
 
 	@Override
@@ -26,6 +31,10 @@ public class HomeScreen extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_home_screen, menu);
 		return true;
+	}
+	
+	public void onClick(View v) {
+		
 	}
 
 }

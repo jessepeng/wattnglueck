@@ -4,37 +4,37 @@
     android:layout_height="match_parent"
     android:paddingLeft="24dp"
     android:paddingRight="24dp"
-    tools:context=".HomeScreen" >
+    tools:context=".Status" >
 
     <TextView
-        android:id="@+id/textZaehler"
+        android:id="@+id/textZahlungAnfang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="24dp"
-        android:text="@string/home_zaehlerstand"
+        android:text="@string/status_rueckzahlung_start"
         android:textSize="32sp" />
-
+    
     <TextView
-        android:id="@+id/textStatus"
+        android:id="@+id/textBetrag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textZaehler"
+        android:layout_below="@+id/textZahlungAnfang"
         android:layout_marginTop="24dp"
-        android:text="@string/home_status"
-        android:textSize="32sp"
-        android:textStyle="italic"
-        android:typeface="serif" />
-
+        android:layout_marginLeft="16dp"
+        android:text="@string/status_beispielbetrag"
+        android:textSize="48sp" />
+    
     <TextView
-        android:id="@+id/textFont"
+        android:id="@+id/textZahlungEnde"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textStatus"
+        android:layout_below="@+id/textBetrag"
         android:layout_marginTop="24dp"
-        android:text="@string/home_font"
+        android:text="@string/status_rueckzahlung_ende"
         android:textSize="32sp" />
 
 </RelativeLayout>

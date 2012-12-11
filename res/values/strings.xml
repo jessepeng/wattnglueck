@@ -9,5 +9,13 @@
     <string name="menu_vertrag">Mein Vertrag</string>
     <string name="menu_abrechnung">Jahresabrechnung</string>
     <string name="menu_about">Über</string>
+    <string name="home_font">Hier wird eine benutzerdefinierte Font genutzt.</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_status">Status</string>
+    <string name="status_rueckzahlung_start">Du bekommst wahrscheinlich</string>
+    <string name="status_rueckzahlung_ende">zurück.</string>
+    <string name="status_nachzahlung_start">Du musst wahrscheinlich</string>
+    <string name="status_nachzahlung_ende">nachzahlen.</string>
+    <string name="status_beispielbetrag">35€</string>
 
 </resources>

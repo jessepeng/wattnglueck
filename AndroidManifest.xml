@@ -22,6 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="org.fu.swphcc.wattnglueck.Status"
+            android:label="@string/title_activity_status"
+            android:parentActivityName="org.fu.swphcc.wattnglueck.HomeScreen" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.fu.swphcc.wattnglueck.HomeScreen" />
+        </activity>
     </application>
 
 </manifest>
