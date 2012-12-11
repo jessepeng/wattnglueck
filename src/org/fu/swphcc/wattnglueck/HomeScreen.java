@@ -31,7 +31,6 @@ public class HomeScreen extends Activity {
 		TextView fontView = (TextView) findViewById(R.id.textFont);
 		Typeface customFont = Typeface.createFromAsset(getAssets(), "MankSans-Medium.ttf");
 		fontView.setTypeface(customFont);
-		TextView test = (TextView) findViewById(R.id.testausgabe); 
 	}
 
 	@Override
