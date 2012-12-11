@@ -17,5 +17,6 @@
     <string name="status_nachzahlung_start">Du musst wahrscheinlich</string>
     <string name="status_nachzahlung_ende">nachzahlen.</string>
     <string name="status_beispielbetrag">35€</string>
+    <string name="testausgabe">DB Testausgabe</string>
 
 </resources>
