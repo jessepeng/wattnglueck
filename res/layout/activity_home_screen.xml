@@ -25,7 +25,9 @@
         android:text="@string/home_status"
         android:textSize="32sp"
         android:textStyle="italic"
-        android:typeface="serif" />
+        android:typeface="serif"
+        android:clickable="true"
+        android:onClick="statusClick" />
 
     <TextView
         android:id="@+id/textFont"
