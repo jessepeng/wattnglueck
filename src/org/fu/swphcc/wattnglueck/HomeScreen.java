@@ -22,15 +22,6 @@ public class HomeScreen extends Activity {
 		//hiermit kann auf die Datenbank zugegriffen werden
 		Database db = new Database(this);
 		
-		//test
-		SQLiteDatabase writeDB = db.getWritableDatabase();
-		ContentValues cv = new ContentValues();
-		cv.put("date" , "test");
-		cv.put("value", "123456");
-		writeDB.insert("data", null, cv);
-		
-		Cursor c = writeDB.query(true, "data", null, null, null, null, null, null, null, null);
-		
 		Date today = new Date();
 		String todayString = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMAN).format(today);
 		setContentView(R.layout.activity_home_screen);
@@ -41,11 +32,6 @@ public class HomeScreen extends Activity {
 		Typeface customFont = Typeface.createFromAsset(getAssets(), "MankSans-Medium.ttf");
 		fontView.setTypeface(customFont);
 		TextView test = (TextView) findViewById(R.id.testausgabe); 
-		
-		if(c.getCount()>0) {
-			c.moveToNext();
-			test.setText(c.getString(1)+ " " + c.getDouble(2));
-		}
 	}
 
 	@Override
