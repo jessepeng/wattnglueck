@@ -36,7 +36,7 @@ public class Database extends SQLiteOpenHelper{
 
 	}
 
-	public void addZaehlerstand(Double stand) {
+	public void addZaehlerstand(Float stand) {
 
 		SQLiteDatabase writeDB = getWritableDatabase();
 		ContentValues cv = new ContentValues();
@@ -56,7 +56,7 @@ public class Database extends SQLiteOpenHelper{
 			while(c.moveToNext()) {
 				SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMAN);
 				Zaehlerstand z = new Zaehlerstand();
-				z.setZaehlerstand(c.getDouble(2));
+				z.setZaehlerstand(c.getFloat(2));
 				try {
 					z.setDate(date.parse(c.getString(1)));
 				} catch (ParseException e) { 
@@ -78,7 +78,7 @@ public class Database extends SQLiteOpenHelper{
 		if(c.getCount()>0) {
 			SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMAN);
 			Zaehlerstand z = new Zaehlerstand();
-			z.setZaehlerstand(c.getDouble(2));
+			z.setZaehlerstand(c.getFloat(2));
 			try {
 				z.setDate(date.parse(c.getString(1)));
 			} catch (ParseException e) { 
@@ -88,4 +88,20 @@ public class Database extends SQLiteOpenHelper{
 		} else 
 			return null;
 	}
+	
+	public void setDummyValues() {
+		
+		SQLiteDatabase writeDB = getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMAN);
+		Date d = new Date();
+		cv.put("date", "01.01.2011");
+		cv.put("value", 123000f);
+		writeDB.insert(DATABASE_NAME, null, cv);
+		cv.put("date", date.format(d));
+		cv.put("value", 123000f);
+		writeDB.insert(DATABASE_NAME, null, cv);
+		
+	}
+	
 }

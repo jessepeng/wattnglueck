@@ -17,7 +17,8 @@ public class HomeScreen extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
+
 		Date today = new Date();
 		String todayString = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMAN).format(today);
 		setContentView(R.layout.activity_home_screen);
@@ -35,9 +36,15 @@ public class HomeScreen extends Activity {
 		getMenuInflater().inflate(R.menu.activity_home_screen, menu);
 		return true;
 	}
-	
+
 	public void statusClick(View v) {
 		startActivity(new Intent(this, Status.class));
 	}
 
+	public void setDummyValues() {
+		//testdaten setzen
+		Database db = new Database(this);
+		db.setDummyValues();
+		
+	}
 }

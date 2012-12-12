@@ -11,13 +11,13 @@ import java.util.Date;
  */
 public class Zaehlerstand {
 	
-	private Double Zaehlerstand;
+	private Float Zaehlerstand;
 	private Date date;
 	
-	public Double getZaehlerstand() {
+	public Float getZaehlerstand() {
 		return Zaehlerstand;
 	}
-	public void setZaehlerstand(Double zaehlerstand) {
+	public void setZaehlerstand(Float zaehlerstand) {
 		Zaehlerstand = zaehlerstand;
 	}
 	public Date getDate() {
