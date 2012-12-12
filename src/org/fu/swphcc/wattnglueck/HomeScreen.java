@@ -5,43 +5,38 @@ import java.util.Date;
 import java.util.Locale;
 
 import android.app.Activity;
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.TextSwitcher;
 
 public class HomeScreen extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//hiermit kann auf die Datenbank zugegriffen werden
-		Database db = new Database(this);
+		setContentView(R.layout.activity_home_screen);
 		
-		//test
-		SQLiteDatabase writeDB = db.getWritableDatabase();
-		ContentValues cv = new ContentValues();
-		cv.put("date" , "test");
-		cv.put("value", "123456");
-		writeDB.insert("data", null, cv);
-		
-		Cursor c = writeDB.query(true, "data", null, null, null, null, null, null, null, null);
-		
+
+
 		Date today = new Date();
 		String todayString = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMAN).format(today);
-		setContentView(R.layout.activity_home_screen);
-		TextView statusView = (TextView) findViewById(R.id.textStatus); 
 		String showDate = getString(R.string.home_status).replace("$date", todayString);
+		String showMoechteStatus = getString(R.string.home_moechte_status).replace("$date", todayString);
+		
+		TextView statusView = (TextView) findViewById(R.id.textStatus); 
 		statusView.setText(showDate);
+
+		TextView moechteStatusView = (TextView) findViewById(R.id.textMoechteStatus);
+		moechteStatusView.setText(showMoechteStatus);
 		
-		TextView test = (TextView) findViewById(R.id.testausgabe); 
-		
-		if(c.getCount()>0) {
-			c.moveToNext();
-			test.setText(c.getString(1)+ " " + c.getDouble(2));
-		}
+		TextView fontView = (TextView) findViewById(R.id.textFont);
+		Typeface customFont = Typeface.createFromAsset(getAssets(), "MankSans-Medium.ttf");
+		fontView.setTypeface(customFont);
+				
 	}
 
 	@Override
@@ -51,4 +46,18 @@ public class HomeScreen extends Activity {
 		return true;
 	}
 
+	public void statusClick(View v) {
+		startActivity(new Intent(this, Status.class));
+	}
+	
+	public void switchClick(View v) {
+		((TextSwitcher) v).showNext();
+	}
+
+	public void setDummyValues() {
+		//testdaten setzen
+		Database db = new Database(this);
+		db.setDummyValues();
+		
+	}
 }
