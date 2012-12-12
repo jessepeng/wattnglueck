@@ -13,7 +13,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="24dp"
         android:text="@string/home_zaehlerstand"
-        android:textSize="32sp" />
+        android:textSize="28sp" />
 
     <TextView
         android:id="@+id/textStatus"
@@ -22,12 +22,13 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textZaehler"
         android:layout_marginTop="24dp"
-        android:text="@string/home_status"
-        android:textSize="32sp"
-        android:textStyle="italic"
-        android:typeface="serif"
+        android:background="@drawable/textbackground"
         android:clickable="true"
-        android:onClick="statusClick" />
+        android:onClick="statusClick"
+        android:text="@string/home_status"
+        android:textSize="28sp"
+        android:textStyle="italic"
+        android:typeface="serif" />
 
     <TextView
         android:id="@+id/textFont"
@@ -37,6 +38,38 @@
         android:layout_below="@+id/textStatus"
         android:layout_marginTop="24dp"
         android:text="@string/home_font"
-        android:textSize="32sp" />
+        android:textSize="28sp" />
+
+    <TextView
+        android:id="@+id/textMoechte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textFont"
+        android:layout_below="@+id/textFont"
+        android:layout_marginTop="24dp"
+        android:text="@string/home_moechte"
+        android:textSize="28sp" />
+
+    <TextSwitcher
+        android:id="@+id/textSwitcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textMoechte" 
+        android:layout_alignLeft="@+id/textFont"
+        android:clickable="true"
+        android:onClick="switchClick" >
+		<TextView
+	        android:id="@+id/textMoechteZaehlerstand"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/home_moechte_zaehlerstand"
+	        android:textSize="28sp" />
+		<TextView
+	        android:id="@+id/textMoechteStatus"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/home_moechte_status"
+	        android:textSize="28sp" />
+    </TextSwitcher>
 
 </RelativeLayout>

@@ -5,6 +5,7 @@
     <string name="home_zaehlerstand">Ich möchte einen neuen Zählerstand dokumentieren.</string>
     <string name="menu_settings">Settings</string>
     <string name="home_status">Ich möchte meinen Status vom $date sehen.</string>
+    <string name="home_moechte">Ich möchte </string>
     <string name="menu_zaehler">Meine Zählerstände</string>
     <string name="menu_vertrag">Mein Vertrag</string>
     <string name="menu_abrechnung">Jahresabrechnung</string>
@@ -18,5 +19,7 @@
     <string name="status_nachzahlung_ende">nachzahlen.</string>
     <string name="status_beispielbetrag">35€</string>
     <string name="testausgabe">DB Testausgabe</string>
+    <string name="home_moechte_zaehlerstand">einen neuen Zählerstand dokumentieren.</string>
+    <string name="home_moechte_status">meinen Status vom $date sehen.</string>
 
 </resources>
