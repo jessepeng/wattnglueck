@@ -20,7 +20,8 @@ public class HomeScreen extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_screen);
 		
-
+		//testdaten
+		setDummyValues();
 
 		Date today = new Date();
 		String todayString = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMAN).format(today);
@@ -58,6 +59,7 @@ public class HomeScreen extends Activity {
 		//testdaten setzen
 		Database db = new Database(this);
 		db.setDummyValues();
-		
+		Preferences p = new Preferences(this);
+		p.setDummyValues();
 	}
 }

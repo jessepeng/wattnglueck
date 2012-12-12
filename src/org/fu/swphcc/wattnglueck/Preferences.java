@@ -81,5 +81,6 @@ public class Preferences {
 	public void setDummyValues() {
 		addBeginn("01.01.2011");
 		addPreis(45f);
+		addKwh(1600);
 	}
 }
