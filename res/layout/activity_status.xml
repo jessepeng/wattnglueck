@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:background="@drawable/green_gradient"
+    tools:context=".Status" >
+
+    <TextView
+        android:id="@+id/textZahlungAnfang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="24dp"
+        android:text="@string/status_rueckzahlung_start"
+        android:textSize="32sp" />
+    
+    <TextView
+        android:id="@+id/textBetrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textZahlungAnfang"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="16dp"
+        android:text="@string/status_beispielbetrag"
+        android:textSize="48sp" />
+    
+    <TextView
+        android:id="@+id/textZahlungEnde"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textBetrag"
+        android:layout_marginTop="24dp"
+        android:text="@string/status_rueckzahlung_ende"
+        android:textSize="32sp" />
+
+</RelativeLayout>
