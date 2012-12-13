@@ -1,12 +1,14 @@
 package org.fu.swphcc.wattnglueck;
 
-import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.support.v4.app.NavUtils;
+import java.util.Arrays;
+import java.util.List;
 
-public class Status extends Activity {
+import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.view.MenuItem;
+import android.widget.TextView;
+
+public class Status extends WattnActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -14,13 +16,6 @@ public class Status extends Activity {
 		setContentView(R.layout.activity_status);
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_status, menu);
-		return true;
 	}
 
 	@Override
@@ -38,6 +33,18 @@ public class Status extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	protected List<TextView> getTextViewsForFont() {
+		return Arrays.asList((TextView) findViewById(R.id.textBetrag),
+				(TextView) findViewById(R.id.textZahlungAnfang),
+				(TextView) findViewById(R.id.textZahlungEnde));
+	}
+
+	@Override
+	protected boolean showOptionsMenu() {
+		return true;
 	}
 
 }
