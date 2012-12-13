@@ -6,6 +6,11 @@ import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.TextView;
 
 /**
@@ -14,7 +19,7 @@ import android.widget.TextView;
  * @author Jan-Christopher
  *
  */
-public abstract class WattnActivity extends Activity {
+public abstract class WattnActivity extends Activity implements OnTouchListener {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,5 +54,19 @@ public abstract class WattnActivity extends Activity {
 	 * @return
 	 */
 	protected abstract boolean showOptionsMenu();
+	
+
+	@Override
+	public boolean onTouch(View arg0, MotionEvent arg1) {
+		Animation anim = new AlphaAnimation(0f, 1f);
+		Animation out = new AlphaAnimation(1f, 0f);
+		out.setDuration(0);
+		anim.setDuration(300);
+		out.setFillAfter(true);
+		anim.setFillAfter(true);
+		arg0.startAnimation(out);
+		arg0.startAnimation(anim);
+		return true;
+	}
 	
 }

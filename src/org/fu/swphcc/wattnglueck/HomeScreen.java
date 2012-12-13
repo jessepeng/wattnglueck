@@ -8,7 +8,6 @@ import java.util.Locale;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextSwitcher;
 import android.widget.TextView;
 
 public class HomeScreen extends WattnActivity {
@@ -27,15 +26,15 @@ public class HomeScreen extends WattnActivity {
 		
 		TextView statusView = (TextView) findViewById(R.id.textStatus); 
 		statusView.setText(showDate);
+		statusView.setOnTouchListener(this);
 		
+		TextView zaehlerView = (TextView) findViewById(R.id.textZaehlerstand);
+		zaehlerView.setOnTouchListener(this);
 	}
 
 	public void statusClick(View v) {
+		System.out.println("Status click.");
 		startActivity(new Intent(this, Status.class));
-	}
-	
-	public void switchClick(View v) {
-		((TextSwitcher) v).showNext();
 	}
 
 	public void setDummyValues() {
