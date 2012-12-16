@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import org.fu.swphcc.wattnglueck.utils.Constants;
 import org.fu.swphcc.wattnglueck.utils.Database;
 import org.fu.swphcc.wattnglueck.utils.Preferences;
 
@@ -25,7 +26,7 @@ public class HomeScreen extends WattnActivity {
 		setDummyValues();
 
 		Date today = new Date();
-		String todayString = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMAN).format(today);
+		String todayString = Constants.ViewDateFormat.format(today);
 		String showDate = getString(R.string.home_status).replace("$date", todayString);
 		
 		TextView statusView = (TextView) findViewById(R.id.textStatus); 

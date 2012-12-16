@@ -1,11 +1,9 @@
 package org.fu.swphcc.wattnglueck.utils;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -36,31 +34,40 @@ public class Database extends SQLiteOpenHelper{
 
 	}
 
+	/**
+	 * Fügt einen Zählerstand zur Datenbank, als Datum wird das aktuelle verwendet
+	 * 
+	 * @param stand der Zählerstand in KWh
+	 */
 	public void addZaehlerstand(Float stand) {
 
 		SQLiteDatabase writeDB = getWritableDatabase();
 		ContentValues cv = new ContentValues();
-		SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMAN);
 		Date d = new Date();
-		cv.put("date", date.format(d));
+		cv.put("date", Constants.DBDateFormat.format(d));
 		cv.put("value", stand);
 		writeDB.insert(DATABASE_NAME, null, cv);
 	}
 
+	
+	/**
+	 * Holt alle Zählerstände aus der Datenbank und gibt sie Sortiert nach dem Datum zurück
+	 * 
+	 * @return Liste aller Zählerstände
+	 */
 	public List<Zaehlerstand> getAll() {
 		SQLiteDatabase readDB = getReadableDatabase();
-		Cursor c = readDB.query(true, "data", null, null, null, null, null, null, null, null);
+		Cursor c = readDB.query(true, "data", null, null, null, null, null, "date", null, null);
 
 		if(c.getCount()>0) {
 			List<Zaehlerstand> zlist = new LinkedList<Zaehlerstand>();
 			while(c.moveToNext()) {
-				SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMAN);
 				Zaehlerstand z = new Zaehlerstand();
 				z.setZaehlerstand(c.getFloat(2));
 				try {
-					z.setDate(date.parse(c.getString(1)));
+					z.setDate(Constants.DBDateFormat.parse(c.getString(1)));
 				} catch (ParseException e) { 
-					// vlt. testausgabe
+					// vlt. Fehlerausgabe
 				}
 				zlist.add(z);
 			}
@@ -69,6 +76,12 @@ public class Database extends SQLiteOpenHelper{
 			return null;
 	}
 	
+	/**
+	 * Holt einen Datensatz, der per Id definiert ist, aus der Datenbank und gibt ihn zurück
+	 * 
+	 * @param id die Id des Datensatz
+	 * @return der Datensatz verpackt in ein Zählerstand Object
+	 */
 	public Zaehlerstand getById(Integer id) {
 		SQLiteDatabase readDB = getReadableDatabase();
 		String[]  args= new String[1];
@@ -76,11 +89,10 @@ public class Database extends SQLiteOpenHelper{
 		Cursor c = readDB.query(true, "data", null, "id = ?", args, null, null, null, null, null);
 
 		if(c.getCount()>0) {
-			SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMAN);
 			Zaehlerstand z = new Zaehlerstand();
 			z.setZaehlerstand(c.getFloat(2));
 			try {
-				z.setDate(date.parse(c.getString(1)));
+				z.setDate(Constants.DBDateFormat.parse(c.getString(1)));
 			} catch (ParseException e) { 
 				// vlt. testausgabe
 			}
@@ -89,16 +101,52 @@ public class Database extends SQLiteOpenHelper{
 			return null;
 	}
 	
+	/**
+	 * Gibt alle Zählerstände zurück die in einem Zeitraum liegen
+	 * 
+	 * @param von Datum im Format Constants.DBDateFormatString
+	 * @param bis Datum im Format Constants.DBDateFormatString
+	 * @return Liste der Zählerstände
+	 * 
+	 */
+	public List<Zaehlerstand> getByRange(String von, String bis) {
+		SQLiteDatabase readDB = getReadableDatabase();
+		String[]  args= new String[2];
+		args[0]=von;	
+		args[1]=bis;
+		
+		Cursor c = readDB.query(true, "data", null, "date <= ? AND date >= ?", args, null, null, null, null, null);
+		
+		if(c.getCount()>0) {
+			List<Zaehlerstand> zlist = new LinkedList<Zaehlerstand>();
+			while(c.moveToNext()) {
+				Zaehlerstand z = new Zaehlerstand();
+				z.setZaehlerstand(c.getFloat(2));
+				try {
+					z.setDate(Constants.DBDateFormat.parse(c.getString(1)));
+				} catch (ParseException e) { 
+					// vlt. Fehlerausgabe
+				}
+				zlist.add(z);
+			}
+			return zlist;
+		} else 
+			return null;
+
+	}
+	
+	/**
+	 * Füllt die DB mit zwei Dummy Einträgen
+	 */
 	public void setDummyValues() {
 		
 		SQLiteDatabase writeDB = getWritableDatabase();
 		ContentValues cv = new ContentValues();
-		SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMAN);
 		Date d = new Date();
-		cv.put("date", "01.01.2011");
+		cv.put("date", "2011-01-01");
 		cv.put("value", 123000f);
 		writeDB.insert(DATABASE_TABLE, null, cv);
-		cv.put("date", date.format(d));
+		cv.put("date", Constants.DBDateFormat.format(d));
 		cv.put("value", 123200f);
 		writeDB.insert(DATABASE_TABLE, null, cv);
 		

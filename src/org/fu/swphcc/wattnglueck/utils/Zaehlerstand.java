@@ -1,12 +1,10 @@
 package org.fu.swphcc.wattnglueck.utils;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Collections;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Locale;
 
 import android.content.Context;
 
@@ -22,50 +20,42 @@ public class Zaehlerstand implements Comparable{
 	private Float Zaehlerstand;
 	private Date date;
 
+	/**
+	 * Berechnet den Erwarteten Verbrauch in KWh
+	 * Die Funktion benutzt im Moment deprecated Funktions, was in diesem Fall aber nicht weiter schlimm ist
+	 * 
+	 * @param ctx der Context der App bzw der DB
+	 * @return die Erwarteten KWh als Float
+	 */
 	@SuppressWarnings({ "deprecation", "unchecked" })
 	public static Float getEstimatedCoverage(Context ctx) {
 		Preferences p = new Preferences(ctx);
-		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMAN);
 		Database db = new Database(ctx);
-		//da es leider in SQLite keine Date Typen gibt müssen wir das Sortieren und heraussuchen hier machen
-		List<Zaehlerstand> zlist = db.getAll();
-		Collections.sort(zlist);
-		Date vbeginn = null;
-		Date vende = null;
-		
+		Calendar c = Calendar.getInstance();
 		try {
-			vbeginn = sdf.parse(p.getBeginn());
-			vende = vbeginn;
-			vende.setYear(vbeginn.getYear()+1);
-		} catch (ParseException e) {	}
-		
-		Zaehlerstand start = null;
+			c.setTime(Constants.DBDateFormat.parse(p.getBeginn()));
 
-		for(Zaehlerstand z : zlist) {
-			if(z.getDate().compareTo(vbeginn)>=0) {
-				start= z;
-				break;
-			}
-		}
+			c.add(Calendar.DATE, 1);
 
-		Zaehlerstand ende = null;
-		
-		if(start!=null) {
-			ListIterator<Zaehlerstand> li = zlist.listIterator();
-			while(li.hasPrevious()) {
-				Zaehlerstand z=li.previous();
-				if(z.getDate().compareTo(vende)<=0) {
-					ende = z;
-					break;
+			//Zählerstände holen
+			List<Zaehlerstand> zlist = db.getByRange(p.getBeginn(),Constants.DBDateFormat.format(c.getTime()));
+
+			if(zlist.size()>0) {
+
+				Zaehlerstand start = zlist.get(0);
+				Zaehlerstand ende = zlist.get(zlist.size()-1);
+
+				if(ende!=null) {
+					Float delta = ende.Zaehlerstand - start.Zaehlerstand;
+					long zeit = ende.date.getTime() - start.date.getTime();
+					float tage = zeit / 86400000f;
+					Float estimation = delta / tage * 365f;
+					return estimation;
 				}
 			}
-			if(ende!=null) {
-				Float delta = ende.Zaehlerstand - start.Zaehlerstand;
-				long zeit = ende.date.getTime() - start.date.getTime();
-				float tage = zeit / 86400000f;
-				Float estimation = delta / tage * 365f;
-				return estimation;
-			}
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}
