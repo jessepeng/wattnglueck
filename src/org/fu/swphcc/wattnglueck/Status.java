@@ -6,6 +6,8 @@ import java.util.List;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.TextView;
 
 public class Status extends WattnActivity {
@@ -44,6 +46,11 @@ public class Status extends WattnActivity {
 
 	@Override
 	protected boolean showOptionsMenu() {
+		return true;
+	}
+
+	@Override
+	public boolean onClick(View arg0, MotionEvent arg1) {
 		return true;
 	}
 
