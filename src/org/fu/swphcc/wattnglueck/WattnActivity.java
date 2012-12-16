@@ -58,15 +58,25 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 
 	@Override
 	public boolean onTouch(View arg0, MotionEvent arg1) {
-		Animation anim = new AlphaAnimation(0f, 1f);
-		Animation out = new AlphaAnimation(1f, 0f);
-		out.setDuration(0);
-		anim.setDuration(300);
-		out.setFillAfter(true);
-		anim.setFillAfter(true);
-		arg0.startAnimation(out);
-		arg0.startAnimation(anim);
+		if (arg1.getActionMasked() == MotionEvent.ACTION_DOWN) {
+			Animation anim = new AlphaAnimation(0f, 1f);
+			Animation out = new AlphaAnimation(1f, 0f);
+			out.setDuration(0);
+			anim.setDuration(150);
+			out.setFillAfter(true);
+			anim.setFillAfter(true);
+			arg0.startAnimation(out);
+			arg0.setBackgroundResource(R.drawable.button_background_pressed);
+			arg0.startAnimation(anim);
+			return true;
+		} else if (arg1.getActionMasked() == MotionEvent.ACTION_UP) {
+			arg0.setBackgroundResource(R.drawable.button_background);
+			return onClick(arg0, arg1);
+		}
 		return true;
+		
 	}
+	
+	public abstract boolean onClick(View arg0, MotionEvent arg1);
 	
 }

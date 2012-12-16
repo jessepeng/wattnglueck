@@ -10,6 +10,7 @@ import org.fu.swphcc.wattnglueck.utils.Preferences;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -35,9 +36,13 @@ public class HomeScreen extends WattnActivity {
 		zaehlerView.setOnTouchListener(this);
 	}
 
-	public void statusClick(View v) {
-		System.out.println("Status click.");
-		startActivity(new Intent(this, Status.class));
+	@Override
+	public boolean onClick(View arg0, MotionEvent arg1) {
+		switch (arg0.getId()) {
+		case R.id.textStatus:
+			startActivity(new Intent(this, Status.class));
+		}
+		return true;
 	}
 
 	public void setDummyValues() {
