@@ -1,4 +1,4 @@
-package org.fu.swphcc.wattnglueck;
+package org.fu.swphcc.wattnglueck.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -97,10 +97,10 @@ public class Database extends SQLiteOpenHelper{
 		Date d = new Date();
 		cv.put("date", "01.01.2011");
 		cv.put("value", 123000f);
-		writeDB.insert(DATABASE_NAME, null, cv);
+		writeDB.insert(DATABASE_TABLE, null, cv);
 		cv.put("date", date.format(d));
-		cv.put("value", 123000f);
-		writeDB.insert(DATABASE_NAME, null, cv);
+		cv.put("value", 123200f);
+		writeDB.insert(DATABASE_TABLE, null, cv);
 		
 	}
 	

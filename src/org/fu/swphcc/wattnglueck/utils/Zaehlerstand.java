@@ -1,4 +1,4 @@
-package org.fu.swphcc.wattnglueck;
+package org.fu.swphcc.wattnglueck.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

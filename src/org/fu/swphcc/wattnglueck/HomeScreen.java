@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import org.fu.swphcc.wattnglueck.utils.Database;
+import org.fu.swphcc.wattnglueck.utils.Preferences;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;

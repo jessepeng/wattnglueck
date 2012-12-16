@@ -3,6 +3,8 @@ package org.fu.swphcc.wattnglueck;
 import java.util.Arrays;
 import java.util.List;
 
+import org.fu.swphcc.wattnglueck.utils.Zaehlerstand;
+
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
@@ -16,6 +18,8 @@ public class Status extends WattnActivity {
 		setContentView(R.layout.activity_status);
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+//		TextView preisView = (TextView) findViewById(R.id.textBetrag);
+//		preisView.setText(Float.toString(Zaehlerstand.getEstimatedCoverage(this)));
 	}
 
 	@Override

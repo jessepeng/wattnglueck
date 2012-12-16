@@ -1,4 +1,4 @@
-package org.fu.swphcc.wattnglueck;
+package org.fu.swphcc.wattnglueck.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
