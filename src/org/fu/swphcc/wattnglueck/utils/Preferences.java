@@ -15,7 +15,10 @@ public class Preferences {
 	private SharedPreferences settings;
 	private float defaultKwhPreis = 12; 
 	
-	
+	/**
+	 * the fuckin' Constructor....
+	 * @param ctx
+	 */
 	public Preferences(Context ctx) {
 		this.ctx=ctx;
 		settings = ctx.getSharedPreferences(PREFS_NAME, 0);	

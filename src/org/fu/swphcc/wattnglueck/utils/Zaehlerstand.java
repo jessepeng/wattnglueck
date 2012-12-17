@@ -15,19 +15,17 @@ import android.content.Context;
  * @author Necros
  *
  */
-public class Zaehlerstand implements Comparable{
+public class Zaehlerstand implements Comparable<Zaehlerstand>{
 
 	private Float Zaehlerstand;
 	private Date date;
 
 	/**
 	 * Berechnet den Erwarteten Verbrauch in KWh
-	 * Die Funktion benutzt im Moment deprecated Funktions, was in diesem Fall aber nicht weiter schlimm ist
 	 * 
 	 * @param ctx der Context der App bzw der DB
 	 * @return die Erwarteten KWh als Float
 	 */
-	@SuppressWarnings({ "deprecation", "unchecked" })
 	public static Float getEstimatedCoverage(Context ctx) {
 		Preferences p = new Preferences(ctx);
 		Database db = new Database(ctx);
@@ -60,6 +58,8 @@ public class Zaehlerstand implements Comparable{
 		return null;
 	}
 
+	//getter und setter
+	
 	public Float getZaehlerstand() {
 		return Zaehlerstand;
 	}
@@ -73,14 +73,9 @@ public class Zaehlerstand implements Comparable{
 		this.date = date;
 	}
 
+	//zum Sortieren
 	@Override
-	public int compareTo(Object o) {
-		//o sollte immer instanceof Zahlerstand sein...
-		if(o instanceof Zaehlerstand) {
-			Zaehlerstand z = (Zaehlerstand) o;
+	public int compareTo(Zaehlerstand z) {
 			return this.date.compareTo(z.date);
-		} else return 1;
-
-
 	}
 }
