@@ -1,9 +1,7 @@
 package org.fu.swphcc.wattnglueck;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import org.fu.swphcc.wattnglueck.utils.Constants;
 import org.fu.swphcc.wattnglueck.utils.Database;
