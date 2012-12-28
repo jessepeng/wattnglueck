@@ -24,12 +24,27 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+	}
+
+	/**
+	 * Methode, die aufgerufen werden soll, um die TextViews und andere Views
+	 * vorzubereiten (zum Beispiel Touch-Events oder Custom-Font hinzufuegen).
+	 * Diese Methode sollte von jeder onCreate()-Methode als letzte
+	 * Anweisung ausgefuert werden.
+	 */
+	protected void initViews() {
 		Typeface customFont = Typeface.createFromAsset(getAssets(), getString(R.string.setting_fontfilename));
 		List<TextView> textViews = getTextViewsForFont();
 		if (textViews != null) {
 			for (TextView textView : textViews) {
 				if (textView != null) textView.setTypeface(customFont);
+			}
+		}
+		
+		List<TextView> buttonViews = getButtonTextViews();
+		if (buttonViews != null) {
+			for (TextView textView : buttonViews) {
+				if (textView != null) textView.setOnTouchListener(this);
 			}
 		}
 	}
@@ -54,6 +69,12 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 	 * @return
 	 */
 	protected abstract boolean showOptionsMenu();
+	
+	/**
+	 * Wird aufgerufen, um die TextViews zu erhalten, die als Buttons fungieren sollen.
+	 * @return
+	 */
+	protected abstract List<TextView> getButtonTextViews();
 	
 
 	@Override

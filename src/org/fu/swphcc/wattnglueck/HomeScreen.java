@@ -1,5 +1,6 @@
 package org.fu.swphcc.wattnglueck;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -29,10 +30,8 @@ public class HomeScreen extends WattnActivity {
 		
 		TextView statusView = (TextView) findViewById(R.id.textStatus); 
 		statusView.setText(showDate);
-		statusView.setOnTouchListener(this);
 		
-		TextView zaehlerView = (TextView) findViewById(R.id.textZaehlerstand);
-		zaehlerView.setOnTouchListener(this);
+		initViews();
 	}
 
 	@Override
@@ -61,6 +60,11 @@ public class HomeScreen extends WattnActivity {
 	@Override
 	protected List<TextView> getTextViewsForFont() {
 		return null;
+	}
+	
+	@Override
+	protected List<TextView> getButtonTextViews() {
+		return Arrays.asList((TextView) findViewById(R.id.textStatus), (TextView) findViewById(R.id.textZaehlerstand));
 	}
 
 	@Override

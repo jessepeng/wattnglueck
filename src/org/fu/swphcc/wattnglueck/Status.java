@@ -20,8 +20,11 @@ public class Status extends WattnActivity {
 		setContentView(R.layout.activity_status);
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-//		TextView preisView = (TextView) findViewById(R.id.textBetrag);
-//		preisView.setText(Float.toString(Zaehlerstand.getEstimatedCoverage(this)));
+		
+		TextView preisView = (TextView) findViewById(R.id.textStatusBetrag);
+		preisView.setText(Float.toString(Zaehlerstand.getEstimatedCoverage(this)));
+		
+		initViews();
 	}
 
 	@Override
@@ -43,9 +46,14 @@ public class Status extends WattnActivity {
 
 	@Override
 	protected List<TextView> getTextViewsForFont() {
-		return Arrays.asList((TextView) findViewById(R.id.textBetrag),
-				(TextView) findViewById(R.id.textZahlungAnfang),
-				(TextView) findViewById(R.id.textZahlungEnde));
+		return Arrays.asList((TextView) findViewById(R.id.textStatusBetrag),
+				(TextView) findViewById(R.id.textStatusZahlungAnfang),
+				(TextView) findViewById(R.id.textStatusZahlungEnde));
+	}
+	
+	@Override
+	protected List<TextView> getButtonTextViews() {
+		return Arrays.asList((TextView) findViewById(R.id.textStatusDetails));
 	}
 
 	@Override

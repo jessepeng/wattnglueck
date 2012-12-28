@@ -22,6 +22,9 @@
     <string name="status_nachzahlung_start">Du musst wahrscheinlich</string>
     <string name="status_nachzahlung_ende">nachzahlen.</string>
     <string name="status_beispielbetrag">35€</string>
+    <string name="status_detail_anfang">Ich möchte</string>
+    <string name="status_detail">mehr Details</string>
+    <string name="status_detail_ende">sehen.</string>
     <string name="testausgabe">DB Testausgabe</string>
     <string name="home_moechte_zaehlerstand">einen neuen Zählerstand dokumentieren.</string>
     <string name="home_moechte_status">meinen Status vom $date sehen.</string>
