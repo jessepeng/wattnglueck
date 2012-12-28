@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 
 /**
  * Bietet Funktionen um die Eigenschaften der App zu speichen und zu laden
+ *
+ * TODO: Es ist zu überlegen ob es vlt. effizienter ist, die Preferences nur einmal zu laden und dann im Heap zu speichern
+ * um unnötige Dateizugriffe zu minimieren.
  * 
  * @author Necros
  *
@@ -13,7 +16,7 @@ public class Preferences {
 	public static final String PREFS_NAME = "wattnpref";
 	private Context ctx;
 	private SharedPreferences settings;
-	private float defaultKwhPreis = 12; 
+	private float defaultKwhPreis = 24; 
 	
 	/**
 	 * the fuckin' Constructor....
@@ -71,6 +74,10 @@ public class Preferences {
 		return settings.getInt("kwh", 0);
 	}
 	
+	/**
+	 * speichert bzw ändert den KWh Preis
+	 * @param kwh Preis pro KWh in Cent
+	 */
 	public void addKwh(Integer kwh) {
 		SharedPreferences.Editor editor = settings.edit();
 		editor.putInt("kwh", kwh);
@@ -82,7 +89,7 @@ public class Preferences {
 	 * setzt Dummywerte für die Preferences
 	 */
 	public void setDummyValues() {
-		addBeginn("01.01.2011");
+		addBeginn("2011-01-01");
 		addPreis(45f);
 		addKwh(1600);
 	}

@@ -21,10 +21,12 @@ public class Zaehlerstand implements Comparable<Zaehlerstand>{
 	private Date date;
 
 	/**
+	 * 
 	 * Berechnet den Erwarteten Verbrauch in KWh
 	 * 
 	 * @param ctx der Context der App bzw der DB
 	 * @return die Erwarteten KWh als Float
+	 * 
 	 */
 	public static Float getEstimatedCoverage(Context ctx) {
 		Preferences p = new Preferences(ctx);
