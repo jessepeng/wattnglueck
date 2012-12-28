@@ -59,6 +59,18 @@ public class Zaehlerstand implements Comparable<Zaehlerstand>{
 		}
 		return null;
 	}
+	
+	/**
+	 * errechnet die vorraussichtliche Nach- bzw. Rückzahlung
+	 * @return Rückzahlung in Euro
+	 */
+	public static float getEstimatedBilling(Context ctx) {
+		float kwh = getEstimatedCoverage(ctx);
+		Preferences p = new Preferences(ctx);
+		float preis = p.getPreis();
+		float sollKwh = p.getKwh();
+		return (sollKwh-kwh) * preis;
+	}
 
 	//getter und setter
 	
