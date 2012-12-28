@@ -115,9 +115,9 @@ public class Database extends SQLiteOpenHelper{
 		args[0]=von;	
 		args[1]=bis;
 		
-		Cursor c = readDB.query(true, "data", null, "date <= ? AND date >= ?", args, null, null, null, null, null);
+		Cursor c = readDB.query(true, "data", null, "date >= ? AND date <= ?", args, null, null, null, null, null);
 		
-		if(c.getCount()>0) {
+		if(c.getCount()>1) {
 			List<Zaehlerstand> zlist = new LinkedList<Zaehlerstand>();
 			while(c.moveToNext()) {
 				Zaehlerstand z = new Zaehlerstand();
@@ -142,11 +142,10 @@ public class Database extends SQLiteOpenHelper{
 		
 		SQLiteDatabase writeDB = getWritableDatabase();
 		ContentValues cv = new ContentValues();
-		Date d = new Date();
 		cv.put("date", "2011-01-01");
 		cv.put("value", 123000f);
 		writeDB.insert(DATABASE_TABLE, null, cv);
-		cv.put("date", Constants.DBDateFormat.format(d));
+		cv.put("date", "2011-11-30");
 		cv.put("value", 123200f);
 		writeDB.insert(DATABASE_TABLE, null, cv);
 		

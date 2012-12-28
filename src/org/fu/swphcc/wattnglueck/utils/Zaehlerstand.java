@@ -35,7 +35,7 @@ public class Zaehlerstand implements Comparable<Zaehlerstand>{
 		try {
 			c.setTime(Constants.DBDateFormat.parse(p.getBeginn()));
 
-			c.add(Calendar.DATE, 1);
+			c.add(Calendar.YEAR, 1);
 
 			//Zählerstände holen
 			List<Zaehlerstand> zlist = db.getByRange(p.getBeginn(),Constants.DBDateFormat.format(c.getTime()));
@@ -49,6 +49,7 @@ public class Zaehlerstand implements Comparable<Zaehlerstand>{
 					Float delta = ende.Zaehlerstand - start.Zaehlerstand;
 					long zeit = ende.date.getTime() - start.date.getTime();
 					float tage = zeit / 86400000f;
+					if (tage == 0.0f) tage = 1;
 					Float estimation = delta / tage * 365f;
 					return estimation;
 				}
@@ -69,7 +70,7 @@ public class Zaehlerstand implements Comparable<Zaehlerstand>{
 		Preferences p = new Preferences(ctx);
 		float preis = p.getPreis();
 		float sollKwh = p.getKwh();
-		return (sollKwh-kwh) * preis;
+		return (sollKwh-kwh) * preis / 100f;
 	}
 
 	//getter und setter

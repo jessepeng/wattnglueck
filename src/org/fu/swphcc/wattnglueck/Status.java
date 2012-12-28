@@ -22,8 +22,7 @@ public class Status extends WattnActivity {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		TextView preisView = (TextView) findViewById(R.id.textStatusBetrag);
-		preisView.setText(Float.toString(Zaehlerstand.getEstimatedCoverage(this)));
-		
+		preisView.setText(Integer.toString(Math.round(Zaehlerstand.getEstimatedBilling(this))).replace('.', ',') + " €");
 		initViews();
 	}
 
@@ -46,9 +45,7 @@ public class Status extends WattnActivity {
 
 	@Override
 	protected List<TextView> getTextViewsForFont() {
-		return Arrays.asList((TextView) findViewById(R.id.textStatusBetrag),
-				(TextView) findViewById(R.id.textStatusZahlungAnfang),
-				(TextView) findViewById(R.id.textStatusZahlungEnde));
+		return null;
 	}
 	
 	@Override
