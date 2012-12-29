@@ -14,6 +14,8 @@
     <string name="menu_vertrag">Mein Vertrag</string>
     <string name="menu_abrechnung">Jahresabrechnung</string>
     <string name="menu_about">Über</string>
+    <string name="menu_dev_dummy">Dummy-Values in Datenbank einfügen</string>
+    <string name="menu_dev_clear_db">Datenbank leeren</string>
     <string name="home_font">Hier wird eine benutzerdefinierte Font genutzt.</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_status">Status</string>
@@ -21,12 +23,15 @@
     <string name="status_rueckzahlung_ende">zurück.</string>
     <string name="status_nachzahlung_start">Du musst wahrscheinlich</string>
     <string name="status_nachzahlung_ende">nachzahlen.</string>
-    <string name="status_beispielbetrag">35€</string>
+    <string name="status_beispielbetrag">0 €</string>
     <string name="status_detail_anfang">Ich möchte</string>
     <string name="status_detail">mehr Details</string>
     <string name="status_detail_ende">sehen.</string>
+    <string name="status_dialog">Du hast noch nicht genügend Zählerstände dokumentiert.\nMöchtest du jetzt einen Zählerstand dokumentieren?</string>
     <string name="testausgabe">DB Testausgabe</string>
     <string name="home_moechte_zaehlerstand">einen neuen Zählerstand dokumentieren.</string>
     <string name="home_moechte_status">meinen Status vom $date sehen.</string>
+    <string name="yes_no_dialog_yes">Ja</string>
+    <string name="yes_no_dialog_no">Nein</string>
 
 </resources>

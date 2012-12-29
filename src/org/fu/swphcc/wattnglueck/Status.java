@@ -7,7 +7,6 @@ import org.fu.swphcc.wattnglueck.utils.Zaehlerstand;
 
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -20,27 +19,49 @@ public class Status extends WattnActivity {
 		setContentView(R.layout.activity_status);
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		
-		TextView preisView = (TextView) findViewById(R.id.textStatusBetrag);
-		preisView.setText(Integer.toString(Math.round(Zaehlerstand.getEstimatedBilling(this))).replace('.', ',') + " €");
-		initViews();
 	}
-
+	
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			// This ID represents the Home or Up button. In the case of this
-			// activity, the Up button is shown. Use NavUtils to allow users
-			// to navigate up one level in the application structure. For
-			// more details, see the Navigation pattern on Android Design:
-			//
-			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-			//
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
+	protected void onStart() {
+		super.onStart();
+		TextView preisView = (TextView) findViewById(R.id.textStatusBetrag);
+		Float exactBetrag = Zaehlerstand.getEstimatedBilling(this);
+		if (exactBetrag != null) {
+			Integer betrag = Math.round(exactBetrag);
+			if (betrag < 0) {
+				betrag = -betrag;
+				View me = findViewById(android.R.id.content);
+				me.setBackgroundResource(R.drawable.red_gradient);
+				TextView statusAnfang = (TextView) findViewById(R.id.textStatusZahlungAnfang);
+				statusAnfang.setText(getString(R.string.status_nachzahlung_start));
+				TextView statusEnde = (TextView) findViewById(R.id.textStatusZahlungEnde);
+				statusEnde.setText(getString(R.string.status_nachzahlung_ende));
+			} else {
+				View me = findViewById(android.R.id.content);
+				me.setBackgroundResource(R.drawable.green_gradient);
+				TextView statusAnfang = (TextView) findViewById(R.id.textStatusZahlungAnfang);
+				statusAnfang.setText(getString(R.string.status_rueckzahlung_start));
+				TextView statusEnde = (TextView) findViewById(R.id.textStatusZahlungEnde);
+				statusEnde.setText(getString(R.string.status_rueckzahlung_ende));
+			}
+			preisView.setText(Integer.toString(betrag) + " €");
+			initViews();
+		} else {
+			// Kein Ergebnis von Berechnung (null)
+			YesNoMessageDialog dialog = new YesNoMessageDialog(getString(R.string.status_dialog)) {
+				
+				@Override
+				protected void onYesAction() {
+					NavUtils.navigateUpFromSameTask(this.getActivity());
+				}
+				
+				@Override
+				protected void onNoAction() {
+					NavUtils.navigateUpFromSameTask(this.getActivity());
+				}
+			};
+			dialog.show(getFragmentManager(), "status_dialog");
 		}
-		return super.onOptionsItemSelected(item);
 	}
 
 	@Override

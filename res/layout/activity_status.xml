@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:paddingLeft="24dp"
     android:paddingRight="24dp"
-    android:background="@drawable/green_gradient"
     tools:context=".Status" >
 
     <TextView

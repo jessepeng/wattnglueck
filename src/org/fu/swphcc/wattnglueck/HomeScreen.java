@@ -20,9 +20,9 @@ public class HomeScreen extends WattnActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_screen);
-		
-		//testdaten
-		setDummyValues();
+//		
+//		//testdaten
+//		setDummyValues();
 
 		Date today = new Date();
 		String todayString = Constants.ViewDateFormat.format(today);

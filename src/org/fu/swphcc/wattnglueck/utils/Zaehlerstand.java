@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.ListIterator;
 
 import android.content.Context;
 
@@ -40,20 +39,21 @@ public class Zaehlerstand implements Comparable<Zaehlerstand>{
 			//Zählerstände holen
 			List<Zaehlerstand> zlist = db.getByRange(p.getBeginn(),Constants.DBDateFormat.format(c.getTime()));
 
-			if(zlist.size()>0) {
-
-				Zaehlerstand start = zlist.get(0);
-				Zaehlerstand ende = zlist.get(zlist.size()-1);
-
-				if(ende!=null) {
-					Float delta = ende.Zaehlerstand - start.Zaehlerstand;
-					long zeit = ende.date.getTime() - start.date.getTime();
-					float tage = zeit / 86400000f;
-					if (tage == 0.0f) tage = 1;
-					Float estimation = delta / tage * 365f;
-					return estimation;
+			if (zlist != null)
+				if(zlist.size()>0) {
+	
+					Zaehlerstand start = zlist.get(0);
+					Zaehlerstand ende = zlist.get(zlist.size()-1);
+	
+					if(ende!=null) {
+						Float delta = ende.Zaehlerstand - start.Zaehlerstand;
+						long zeit = ende.date.getTime() - start.date.getTime();
+						float tage = zeit / 86400000f;
+						if (tage == 0.0f) tage = 1;
+						Float estimation = delta / tage * 365f;
+						return estimation;
+					}
 				}
-			}
 			
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -65,12 +65,15 @@ public class Zaehlerstand implements Comparable<Zaehlerstand>{
 	 * errechnet die vorraussichtliche Nach- bzw. Rückzahlung
 	 * @return Rückzahlung in Euro
 	 */
-	public static float getEstimatedBilling(Context ctx) {
-		float kwh = getEstimatedCoverage(ctx);
-		Preferences p = new Preferences(ctx);
-		float preis = p.getPreis();
-		float sollKwh = p.getKwh();
-		return (sollKwh-kwh) * preis / 100f;
+	public static Float getEstimatedBilling(Context ctx) {
+		Float kwh = getEstimatedCoverage(ctx);
+		if (kwh != null) {
+			Preferences p = new Preferences(ctx);
+			float preis = p.getPreis();
+			float sollKwh = p.getKwh();
+			return (sollKwh-kwh) * preis / 100f;
+		}
+		return null;
 	}
 
 	//getter und setter

@@ -1,4 +1,0 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <group android:id="@+id/groupMenu"><item android:id="@+id/itemZaehlerstaende" android:title="@string/menu_zaehler"/><item android:id="@+id/itemVertrag" android:title="@string/menu_vertrag"/><item android:id="@+id/itemAbrechnung" android:title="@string/menu_abrechnung"/><item android:id="@+id/itemAbout" android:title="@string/menu_about"/></group>
-
-</menu>

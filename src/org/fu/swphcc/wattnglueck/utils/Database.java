@@ -57,7 +57,7 @@ public class Database extends SQLiteOpenHelper{
 	 */
 	public List<Zaehlerstand> getAll() {
 		SQLiteDatabase readDB = getReadableDatabase();
-		Cursor c = readDB.query(true, "data", null, null, null, null, null, "date", null, null);
+		Cursor c = readDB.query(true, DATABASE_TABLE, null, null, null, null, null, "date", null, null);
 
 		if(c.getCount()>0) {
 			List<Zaehlerstand> zlist = new LinkedList<Zaehlerstand>();
@@ -86,7 +86,7 @@ public class Database extends SQLiteOpenHelper{
 		SQLiteDatabase readDB = getReadableDatabase();
 		String[]  args= new String[1];
 		args[0]=id.toString();
-		Cursor c = readDB.query(true, "data", null, "id = ?", args, null, null, null, null, null);
+		Cursor c = readDB.query(true, DATABASE_TABLE, null, "id = ?", args, null, null, null, null, null);
 
 		if(c.getCount()>0) {
 			Zaehlerstand z = new Zaehlerstand();
@@ -115,7 +115,7 @@ public class Database extends SQLiteOpenHelper{
 		args[0]=von;	
 		args[1]=bis;
 		
-		Cursor c = readDB.query(true, "data", null, "date >= ? AND date <= ?", args, null, null, null, null, null);
+		Cursor c = readDB.query(true, DATABASE_TABLE, null, "date >= ? AND date <= ?", args, null, null, null, null, null);
 		
 		if(c.getCount()>1) {
 			List<Zaehlerstand> zlist = new LinkedList<Zaehlerstand>();
@@ -146,9 +146,16 @@ public class Database extends SQLiteOpenHelper{
 		cv.put("value", 123000f);
 		writeDB.insert(DATABASE_TABLE, null, cv);
 		cv.put("date", "2011-11-30");
-		cv.put("value", 123200f);
+		cv.put("value", 125000f);
 		writeDB.insert(DATABASE_TABLE, null, cv);
 		
 	}
 	
+	/**
+	 * Leert die Datenbank
+	 */
+	public void clearDatabase() {
+		SQLiteDatabase writeDB = getWritableDatabase();
+		writeDB.delete(DATABASE_TABLE, "1=1", null);
+	}
 }
