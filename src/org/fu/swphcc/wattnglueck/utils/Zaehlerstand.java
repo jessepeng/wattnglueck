@@ -70,8 +70,10 @@ public class Zaehlerstand implements Comparable<Zaehlerstand>{
 		if (kwh != null) {
 			Preferences p = new Preferences(ctx);
 			float preis = p.getPreis();
-			float sollKwh = p.getKwh();
-			return (sollKwh-kwh) * preis / 100f;
+			float grundpreis = p.getGrundpreis();
+			float estimatedZahlung = (preis / 100f * kwh) + 12f * grundpreis;
+			float actualZahlung = 12f * p.getAbschlag();
+			return (actualZahlung - estimatedZahlung);
 		}
 		return null;
 	}

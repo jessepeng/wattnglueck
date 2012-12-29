@@ -3,6 +3,7 @@ package org.fu.swphcc.wattnglueck;
 import java.util.List;
 
 import org.fu.swphcc.wattnglueck.utils.Database;
+import org.fu.swphcc.wattnglueck.utils.Preferences;
 
 import android.app.Activity;
 import android.graphics.Typeface;
@@ -78,6 +79,8 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 			return true;
 		case R.id.itemDevDummyValues:
 			Database db = new Database(this);
+			Preferences pref = new Preferences(this);
+			pref.setDummyValues();
 			db.setDummyValues();
 			Toast.makeText(this, "Dummy-Values eingefügt.", Toast.LENGTH_SHORT).show();
 			return true;

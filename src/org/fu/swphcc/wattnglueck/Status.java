@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.fu.swphcc.wattnglueck.utils.Zaehlerstand;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MotionEvent;
@@ -57,6 +58,11 @@ public class Status extends WattnActivity {
 				
 				@Override
 				protected void onNoAction() {
+					NavUtils.navigateUpFromSameTask(this.getActivity());
+				}
+				
+				@Override
+				public void onCancel(DialogInterface dialog) {
 					NavUtils.navigateUpFromSameTask(this.getActivity());
 				}
 			};

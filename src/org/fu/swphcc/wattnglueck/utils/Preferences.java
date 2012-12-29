@@ -70,19 +70,38 @@ public class Preferences {
 	 * liefert die gesetzten KWH des Vertrags
 	 * @return kwh
 	 */
-	public Integer getKwh() {
-		return settings.getInt("kwh", 0);
+	public Float getGrundpreis() {
+		return settings.getFloat("grundpreis", 0);
 	}
 	
 	/**
 	 * speichert bzw ändert den KWh Preis
 	 * @param kwh Preis pro KWh in Cent
 	 */
-	public void addKwh(Integer kwh) {
+	public void addGrundpreis(Float preis) {
 		SharedPreferences.Editor editor = settings.edit();
-		editor.putInt("kwh", kwh);
+		editor.putFloat("grundpreis", preis);
 		
 		editor.commit();
+	}
+	
+	/**
+	 * speichert bzw aendert den monatlichen Abschlag
+	 * @param abschlag monatlichen Abschlag in Euro
+	 */
+	public void addAbschlag(Float abschlag) {
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putFloat("abschlag", abschlag);
+		
+		editor.commit();
+	}
+	
+	/**
+	 * liefert den gespeicherten Abschlag
+	 * @return
+	 */
+	public Float getAbschlag() {
+		return settings.getFloat("abschlag", 0f);
 	}
 	
 	/**
@@ -91,6 +110,7 @@ public class Preferences {
 	public void setDummyValues() {
 		addBeginn("2011-01-01");
 		addPreis(45f);
-		addKwh(1600);
+		addGrundpreis(25.50f);
+		addAbschlag(35f);
 	}
 }
