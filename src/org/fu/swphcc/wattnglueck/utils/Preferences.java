@@ -108,9 +108,27 @@ public class Preferences {
 	 * setzt Dummywerte für die Preferences
 	 */
 	public void setDummyValues() {
-		addBeginn("2011-01-01");
-		addPreis(45f);
-		addGrundpreis(25.50f);
-		addAbschlag(35f);
+		addBeginn("2013-01-01");
+		addPreis(26.88f);
+		addGrundpreis(5.60f);
+		addAbschlag(101f);
+	}
+	
+	/**
+	 * Gibt an, ob die Einstellungen gesetzt sind oder nicht.
+	 * @return
+	 */
+	public boolean isSet() {
+		return ((getAbschlag() != null) && (getGrundpreis() != null) && (getBeginn() != null) && (getPreis() != null));
+	}
+	
+	/**
+	 * Loescht alle Einstellungen
+	 */
+	public void clearPreferences() {
+		SharedPreferences.Editor editor = settings.edit();
+		
+		editor.clear();
+		editor.commit();
 	}
 }

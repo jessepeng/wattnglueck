@@ -17,7 +17,6 @@
     <string name="menu_dev_dummy">Dummy-Values in Datenbank einfügen</string>
     <string name="menu_dev_clear_db">Datenbank leeren</string>
     <string name="home_font">Hier wird eine benutzerdefinierte Font genutzt.</string>
-    <string name="hello_world">Hello world!</string>
     <string name="title_activity_status">Status</string>
     <string name="status_rueckzahlung_start">Du bekommst wahrscheinlich</string>
     <string name="status_rueckzahlung_ende">zurück.</string>
@@ -36,5 +35,12 @@
     <string name="ok_dialog_ok">OK</string>
     <string name="zaehlerstand_choose_kamera">Kamera</string>
     <string name="zaehlerstand_choose_text">Text</string>
+    <string name="title_activity_zaehlerstand_manuell">Zählerstand manuell eingeben</string>
+    <string name="manuell_zaehler_anfang">Mein Zählerstand beträgt heute</string>
+    <string name="manuell_zaehler_ende">Kilowattstunden.</string>
+    <string name="generic_weiter">Weiter</string>
+    <string name="dialog_stromvertrag">Bitte halte deinen Stromvertrag bereit.</string>
+    <string name="dialog_stromzaehler">Bitte gehe jetzt zu deinem Stromzähler.</string>
+    <string name="title_activity_vertrag">Vertrag</string>
 
 </resources>

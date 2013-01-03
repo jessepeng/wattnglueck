@@ -6,6 +6,7 @@ import java.util.List;
 import org.fu.swphcc.wattnglueck.utils.Zaehlerstand;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MotionEvent;
@@ -53,17 +54,18 @@ public class Status extends WattnActivity {
 				
 				@Override
 				protected void onYesAction() {
-					NavUtils.navigateUpFromSameTask(this.getActivity());
+					startActivity(new Intent(getActivity(), ZaehlerstandChooseMethodDialog.class));
+					this.dismiss();
 				}
 				
 				@Override
 				protected void onNoAction() {
-					NavUtils.navigateUpFromSameTask(this.getActivity());
+					NavUtils.navigateUpFromSameTask(getActivity());
 				}
 				
 				@Override
 				public void onCancel(DialogInterface dialog) {
-					NavUtils.navigateUpFromSameTask(this.getActivity());
+					NavUtils.navigateUpFromSameTask(getActivity());
 				}
 			};
 			dialog.show(getFragmentManager(), "status_dialog");

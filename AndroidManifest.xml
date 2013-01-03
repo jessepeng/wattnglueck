@@ -38,6 +38,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.fu.swphcc.wattnglueck.HomeScreen" />
         </activity>
+        <activity
+            android:name="org.fu.swphcc.wattnglueck.ZaehlerstandManuell"
+            android:label="@string/title_activity_zaehlerstand_manuell"
+            android:parentActivityName="org.fu.swphcc.wattnglueck.HomeScreen" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.fu.swphcc.wattnglueck.HomeScreen" />
+        </activity>
+        <activity
+            android:name="org.fu.swphcc.wattnglueck.Vertrag"
+            android:label="@string/title_activity_vertrag"
+            android:parentActivityName="org.fu.swphcc.wattnglueck.HomeScreen" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.fu.swphcc.wattnglueck.HomeScreen" />
+        </activity>
     </application>
 
 </manifest>

@@ -86,8 +86,10 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 			return true;
 		case R.id.itemDevDeleteDatabase:
 			db = new Database(this);
+			pref = new Preferences(this);
 			db.clearDatabase();
-			Toast.makeText(this, "Datenbank geleert.", Toast.LENGTH_SHORT).show();
+			pref.clearPreferences();
+			Toast.makeText(this, "Datenbank und Einstellungen geleert.", Toast.LENGTH_SHORT).show();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

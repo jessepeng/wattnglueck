@@ -142,11 +142,11 @@ public class Database extends SQLiteOpenHelper{
 		
 		SQLiteDatabase writeDB = getWritableDatabase();
 		ContentValues cv = new ContentValues();
-		cv.put("date", "2011-01-01");
-		cv.put("value", 123000f);
+		cv.put("date", "2013-01-01");
+		cv.put("value", 74010f);
 		writeDB.insert(DATABASE_TABLE, null, cv);
-		cv.put("date", "2011-11-30");
-		cv.put("value", 125000f);
+		cv.put("date", "2013-01-03");
+		cv.put("value", 74019f);
 		writeDB.insert(DATABASE_TABLE, null, cv);
 		
 	}

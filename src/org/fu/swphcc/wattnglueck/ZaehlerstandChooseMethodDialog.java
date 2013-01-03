@@ -1,6 +1,7 @@
 package org.fu.swphcc.wattnglueck;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,7 +23,7 @@ public class ZaehlerstandChooseMethodDialog extends Activity implements OnClickL
 			this.finish();
 			break;
 		case R.id.imageButtonText:
-			Toast.makeText(this, "Text gewählt.", Toast.LENGTH_SHORT).show();
+			startActivity(new Intent(this, ZaehlerstandManuell.class));
 			this.finish();
 			break;
 		}
