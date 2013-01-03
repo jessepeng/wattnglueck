@@ -39,6 +39,10 @@ public class HomeScreen extends WattnActivity {
 		switch (arg0.getId()) {
 		case R.id.textStatus:
 			startActivity(new Intent(this, Status.class));
+			break;
+		case R.id.textZaehlerstand:
+			startActivity(new Intent(this, ZaehlerstandChooseMethodDialog.class));
+			break;
 		}
 		return true;
 	}

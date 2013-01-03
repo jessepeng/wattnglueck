@@ -32,28 +32,31 @@ public class Zaehlerstand implements Comparable<Zaehlerstand>{
 		Database db = new Database(ctx);
 		Calendar c = Calendar.getInstance();
 		try {
-			c.setTime(Constants.DBDateFormat.parse(p.getBeginn()));
-
-			c.add(Calendar.YEAR, 1);
-
-			//Zählerstände holen
-			List<Zaehlerstand> zlist = db.getByRange(p.getBeginn(),Constants.DBDateFormat.format(c.getTime()));
-
-			if (zlist != null)
-				if(zlist.size()>0) {
+			String dateBegin = p.getBeginn();
+			if (dateBegin != null) {
+				c.setTime(Constants.DBDateFormat.parse(p.getBeginn()));
 	
-					Zaehlerstand start = zlist.get(0);
-					Zaehlerstand ende = zlist.get(zlist.size()-1);
+				c.add(Calendar.YEAR, 1);
 	
-					if(ende!=null) {
-						Float delta = ende.Zaehlerstand - start.Zaehlerstand;
-						long zeit = ende.date.getTime() - start.date.getTime();
-						float tage = zeit / 86400000f;
-						if (tage == 0.0f) tage = 1;
-						Float estimation = delta / tage * 365f;
-						return estimation;
+				//Zählerstände holen
+				List<Zaehlerstand> zlist = db.getByRange(p.getBeginn(),Constants.DBDateFormat.format(c.getTime()));
+	
+				if (zlist != null)
+					if(zlist.size()>0) {
+		
+						Zaehlerstand start = zlist.get(0);
+						Zaehlerstand ende = zlist.get(zlist.size()-1);
+		
+						if(ende!=null) {
+							Float delta = ende.Zaehlerstand - start.Zaehlerstand;
+							long zeit = ende.date.getTime() - start.date.getTime();
+							float tage = zeit / 86400000f;
+							if (tage == 0.0f) tage = 1;
+							Float estimation = delta / tage * 365f;
+							return estimation;
+						}
 					}
-				}
+			}
 			
 		} catch (ParseException e) {
 			e.printStackTrace();

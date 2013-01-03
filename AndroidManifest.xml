@@ -30,6 +30,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.fu.swphcc.wattnglueck.HomeScreen" />
         </activity>
+        <activity
+            android:name="org.fu.swphcc.wattnglueck.ZaehlerstandChooseMethodDialog"
+            android:parentActivityName="org.fu.swphcc.wattnglueck.HomeScreen"
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.fu.swphcc.wattnglueck.HomeScreen" />
+        </activity>
     </application>
 
 </manifest>

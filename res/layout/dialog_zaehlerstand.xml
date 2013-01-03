@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="horizontal"
+    tools:context=".ZaehlerstandChooseMethodDialog" >
+
+    <ImageButton
+        android:id="@+id/imageButtonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/zaehlerstand_choose_text"
+        android:paddingBottom="60sp"
+        android:paddingLeft="20sp"
+        android:paddingRight="20sp"
+        android:paddingTop="60sp"
+        android:src="@drawable/text"
+        android:onClick="onClick"
+        style="?android:attr/borderlessButtonStyle" />
+
+    <View
+        android:id="@+id/View01"
+        android:layout_width="2sp"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:paddingTop="40sp" />
+
+    <ImageButton
+        android:id="@+id/imageButtonKamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/zaehlerstand_choose_kamera"
+        android:paddingBottom="60sp"
+        android:paddingLeft="20sp"
+        android:paddingRight="20sp"
+        android:paddingTop="60sp"
+        android:src="@drawable/kamera"
+        android:onClick="onClick"
+        style="?android:attr/borderlessButtonStyle" />
+
+</LinearLayout>

@@ -33,5 +33,8 @@
     <string name="home_moechte_status">meinen Status vom $date sehen.</string>
     <string name="yes_no_dialog_yes">Ja</string>
     <string name="yes_no_dialog_no">Nein</string>
+    <string name="ok_dialog_ok">OK</string>
+    <string name="zaehlerstand_choose_kamera">Kamera</string>
+    <string name="zaehlerstand_choose_text">Text</string>
 
 </resources>
