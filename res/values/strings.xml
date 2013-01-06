@@ -39,8 +39,14 @@
     <string name="manuell_zaehler_anfang">Mein Zählerstand beträgt heute</string>
     <string name="manuell_zaehler_ende">Kilowattstunden.</string>
     <string name="generic_weiter">Weiter</string>
+    <string name="generic_komma">,</string>
+    <string name="generic_euro">€.</string>
+    <string name="generic_cent">ct.</string>
     <string name="dialog_stromvertrag">Bitte halte deinen Stromvertrag bereit.</string>
     <string name="dialog_stromzaehler">Bitte gehe jetzt zu deinem Stromzähler.</string>
     <string name="title_activity_vertrag">Vertrag</string>
+    <string name="vertrag_beginn">Mein Abrechnungs-\nzeitraum beginnt am</string>
+    <string name="gebuehren_beginn">Monatlich zahle ich</string>
+    <string name="gebuehren_kilowatt">Pro Kilowattstunde zahle ich</string>
 
 </resources>

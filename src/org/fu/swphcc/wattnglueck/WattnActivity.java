@@ -6,6 +6,7 @@ import org.fu.swphcc.wattnglueck.utils.Database;
 import org.fu.swphcc.wattnglueck.utils.Preferences;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -76,6 +77,9 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
 			NavUtils.navigateUpFromSameTask(this);
+			return true;
+		case R.id.itemVertrag:
+			startActivity(new Intent(this, Vertrag.class));
 			return true;
 		case R.id.itemDevDummyValues:
 			Database db = new Database(this);
