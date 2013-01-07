@@ -35,35 +35,36 @@ public class Zaehlerstand implements Comparable<Zaehlerstand>{
 			String dateBegin = p.getBeginn();
 			if (dateBegin != null) {
 				c.setTime(Constants.DBDateFormat.parse(p.getBeginn()));
-	
+
 				c.add(Calendar.YEAR, 1);
-	
+
 				//Zählerstände holen
 				List<Zaehlerstand> zlist = db.getByRange(p.getBeginn(),Constants.DBDateFormat.format(c.getTime()));
-	
+
 				if (zlist != null)
 					if(zlist.size()>0) {
-		
+
 						Zaehlerstand start = zlist.get(0);
 						Zaehlerstand ende = zlist.get(zlist.size()-1);
-		
+
 						if(ende!=null) {
 							Float delta = ende.Zaehlerstand - start.Zaehlerstand;
 							long zeit = ende.date.getTime() - start.date.getTime();
 							float tage = zeit / 86400000f;
-							if (tage == 0.0f) tage = 1;
+							if (tage == 0.0f)
+								tage = 1;
 							Float estimation = delta / tage * 365f;
 							return estimation;
 						}
 					}
 			}
-			
+
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
 	/**
 	 * errechnet die vorraussichtliche Nach- bzw. Rückzahlung
 	 * @return Rückzahlung in Euro
@@ -82,7 +83,7 @@ public class Zaehlerstand implements Comparable<Zaehlerstand>{
 	}
 
 	//getter und setter
-	
+
 	public Float getZaehlerstand() {
 		return Zaehlerstand;
 	}
@@ -99,6 +100,6 @@ public class Zaehlerstand implements Comparable<Zaehlerstand>{
 	//zum Sortieren
 	@Override
 	public int compareTo(Zaehlerstand z) {
-			return this.date.compareTo(z.date);
+		return this.date.compareTo(z.date);
 	}
 }
