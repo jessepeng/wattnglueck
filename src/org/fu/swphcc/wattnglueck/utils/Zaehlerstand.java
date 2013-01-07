@@ -34,13 +34,23 @@ public class Zaehlerstand implements Comparable<Zaehlerstand>{
 		try {
 			String dateBegin = p.getBeginn();
 			if (dateBegin != null) {
+<<<<<<< HEAD
 				c.setTime(Constants.DBDateFormat.parse(p.getBeginn()));
 
+=======
+				c.setTime(Constants.DBDateFormat.parse(dateBegin));
+	
+>>>>>>> 734ceffc3b80c55a514e8d928df227ec8cdf70e6
 				c.add(Calendar.YEAR, 1);
 
 				//Zählerstände holen
+<<<<<<< HEAD
 				List<Zaehlerstand> zlist = db.getByRange(p.getBeginn(),Constants.DBDateFormat.format(c.getTime()));
 
+=======
+				List<Zaehlerstand> zlist = db.getByRange(dateBegin,Constants.DBDateFormat.format(c.getTime()));
+	
+>>>>>>> 734ceffc3b80c55a514e8d928df227ec8cdf70e6
 				if (zlist != null)
 					if(zlist.size()>0) {
 

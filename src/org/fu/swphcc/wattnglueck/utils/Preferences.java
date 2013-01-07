@@ -49,7 +49,7 @@ public class Preferences {
 	/**
 	 * Setzt den Beginn des Abrechnungszeitraums
 	 * Überprüfung ob der Parameter im richtigen Format ist fehlt noch
-	 * @param date Datum im Format "dd.MM.YYY"
+	 * @param date Datum im Format "YYYY-MM-dd"
 	 */
 	public void addBeginn(String date) {
 		SharedPreferences.Editor editor = settings.edit();
@@ -60,7 +60,7 @@ public class Preferences {
 	
 	/**
 	 * gibt das Startdatum des Abrechnungszeitraums zurück
-	 * @return Datum als String im Format "dd.MM.YYY"
+	 * @return Datum als String im Format "YYYY-MM-dd"
 	 */
 	public String getBeginn() {	
 		return settings.getString("beginn", null);

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="24dp"
+    android:paddingRight="8dp"
+    android:scrollbars="vertical" >
+    
+    <TextView
+        android:id="@+id/textGebuehrenBeginn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="24dp"
+        android:text="@string/gebuehren_beginn"
+        android:textSize="36sp" />
+    
+    <RelativeLayout
+	    android:id="@+id/gebuehrenLayout"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/textGebuehrenBeginn"
+	    android:layout_below="@+id/textGebuehrenBeginn">
+    
+	    <NumberPicker
+	        android:id="@+id/gebuehrenGrund1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/textGebuehrenBeginn"
+	        android:layout_below="@+id/textGebuehrenBeginn" />
+	    
+	    <TextView
+	        android:id="@+id/textGebuehrenKomma1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerVertical="true"
+	        android:layout_toRightOf="@+id/gebuehrenGrund1"
+	        android:gravity="center_vertical"
+	        android:text="@string/generic_komma"
+	        android:textSize="20sp" />
+	
+	     <NumberPicker
+	        android:id="@+id/gebuehrenGrund2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignTop="@+id/gebuehrenGrund1"
+	        android:layout_toRightOf="@+id/textGebuehrenKomma1" />
+	
+	    <NumberPicker
+	        android:id="@+id/gebuehrenGrund3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignTop="@+id/gebuehrenGrund2"
+	        android:layout_toRightOf="@+id/gebuehrenGrund2" />
+	    
+	    <TextView
+	        android:id="@+id/textGebuehrenEuro1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerInParent="false"
+	        android:layout_centerVertical="true"
+	        android:layout_toRightOf="@+id/gebuehrenGrund3"
+	        android:gravity="center_vertical"
+	        android:text="@string/generic_euro"
+	        android:textSize="20sp" />
+    
+    </RelativeLayout>
+    
+    <TextView
+        android:id="@+id/textGebuehrenKilowatt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/gebuehrenLayout"
+	    android:layout_below="@+id/gebuehrenLayout"
+        android:text="@string/gebuehren_kilowatt"
+        android:textSize="36sp" />
+    
+    <RelativeLayout
+	    android:id="@+id/kilowattLayout"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/textGebuehrenKilowatt"
+	    android:layout_below="@+id/textGebuehrenKilowatt">
+    
+	    <NumberPicker
+	        android:id="@+id/gebuehrenKWH1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/textGebuehrenBeginn"
+	        android:layout_below="@+id/textGebuehrenBeginn"/>
+	    
+	     <NumberPicker
+	        android:id="@+id/gebuehrenKWH2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignTop="@+id/gebuehrenKWH1"
+	        android:layout_toRightOf="@+id/gebuehrenKWH1" />
+	     
+	     <TextView
+	        android:id="@+id/textGebuehrenKomma2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerVertical="true"
+	        android:layout_toRightOf="@+id/gebuehrenKWH2"
+	        android:gravity="center_vertical"
+	        android:text="@string/generic_komma"
+	        android:textSize="20sp" />
+	
+	    <NumberPicker
+	        android:id="@+id/gebuehrenKWH3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignTop="@+id/gebuehrenKWH2"
+	        android:layout_toRightOf="@+id/gebuehrenKWH2" />
+	    
+	    <NumberPicker
+	        android:id="@+id/gebuehrenKWH4"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignTop="@+id/gebuehrenKWH3"
+	        android:layout_toRightOf="@+id/gebuehrenKWH3" />
+	    
+	    <TextView
+	        android:id="@+id/textGebuehrenEuro2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerInParent="false"
+	        android:layout_centerVertical="true"
+	        android:layout_toRightOf="@+id/gebuehrenKWH4"
+	        android:gravity="center_vertical"
+	        android:text="@string/generic_cent"
+	        android:textSize="20sp" />
+    
+    </RelativeLayout>
+    
+	<TextView
+        android:id="@+id/textGebuehrenWeiter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/kilowattLayout"
+        android:layout_below="@+id/kilowattLayout"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/button_background"
+        android:clickable="true"
+        android:text="@string/generic_weiter"
+        android:textColor="#ffffff"
+        android:textSize="36sp" />
+
+
+</RelativeLayout>
