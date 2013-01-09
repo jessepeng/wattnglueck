@@ -48,5 +48,8 @@
     <string name="vertrag_beginn">Mein Abrechnungs-\nzeitraum beginnt am</string>
     <string name="gebuehren_beginn">Monatlich zahle ich</string>
     <string name="gebuehren_kilowatt">Pro Kilowattstunde zahle ich</string>
+    <string name="abschlag_beginn">Mein monatlicher Abschlag beträgt</string>
+    <string name="zaehlerstand_beginn_beginn">Mein Zählerstand bei Beginn des Abrechnungs-\nzeitraumes betrug</string>
+    <string name="zaehlerstand_beginn_ende">Kilowattstunden.</string>
 
 </resources>

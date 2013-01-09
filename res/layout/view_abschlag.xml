@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="24dp"
+    android:paddingRight="8dp"
+    android:scrollbars="vertical" >
+
+    <TextView
+        android:id="@+id/textAbschlagBeginn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="24dp"
+        android:text="@string/abschlag_beginn"
+        android:textSize="28sp" />
+    
+   	<RelativeLayout
+	    android:id="@+id/abschlagLayout"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/textAbschlagBeginn"
+	    android:layout_below="@+id/textAbschlagBeginn">
+    
+	    <NumberPicker
+	        android:id="@+id/abschlagNum1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/textAbschlagBeginn"
+	        android:layout_below="@+id/textAbschlagBeginn" />
+	    
+	     <NumberPicker
+	        android:id="@+id/abschlagNum2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignTop="@+id/abschlagNum1"
+	        android:layout_toRightOf="@+id/abschlagNum1" />
+	
+	    <NumberPicker
+	        android:id="@+id/abschlagNum3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignTop="@+id/abschlagNum2"
+	        android:layout_toRightOf="@+id/abschlagNum2" />
+	    
+	    <TextView
+	        android:id="@+id/textAbschlagEuro1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerInParent="false"
+	        android:layout_centerVertical="true"
+	        android:layout_toRightOf="@+id/abschlagNum3"
+	        android:gravity="center_vertical"
+	        android:text="@string/generic_euro"
+	        android:textSize="20sp" />
+	    
+    </RelativeLayout>
+    
+    <TextView
+        android:id="@+id/textAbschlagWeiter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/abschlagLayout"
+        android:layout_below="@+id/abschlagLayout"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/button_background"
+        android:clickable="true"
+        android:text="@string/generic_weiter"
+        android:textColor="#ffffff"
+        android:textSize="28sp" />
+    
+</RelativeLayout>

@@ -48,6 +48,32 @@ public class Database extends SQLiteOpenHelper{
 		cv.put("value", stand);
 		writeDB.insert(DATABASE_NAME, null, cv);
 	}
+	
+	/**
+	 * Ändert einen sich bereits in der Datenbank befindlichen Zählerstand
+	 * @param date
+	 * @param stand
+	 */
+	public void updateZaehlerstand(Date date, Float stand) {
+		SQLiteDatabase writeDB = getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put("date", Constants.DBDateFormat.format(date));
+		cv.put("value", stand);
+		writeDB.update(DATABASE_TABLE, cv, "date = ?", new String[] {Constants.DBDateFormat.format(date)});
+	}
+
+	/**
+	 * Ändert einen sich bereits in der Datenbank befindlichen Zählerstand
+	 * @param date
+	 * @param stand
+	 */
+	public void updateZaehlerstand(String date, Float stand) {
+		SQLiteDatabase writeDB = getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put("date", date);
+		cv.put("value", stand);
+		writeDB.update(DATABASE_TABLE, cv, "date = ?", new String[] {date});
+	}
 
 	
 	/**
@@ -88,7 +114,7 @@ public class Database extends SQLiteOpenHelper{
 		args[0]=id.toString();
 		Cursor c = readDB.query(true, DATABASE_TABLE, null, "id = ?", args, null, null, null, null, null);
 
-		if(c.getCount()>0) {
+		if(c.getCount() > 0) {
 			Zaehlerstand z = new Zaehlerstand();
 			z.setZaehlerstand(c.getFloat(2));
 			try {
@@ -117,7 +143,7 @@ public class Database extends SQLiteOpenHelper{
 		
 		Cursor c = readDB.query(true, DATABASE_TABLE, null, "date >= ? AND date <= ?", args, null, null, null, null, null);
 		
-		if(c.getCount()>1) {
+		if(c.getCount() >= 1) {
 			List<Zaehlerstand> zlist = new LinkedList<Zaehlerstand>();
 			while(c.moveToNext()) {
 				Zaehlerstand z = new Zaehlerstand();

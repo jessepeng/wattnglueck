@@ -13,7 +13,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="24dp"
         android:text="@string/vertrag_beginn"
-        android:textSize="36sp" />
+        android:textSize="28sp" />
     
     <DatePicker
 	    android:id="@+id/dateVertragBeginn"
@@ -36,7 +36,7 @@
         android:clickable="true"
         android:text="@string/generic_weiter"
         android:textColor="#ffffff"
-        android:textSize="36sp" />
+        android:textSize="28sp" />
 
 	
     

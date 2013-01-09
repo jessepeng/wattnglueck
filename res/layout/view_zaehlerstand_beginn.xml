@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp">
+
+    <TextView
+        android:id="@+id/textZaehlerstandBeginnAnfang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="24dp"
+        android:text="@string/zaehlerstand_beginn_beginn"
+        android:textSize="28sp" />
+
+    <NumberPicker
+        android:id="@+id/zaehlerNum1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textZaehlerstandBeginnAnfang"
+        android:layout_below="@+id/textZaehlerstandBeginnAnfang"
+        android:layout_marginTop="24dp" />
+
+    <NumberPicker
+        android:id="@+id/zaehlerNum2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/zaehlerNum1"
+        android:layout_toRightOf="@+id/zaehlerNum1" />
+
+    <NumberPicker
+        android:id="@+id/zaehlerNum3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/zaehlerNum2"
+        android:layout_toRightOf="@+id/zaehlerNum2" />
+
+    <NumberPicker
+        android:id="@+id/zaehlerNum4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/zaehlerNum3"
+        android:layout_toRightOf="@+id/zaehlerNum3" />
+
+    <NumberPicker
+        android:id="@+id/zaehlerNum5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/zaehlerNum4"
+        android:layout_toRightOf="@+id/zaehlerNum4" />
+
+    <TextView
+        android:id="@+id/textManuellZaehlerEnde"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/zaehlerNum1"
+        android:layout_below="@+id/zaehlerNum1"
+        android:layout_marginTop="24dp"
+        android:text="@string/zaehlerstand_beginn_ende"
+        android:textSize="28sp" />
+
+    <TextView
+        android:id="@+id/textZahlerBeginnWeiter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textManuellZaehlerEnde"
+        android:layout_below="@+id/textManuellZaehlerEnde"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/button_background"
+        android:clickable="true"
+        android:text="@string/generic_weiter"
+        android:textColor="#ffffff"
+        android:textSize="28sp" />
+
+
+</RelativeLayout>
