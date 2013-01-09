@@ -31,6 +31,7 @@ public class Vertrag extends WattnActivity {
 	float superKilowattstunde = 0.00f;
 	float superAbschlag = 0f;
 	float superZaehlerstand = 0f;
+	boolean superInit = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +43,18 @@ public class Vertrag extends WattnActivity {
 		superGrundgebuehr = pref.getGrundpreis();
 		superKilowattstunde = pref.getPreis();
 		superAbschlag = pref.getAbschlag();
+		
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+		    superInit = extras.getBoolean("init", false);
+		}
+		
 		Database db = new Database(this);
-		List<Zaehlerstand> zaehlerstaende = db.getByRange(superDate, superDate);
-		if (zaehlerstaende != null) {
-			superZaehlerstand = zaehlerstaende.get(0).getZaehlerstand();
+		if (!superInit) {
+			List<Zaehlerstand> zaehlerstaende = db.getByRange(superDate, superDate);
+			if (zaehlerstaende != null) {
+				superZaehlerstand = zaehlerstaende.get(0).getZaehlerstand();
+			}
 		}
 		
 		WattnFragment vertragBeginn = VertragBeginn.newInstance(R.layout.view_vertrag_beginn, superDate, this);
@@ -85,7 +94,11 @@ public class Vertrag extends WattnActivity {
 		pref.addGrundpreis(superGrundgebuehr);
 		pref.addPreis(superKilowattstunde);
 		Database db = new Database(this);
-		db.updateZaehlerstand(superDate, superZaehlerstand);
+		if (db.getByRange(superDate, superDate) != null) {
+			db.addZaehlerstand(superZaehlerstand);
+		} else {
+			db.updateZaehlerstand(superDate, superZaehlerstand);
+		}
 		finish();
 	}
 	
@@ -410,6 +423,16 @@ public class Vertrag extends WattnActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	            Bundle savedInstanceState) {
+			if (parentActivity.superInit) {
+				OKMessageDialog stromzaehler = new OKMessageDialog("Bitte gehe nun zu deinem Stromzähler.") {
+					
+					@Override
+					protected void onOKAction() {
+						dismiss();
+					}
+				};
+				stromzaehler.show(getFragmentManager(), "zaehler");
+			}
 			View v = inflater.inflate(layoutID, container, false);
 			return v;
 		}

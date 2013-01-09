@@ -46,7 +46,7 @@ public class Database extends SQLiteOpenHelper{
 		Date d = new Date();
 		cv.put("date", Constants.DBDateFormat.format(d));
 		cv.put("value", stand);
-		writeDB.insert(DATABASE_NAME, null, cv);
+		writeDB.insert(DATABASE_TABLE, null, cv);
 	}
 	
 	/**

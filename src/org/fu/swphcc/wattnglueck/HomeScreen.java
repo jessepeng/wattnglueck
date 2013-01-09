@@ -20,9 +20,21 @@ public class HomeScreen extends WattnActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_screen);
-//		
-//		//testdaten
-//		setDummyValues();
+		
+		Preferences pref = new Preferences(this);
+		if (!pref.isSet()) {
+			OKMessageDialog vertragDialog = new OKMessageDialog("Bitte halte deinen Stromvertrag bereit.") {
+				
+				@Override
+				protected void onOKAction() {
+					Intent vertragIntent = new Intent(getBaseContext(), Vertrag.class);
+					vertragIntent.putExtra("init", true);
+					startActivity(vertragIntent);
+					dismiss();
+				}
+			};
+			vertragDialog.show(getFragmentManager(), "vertrag");
+		}
 
 		Date today = new Date();
 		String todayString = Constants.ViewDateFormat.format(today);
