@@ -10,10 +10,10 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:hardwareAccelerated="true" >
+        android:theme="@style/AppTheme" >
         <activity
             android:name="org.fu.swphcc.wattnglueck.HomeScreen"
             android:label="@string/app_name" >
@@ -50,6 +50,14 @@
         <activity
             android:name="org.fu.swphcc.wattnglueck.Vertrag"
             android:label="@string/title_activity_vertrag"
+            android:parentActivityName="org.fu.swphcc.wattnglueck.HomeScreen" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.fu.swphcc.wattnglueck.HomeScreen" />
+        </activity>
+        <activity
+            android:name="org.fu.swphcc.wattnglueck.ZaehlerstandKamera"
+            android:label="@string/title_activity_zaehlerstand_kamera"
             android:parentActivityName="org.fu.swphcc.wattnglueck.HomeScreen" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

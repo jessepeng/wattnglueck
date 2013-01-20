@@ -1,0 +1,90 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="24dp"
+    android:paddingRight="0dp"
+    tools:context=".ZaehlerstandKamera" >
+
+    <TextView
+        android:id="@+id/textKameraZaehlerRichtig"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="48dp"
+        android:text="@string/kamera_zaehler_anfang"
+        android:textSize="36sp" />
+
+	<TextView
+	    android:id="@+id/textKameraZaehlerstand"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_below="@+id/textKameraZaehlerRichtig"
+	    android:layout_marginTop="36dp"
+	    android:layout_marginRight="24dp"
+	    android:gravity="center_horizontal"
+	    android:text="@string/kamera_beispiel_zaehler"
+	    android:textSize="36sp" />
+	
+	<TextView
+        android:id="@+id/textKameraJa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textKameraZaehlerstand"
+        android:layout_marginTop="12dp"
+      	android:background="@drawable/button_background"
+      	android:textColor="#ffffff"
+        android:text="@string/generic_ja"
+        android:textSize="36sp" />
+	
+	<TextView
+	    android:id="@+id/textKameraNeinMache"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentRight="true"
+	    android:layout_below="@+id/textKameraJa"
+	    android:layout_marginLeft="0dp"
+	    android:layout_marginTop="12dp"
+	    android:text="@string/kamera_nein_mache"
+	    android:textSize="36sp" />
+    
+    <TextView
+        android:id="@+id/textKameraNeuesFoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textKameraNeinMache"
+        android:layout_marginTop="0dp"
+      	android:background="@drawable/button_background"
+      	android:textColor="#ffffff"
+        android:text="@string/kamera_nein_foto"
+        android:textSize="36sp" />
+    
+   <TextView
+	    android:id="@+id/textKameraNeinEingeben"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentRight="true"
+	    android:layout_below="@+id/textKameraNeuesFoto"
+	    android:layout_marginLeft="0dp"
+	    android:layout_marginTop="12dp"
+	    android:text="@string/kamera_nein_eingeben"
+	    android:textSize="36sp" />
+    
+    <TextView
+        android:id="@+id/textKameraEingeben"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textKameraNeinEingeben"
+        android:layout_marginTop="0dp"
+      	android:background="@drawable/button_background"
+      	android:textColor="#ffffff"
+        android:text="@string/kamera_nein_zaehlerstand"
+        android:textSize="36sp" />
+
+</RelativeLayout>

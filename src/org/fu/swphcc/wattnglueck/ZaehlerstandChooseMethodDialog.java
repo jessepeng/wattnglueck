@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Toast;
 
 public class ZaehlerstandChooseMethodDialog extends Activity implements OnClickListener {
 
@@ -19,7 +18,7 @@ public class ZaehlerstandChooseMethodDialog extends Activity implements OnClickL
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.imageButtonKamera:
-			Toast.makeText(this, "Kamera gewählt.", Toast.LENGTH_SHORT).show();
+			startActivity(new Intent(this, ZaehlerstandKamera.class));
 			this.finish();
 			break;
 		case R.id.imageButtonText:
