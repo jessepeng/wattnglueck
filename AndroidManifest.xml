@@ -63,6 +63,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.fu.swphcc.wattnglueck.HomeScreen" />
         </activity>
+        <activity
+            android:name="org.fu.swphcc.wattnglueck.Details"
+            android:label="@string/title_activity_details" >
+        </activity>
+        <activity android:name="org.achartenginge.GraphicalActivity" ></activity>
     </application>
 
 </manifest>
