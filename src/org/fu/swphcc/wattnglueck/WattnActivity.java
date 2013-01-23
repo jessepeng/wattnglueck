@@ -95,6 +95,9 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 			pref.clearPreferences();
 			Toast.makeText(this, "Datenbank und Einstellungen geleert.", Toast.LENGTH_SHORT).show();
 			return true;
+		case R.id.itemDetails :
+			startActivity(new Intent(this, Details.class));
+			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}

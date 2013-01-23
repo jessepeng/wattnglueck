@@ -84,7 +84,7 @@ public class Database extends SQLiteOpenHelper{
 	public List<Zaehlerstand> getAll() {
 		SQLiteDatabase readDB = getReadableDatabase();
 		Cursor c = readDB.query(true, DATABASE_TABLE, null, null, null, null, null, "date", null, null);
-
+		
 		if(c.getCount()>0) {
 			List<Zaehlerstand> zlist = new LinkedList<Zaehlerstand>();
 			while(c.moveToNext()) {
