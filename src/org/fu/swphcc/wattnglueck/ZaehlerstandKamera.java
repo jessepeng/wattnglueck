@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import com.googlecode.tesseract.android.TessBaseAPI;
+//import com.googlecode.tesseract.android.TessBaseAPI;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -102,15 +102,15 @@ public class ZaehlerstandKamera extends WattnActivity {
 	    		    bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
 	    		}
 	    		
-	    		TessBaseAPI baseApi = new TessBaseAPI();
+//	    		TessBaseAPI baseApi = new TessBaseAPI();
 	    		// DATA_PATH = Path to the storage
 	    		// lang for which the language data exists, usually "eng"
-	    		baseApi.init(path, "eng"); baseApi.setImage(bitmap);
-	    		String recognizedText = baseApi.getUTF8Text();
-	    		baseApi.end();
+//	    		baseApi.init(path, "eng"); baseApi.setImage(bitmap);
+//	    		String recognizedText = baseApi.getUTF8Text();
+//	    		baseApi.end();
 	    		
-	    		TextView textView = (TextView) findViewById(R.id.textKameraZaehlerstand);
-	    		textView.setText(recognizedText);
+//	    		TextView textView = (TextView) findViewById(R.id.textKameraZaehlerstand);
+//	    		textView.setText(recognizedText);
 	    		
 	    		break;
 	    }
