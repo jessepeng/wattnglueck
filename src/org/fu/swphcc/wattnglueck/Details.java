@@ -11,17 +11,32 @@ import org.achartengine.renderer.XYSeriesRenderer;
 import org.fu.swphcc.wattnglueck.utils.Database;
 import org.fu.swphcc.wattnglueck.utils.Zaehlerstand;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
-public class Details extends Activity {
+/**
+ * 
+ * Activity die mehr Details zum Stromverbrauch anzeigt
+ * Beinhaltet eine Fieberkurve XD
+ * @author Necros
+ *
+ */
+public class Details extends WattnActivity{
 
-	//create Graph
+	/**
+	 * 
+	 * Erstellt eine View mit dem Graphen über die vergangenen dokumentierten Zählerständen
+	 * 
+	 * @param ctx der aktuelle Context
+	 * @return GraphicalView die einen Linearen Graphen beinhaltet
+	 */
 	public GraphicalView getGraphView(Context ctx) {
 
 		//Data
@@ -46,7 +61,7 @@ public class Details extends Activity {
 			XYMultipleSeriesRenderer mrenderer = new XYMultipleSeriesRenderer();
 			mrenderer.addSeriesRenderer(renderer);
 
-			GraphicalView view = ChartFactory.getLineChartView(ctx, dataset, mrenderer);
+			GraphicalView view = ChartFactory.getTimeChartView(ctx, dataset, mrenderer,"dd.MM.yyyy");
 
 
 			return view;
@@ -74,6 +89,26 @@ public class Details extends Activity {
 
 
 		return true;
+	}
+
+	@Override
+	protected List<TextView> getTextViewsForFont() {
+		return null;
+	}
+
+	@Override
+	protected boolean showOptionsMenu() {
+		return false;
+	}
+
+	@Override
+	protected List<TextView> getButtonTextViews() {
+		return null;
+	}
+
+	@Override
+	public boolean onClick(View arg0, MotionEvent arg1) {
+		return false;
 	}
 
 }
