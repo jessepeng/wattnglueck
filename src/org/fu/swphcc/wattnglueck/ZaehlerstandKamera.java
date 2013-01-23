@@ -5,11 +5,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-<<<<<<< HEAD
-//import com.googlecode.tesseract.android.TessBaseAPI;
-
-=======
->>>>>>> 0ba6dabba4a2c6c0f53c1fb5c8898782940c828f
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
