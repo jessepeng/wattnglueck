@@ -73,12 +73,16 @@ public class Details extends WattnActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_details);
+		
+
 
 		LinearLayout layout = (LinearLayout) findViewById(R.id.chart);
 
 		GraphicalView view = getGraphView(this);
 		if(view!=null)
 			layout.addView(view,LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT);
+		//das hiermacht probleme warum auch immer...
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	@Override
