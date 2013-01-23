@@ -5,12 +5,19 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+<<<<<<< HEAD
 //import com.googlecode.tesseract.android.TessBaseAPI;
 
+=======
+>>>>>>> 0ba6dabba4a2c6c0f53c1fb5c8898782940c828f
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,8 +28,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.googlecode.tesseract.android.TessBaseAPI;
+
 public class ZaehlerstandKamera extends WattnActivity {
 	
+	protected String file;
 	protected String path;
 	protected boolean taken;
 		
@@ -36,10 +46,12 @@ public class ZaehlerstandKamera extends WattnActivity {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		if (!taken) {
-			path = Environment.getExternalStorageDirectory() + "/wattnglueck/photo.jpg";
 			
-			File file = new File(path);
-			Uri outputFileUri = Uri.fromFile(file);
+			path = Environment.getExternalStorageDirectory() + "/wattnglueck/";
+			file = path + "photo.jpg";
+			
+			File imageFile = new File(file);
+			Uri outputFileUri = Uri.fromFile(imageFile);
 			
 			Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 			intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
@@ -62,11 +74,11 @@ public class ZaehlerstandKamera extends WattnActivity {
 	    		BitmapFactory.Options options = new BitmapFactory.Options();
 	    	    options.inSampleSize = 4;
 	    	    	
-	    	    Bitmap bitmap = BitmapFactory.decodeFile(path, options);
+	    	    Bitmap bitmap = BitmapFactory.decodeFile(file, options);
 	    		
 				ExifInterface exif = null;
 				try {
-					exif = new ExifInterface(path);
+					exif = new ExifInterface(file);
 				} catch (IOException e) {
 					NavUtils.navigateUpFromSameTask(this);
 					break;
@@ -99,15 +111,27 @@ public class ZaehlerstandKamera extends WattnActivity {
 
 	    		    // Rotating Bitmap & convert to ARGB_8888, required by tess
 	    		    bitmap = Bitmap.createBitmap(bitmap, 0, 0, w, h, mtx, false);
-	    		    bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
 	    		}
 	    		
-//	    		TessBaseAPI baseApi = new TessBaseAPI();
+	    		ColorMatrix bwMatrix = new ColorMatrix();
+	    		bwMatrix.setSaturation(0);
+	    		final ColorMatrixColorFilter colorFilter = new ColorMatrixColorFilter(bwMatrix);
+	    		
+	    		bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+	    		
+	    		Paint paint = new Paint();
+	    		paint.setColorFilter(colorFilter);
+	    		
+	    		Canvas myCanvas = new Canvas(bitmap);
+	    		myCanvas.drawBitmap(bitmap, 0, 0, paint);
+	    		
+	    		TessBaseAPI baseApi = new TessBaseAPI();
 	    		// DATA_PATH = Path to the storage
 	    		// lang for which the language data exists, usually "eng"
-//	    		baseApi.init(path, "eng"); baseApi.setImage(bitmap);
-//	    		String recognizedText = baseApi.getUTF8Text();
-//	    		baseApi.end();
+	    		baseApi.init(path, "eng"); baseApi.setImage(bitmap);
+	    		baseApi.setDebug(true);
+	    		String recognizedText = baseApi.getUTF8Text();
+	    		baseApi.end();
 	    		
 //	    		TextView textView = (TextView) findViewById(R.id.textKameraZaehlerstand);
 //	    		textView.setText(recognizedText);
