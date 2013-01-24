@@ -94,8 +94,8 @@ public class Vertrag extends WattnActivity {
 		pref.addGrundpreis(superGrundgebuehr);
 		pref.addPreis(superKilowattstunde);
 		Database db = new Database(this);
-		if (db.getByRange(superDate, superDate) != null) {
-			db.addZaehlerstand(superZaehlerstand);
+		if (db.getByRange(superDate, superDate) == null) {
+			db.addZaehlerstand(superZaehlerstand, superDate);
 		} else {
 			db.updateZaehlerstand(superDate, superZaehlerstand);
 		}
