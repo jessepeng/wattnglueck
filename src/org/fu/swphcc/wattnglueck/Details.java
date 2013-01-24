@@ -45,9 +45,11 @@ public class Details extends WattnActivity{
 
 		TimeSeries series = new TimeSeries("Verbrauch");
 
+		float oldz=0f;
 		if(data.size()>0) {
 			for(Zaehlerstand z : data) {
-				series.add(z.getDate(),z.getZaehlerstand());
+				series.add(z.getDate(),z.getZaehlerstand()-oldz);
+				oldz=z.getZaehlerstand();
 			}
 			
 			System.out.println(series.getItemCount());
@@ -75,13 +77,12 @@ public class Details extends WattnActivity{
 		setContentView(R.layout.activity_details);
 		
 
-
 		LinearLayout layout = (LinearLayout) findViewById(R.id.chart);
 
 		GraphicalView view = getGraphView(this);
 		if(view!=null)
 			layout.addView(view,LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT);
-		//das hiermacht probleme warum auch immer...
+		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 	
