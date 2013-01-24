@@ -2,7 +2,6 @@
     <group android:id="@+id/groupMenu"><item android:id="@+id/itemZaehlerstaende" android:title="@string/menu_zaehler"/><item android:id="@+id/itemVertrag" android:title="@string/menu_vertrag"/><item android:id="@+id/itemAbrechnung" android:title="@string/menu_abrechnung"/><item android:id="@+id/itemAbout" android:title="@string/menu_about"/>
     <item android:id="@+id/itemDevDummyValues" android:title="@string/menu_dev_dummy"></item>
     <item android:id="@+id/itemDevDeleteDatabase" android:title="@string/menu_dev_clear_db"></item>
-    <item android:id="@+id/itemDetails" android:title="@string/title_activity_details"></item>
 </group>
 
 </menu>

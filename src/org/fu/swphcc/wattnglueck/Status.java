@@ -89,7 +89,12 @@ public class Status extends WattnActivity {
 
 	@Override
 	public boolean onClick(View arg0, MotionEvent arg1) {
-		return true;
+		switch (arg0.getId()) {
+		case R.id.textStatusDetails:
+			startActivity(new Intent(this, Details.class));
+			return true;
+		}
+		return false;
 	}
 
 }
