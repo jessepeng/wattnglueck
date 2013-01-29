@@ -93,10 +93,15 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 			pref = new Preferences(this);
 			db.clearDatabase();
 			pref.clearPreferences();
-			Toast.makeText(this, "Datenbank und Einstellungen geleert.", Toast.LENGTH_SHORT).show();
-			return true;
-		case R.id.itemDetails :
-			startActivity(new Intent(this, Details.class));
+			OKMessageDialog prefsDeleted = new OKMessageDialog("Datenbank und Einstellungen wurden gelöscht.") {
+				
+				@Override
+				protected void onOKAction() {
+					dismiss();
+					finish();
+				}
+			};
+			prefsDeleted.show(getFragmentManager(), "prefs_deleted");
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

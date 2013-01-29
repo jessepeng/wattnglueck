@@ -68,10 +68,10 @@
         <activity
             android:name="org.fu.swphcc.wattnglueck.Details"
             android:label="@string/title_activity_details"
-            android:parentActivityName="org.fu.swphcc.wattnglueck.HomeScreen" >
+            android:parentActivityName="org.fu.swphcc.wattnglueck.Status" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.fu.swphcc.wattnglueck.HomeScreen" />
+                android:value="org.fu.swphcc.wattnglueck.Status" />
         </activity>
         <activity android:name="org.achartenginge.GraphicalActivity" >
         </activity>

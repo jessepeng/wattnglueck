@@ -50,6 +50,19 @@ public class Database extends SQLiteOpenHelper{
 	}
 	
 	/**
+	 * Fügt einen Zählerstand zur Datenbank ein, als Datum wird date genommen
+	 * @param stand Zaehlerstand in kWh
+	 * @param date Date im DBFormat
+	 */
+	public void addZaehlerstand(Float stand, String date) {
+		SQLiteDatabase writeDB = getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put("date", date);
+		cv.put("value", stand);
+		writeDB.insert(DATABASE_TABLE, null, cv);
+	}
+	
+	/**
 	 * Ändert einen sich bereits in der Datenbank befindlichen Zählerstand
 	 * @param date
 	 * @param stand

@@ -17,32 +17,11 @@
         android:textSize="36sp" />
     
     <TextView
-        android:id="@+id/textStatusBetrag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textStatusZahlungAnfang"
-        android:layout_marginTop="24dp"
-        android:layout_marginLeft="16dp"
-        android:text="@string/status_beispielbetrag"
-        android:textSize="48sp" />
-    
-    <TextView
-        android:id="@+id/textStatusZahlungEnde"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textStatusBetrag"
-        android:layout_marginTop="24dp"
-        android:text="@string/status_rueckzahlung_ende"
-        android:textSize="36sp" />
-    
-    <TextView
         android:id="@+id/textStatusDetailsAnfang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textStatusZahlungEnde"
+        android:layout_below="@+id/textStatusZahlungAnfang"
         android:layout_marginTop="24dp"
         android:text="@string/status_detail_anfang"
         android:textSize="36sp" />

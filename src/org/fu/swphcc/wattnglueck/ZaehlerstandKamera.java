@@ -128,8 +128,8 @@ public class ZaehlerstandKamera extends WattnActivity {
 	    		String recognizedText = baseApi.getUTF8Text();
 	    		baseApi.end();
 	    		
-//	    		TextView textView = (TextView) findViewById(R.id.textKameraZaehlerstand);
-//	    		textView.setText(recognizedText);
+	    		TextView textView = (TextView) findViewById(R.id.textKameraZaehlerstand);
+	    		textView.setText(recognizedText);
 	    		
 	    		break;
 	    }

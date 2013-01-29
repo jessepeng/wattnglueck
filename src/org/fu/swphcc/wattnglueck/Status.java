@@ -26,27 +26,23 @@ public class Status extends WattnActivity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		TextView preisView = (TextView) findViewById(R.id.textStatusBetrag);
 		Float exactBetrag = Zaehlerstand.getEstimatedBilling(this);
 		if (exactBetrag != null) {
 			Integer betrag = Math.round(exactBetrag);
+			String betragText;
 			if (betrag < 0) {
 				betrag = -betrag;
 				View me = findViewById(android.R.id.content);
 				me.setBackgroundResource(R.drawable.red_gradient);
-				TextView statusAnfang = (TextView) findViewById(R.id.textStatusZahlungAnfang);
-				statusAnfang.setText(getString(R.string.status_nachzahlung_start));
-				TextView statusEnde = (TextView) findViewById(R.id.textStatusZahlungEnde);
-				statusEnde.setText(getString(R.string.status_nachzahlung_ende));
+				betragText = getString(R.string.status_nachzahlung_start);
 			} else {
 				View me = findViewById(android.R.id.content);
 				me.setBackgroundResource(R.drawable.green_gradient);
-				TextView statusAnfang = (TextView) findViewById(R.id.textStatusZahlungAnfang);
-				statusAnfang.setText(getString(R.string.status_rueckzahlung_start));
-				TextView statusEnde = (TextView) findViewById(R.id.textStatusZahlungEnde);
-				statusEnde.setText(getString(R.string.status_rueckzahlung_ende));
+				betragText = getString(R.string.status_rueckzahlung_start);
 			}
-			preisView.setText(Integer.toString(betrag) + " €");
+			TextView statusAnfang = (TextView) findViewById(R.id.textStatusZahlungAnfang);
+			betragText = betragText.replace("$betrag", betrag.toString());
+			statusAnfang.setText(betragText);
 			initViews();
 		} else {
 			// Kein Ergebnis von Berechnung (null)
@@ -89,7 +85,12 @@ public class Status extends WattnActivity {
 
 	@Override
 	public boolean onClick(View arg0, MotionEvent arg1) {
-		return true;
+		switch (arg0.getId()) {
+		case R.id.textStatusDetails:
+			startActivity(new Intent(this, Details.class));
+			return true;
+		}
+		return false;
 	}
 
 }
