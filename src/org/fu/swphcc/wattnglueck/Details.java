@@ -76,20 +76,12 @@ public class Details extends WattnActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_details);
 		
-<<<<<<< HEAD
-=======
-
->>>>>>> 11151164626cbd9ce1467378e5c3d30a62e30bb9
 		LinearLayout layout = (LinearLayout) findViewById(R.id.chart);
 
 		GraphicalView view = getGraphView(this);
 		if(view!=null)
 			layout.addView(view,LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT);
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> 11151164626cbd9ce1467378e5c3d30a62e30bb9
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 	
