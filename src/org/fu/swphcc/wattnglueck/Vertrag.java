@@ -323,13 +323,25 @@ public class Vertrag extends WattnActivity {
 
 		@Override
 		public boolean onClick(View arg0, MotionEvent arg1) {
-			WattnFragment zaehlerstandBeginnFragment = ZaehlerstandBeginn.newInstance(R.layout.view_zaehlerstand_beginn, parentActivity.superZaehlerstand, parentActivity);
-
-	        FragmentTransaction ft = getFragmentManager().beginTransaction();
-	        ft.replace(R.id.vertrag_fragment, zaehlerstandBeginnFragment);
-	        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-	        ft.addToBackStack(null);
-	        ft.commit();
+			onPause();
+			if (this.abschlag == 0) {
+				OKMessageDialog negativeAbschlagDialog = new OKMessageDialog("Bitte gib einen monatlichen Abschlag ein.") {
+					
+					@Override
+					protected void onOKAction() {
+						dismiss();
+					}
+				};
+				negativeAbschlagDialog.show(getFragmentManager(), "negative_abschlag");
+			} else {
+				WattnFragment zaehlerstandBeginnFragment = ZaehlerstandBeginn.newInstance(R.layout.view_zaehlerstand_beginn, parentActivity.superZaehlerstand, parentActivity);
+	
+		        FragmentTransaction ft = getFragmentManager().beginTransaction();
+		        ft.replace(R.id.vertrag_fragment, zaehlerstandBeginnFragment);
+		        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+		        ft.addToBackStack(null);
+		        ft.commit();
+			}
 			return true;
 		}
 		
@@ -416,23 +428,23 @@ public class Vertrag extends WattnActivity {
 			
 			zaehlerstand = zaehler1.getValue() * 10000f + zaehler2.getValue() * 1000f + zaehler3.getValue() * 100f + zaehler4.getValue() * 10f + zaehler5.getValue();
 			parentActivity.superZaehlerstand = zaehlerstand;
-			parentActivity.saveAndFinish();
-			return true;
-		}
-		
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-	            Bundle savedInstanceState) {
 			if (parentActivity.superInit) {
 				OKMessageDialog stromzaehler = new OKMessageDialog("Bitte gehe nun zu deinem Stromzähler.") {
 					
 					@Override
 					protected void onOKAction() {
 						dismiss();
+						parentActivity.saveAndFinish();
 					}
 				};
 				stromzaehler.show(getFragmentManager(), "zaehler");
 			}
+			return true;
+		}
+		
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	            Bundle savedInstanceState) {
 			View v = inflater.inflate(layoutID, container, false);
 			return v;
 		}
