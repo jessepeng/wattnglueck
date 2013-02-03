@@ -13,6 +13,7 @@ import org.fu.swphcc.wattnglueck.utils.Zaehlerstand;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Paint.Align;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -45,23 +46,33 @@ public class Details extends WattnActivity{
 
 		TimeSeries series = new TimeSeries("Verbrauch");
 
-		float oldz=0f;
+		Zaehlerstand oldz=null;
 		if(data.size()>0) {
 			for(Zaehlerstand z : data) {
-				series.add(z.getDate(),z.getZaehlerstand()-oldz);
-				oldz=z.getZaehlerstand();
+				if(oldz!=null) {
+					float tage = (z.getDate().getTime()-oldz.getDate().getTime())/ 86400000f;
+				}
+				oldz=z;
 			}
-			
+
 			System.out.println(series.getItemCount());
-			
+
 			XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
 			dataset.addSeries(series);
 
 			XYSeriesRenderer renderer = new XYSeriesRenderer();
 			renderer.setColor(Color.GREEN);
-			
+
+
 			XYMultipleSeriesRenderer mrenderer = new XYMultipleSeriesRenderer();
 			mrenderer.addSeriesRenderer(renderer);
+			mrenderer.setApplyBackgroundColor(true);
+			mrenderer.setBackgroundColor(Color.WHITE);
+			mrenderer.setMarginsColor(Color.WHITE);
+			mrenderer.setAxesColor(Color.DKGRAY);
+			mrenderer.setXLabelsColor(Color.DKGRAY);
+			mrenderer.setYLabelsColor(0,Color.DKGRAY);
+			mrenderer.setLabelsTextSize(14);
 
 			GraphicalView view = ChartFactory.getTimeChartView(ctx, dataset, mrenderer,"dd.MM.yyyy");
 
@@ -75,7 +86,7 @@ public class Details extends WattnActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_details);
-		
+
 		LinearLayout layout = (LinearLayout) findViewById(R.id.chart);
 
 		GraphicalView view = getGraphView(this);
@@ -84,7 +95,7 @@ public class Details extends WattnActivity{
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
-	
+
 	@Override
 	protected List<TextView> getTextViewsForFont() {
 		return null;
