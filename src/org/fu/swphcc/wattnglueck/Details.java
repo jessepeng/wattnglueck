@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
+import org.achartengine.chart.PointStyle;
 import org.achartengine.model.TimeSeries;
 import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
+import org.achartengine.renderer.XYMultipleSeriesRenderer.Orientation;
 import org.achartengine.renderer.XYSeriesRenderer;
 import org.fu.swphcc.wattnglueck.utils.Database;
 import org.fu.swphcc.wattnglueck.utils.Zaehlerstand;
@@ -44,26 +46,30 @@ public class Details extends WattnActivity{
 		Database db = new Database(ctx);
 		List<Zaehlerstand> data = db.getAll();
 
-		TimeSeries series = new TimeSeries("Verbrauch");
+		TimeSeries series = new TimeSeries("durchschnittlicher Verbrauch pro Tag");
 
 		Zaehlerstand oldz=null;
 		if(data.size()>0) {
 			for(Zaehlerstand z : data) {
 				if(oldz!=null) {
 					float tage = (z.getDate().getTime()-oldz.getDate().getTime())/ 86400000f;
+					if(tage>0) {
+						series.add(z.getDate(), (z.getZaehlerstand()-oldz.getZaehlerstand())/tage);
+					}
 				}
 				oldz=z;
 			}
 
-			System.out.println(series.getItemCount());
 
 			XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
 			dataset.addSeries(series);
 
 			XYSeriesRenderer renderer = new XYSeriesRenderer();
 			renderer.setColor(Color.GREEN);
-
-
+			renderer.setDisplayChartValues(true);
+			renderer.setPointStyle(PointStyle.CIRCLE);
+			
+			
 			XYMultipleSeriesRenderer mrenderer = new XYMultipleSeriesRenderer();
 			mrenderer.addSeriesRenderer(renderer);
 			mrenderer.setApplyBackgroundColor(true);
@@ -73,6 +79,13 @@ public class Details extends WattnActivity{
 			mrenderer.setXLabelsColor(Color.DKGRAY);
 			mrenderer.setYLabelsColor(0,Color.DKGRAY);
 			mrenderer.setLabelsTextSize(14);
+
+			mrenderer.setYTitle("KWh");
+			mrenderer.setXTitle("Datum");
+			mrenderer.setZoomEnabled(true);
+			mrenderer.setInScroll(false);
+			mrenderer.setYAxisMin(0);
+			mrenderer.setYAxisMax(10);
 
 			GraphicalView view = ChartFactory.getTimeChartView(ctx, dataset, mrenderer,"dd.MM.yyyy");
 
