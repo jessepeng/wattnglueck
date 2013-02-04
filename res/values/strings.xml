@@ -59,5 +59,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_details">Details</string>
+    <string name="title_activity_kamera">Kamera</string>
 
 </resources>
