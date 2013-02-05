@@ -67,7 +67,7 @@ public class Details extends WattnActivity{
 			XYSeriesRenderer renderer = new XYSeriesRenderer();
 			renderer.setColor(Color.GREEN);
 			renderer.setDisplayChartValues(true);
-			renderer.setPointStyle(PointStyle.CIRCLE);
+			renderer.setPointStyle(PointStyle.DIAMOND);
 			
 			
 			XYMultipleSeriesRenderer mrenderer = new XYMultipleSeriesRenderer();
@@ -80,6 +80,8 @@ public class Details extends WattnActivity{
 			mrenderer.setYLabelsColor(0,Color.DKGRAY);
 			mrenderer.setLabelsTextSize(14);
 
+			
+			mrenderer.setYLabelsAlign(Align.RIGHT);
 			mrenderer.setYTitle("KWh");
 			mrenderer.setXTitle("Datum");
 			mrenderer.setZoomEnabled(true);
