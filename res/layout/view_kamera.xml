@@ -10,12 +10,56 @@
         android:id="@+id/kamera_preview" >
     </org.fu.swphcc.wattnglueck.KameraPreview>
     
-   <RelativeLayout
-       android:layout_width="fill_parent"
-       android:layout_height="fill_parent"
-       android:background="#29000000"
-       >
+       <RelativeLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentLeft="true"
+           android:layout_alignParentRight="true"
+           android:layout_alignParentTop="true"
+           android:background="#cc000000"
+           android:minHeight="100dp"
+           android:id="@+id/kamera_preview_block_top"
+          >
+
+       </RelativeLayout>
+    
+       <RelativeLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentLeft="true"
+           android:layout_alignParentRight="true"
+           android:layout_alignParentBottom="true"
+           android:background="#cc000000"
+           android:minHeight="100dp"
+           android:id="@+id/kamera_preview_block_bottom"
+          >
+
+       </RelativeLayout>
        
-   </RelativeLayout>
+	<RelativeLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/kamera_preview_block_top"
+           android:layout_above="@+id/kamera_preview_block_bottom"
+           android:layout_alignParentLeft="true"
+           android:background="#cc000000"
+           android:minWidth="80dp"
+          >
+          
+
+       </RelativeLayout>
+       
+		<RelativeLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/kamera_preview_block_top"
+           android:layout_above="@+id/kamera_preview_block_bottom"
+           android:layout_alignParentRight="true"
+           android:background="#cc000000"
+           android:minWidth="80dp"
+          >
+          
+
+       </RelativeLayout>
     
 </RelativeLayout>

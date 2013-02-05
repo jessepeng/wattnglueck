@@ -1,14 +1,21 @@
 package org.fu.swphcc.wattnglueck;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
 public class ZaehlerstandKamera extends WattnActivity {
+	
+	private Bitmap bitmap;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -17,9 +24,12 @@ public class ZaehlerstandKamera extends WattnActivity {
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
-		
+		Intent intent = getIntent();
+		bitmap = intent.getParcelableExtra("picture");
 		
 		initViews();
+		
+		workWithPicture();
 	}
 
 	@Override
@@ -40,6 +50,33 @@ public class ZaehlerstandKamera extends WattnActivity {
 	@Override
 	public boolean onClick(View arg0, MotionEvent arg1) {
 		return false;
+	}
+	
+	private void workWithPicture() {
+		
+		int origHeight = bitmap.getHeight();
+		int origWidth = bitmap.getWidth();
+		
+		/**
+		 * Im Kamerainterface werden 3/11 des Bildes von oben und unten abgeschnitten
+		 * sowie 1/8 links und rechts.
+		 * 
+		 * 
+		 */
+		
+		int top = (int)(origHeight * (3.0/11.0));
+		int left = (int)(origWidth * (1.0 / 8.0));
+		int height = (int)(origHeight * (5.0/11.0));
+		int width = (int)(origWidth * (6.0/8.0));
+		
+		Bitmap newBitmap = Bitmap.createBitmap(bitmap, top, left, width, height);
+		
+		try {
+			FileOutputStream fos = openFileOutput("test.jpg", Context.MODE_WORLD_WRITEABLE);
+			newBitmap.compress(Bitmap.CompressFormat.JPEG, 50, fos);
+		} catch (IOException e) {
+			
+		}
 	}
 
 }

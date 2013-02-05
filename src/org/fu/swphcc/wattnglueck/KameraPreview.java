@@ -75,7 +75,7 @@ public class KameraPreview extends SurfaceView implements SurfaceHolder.Callback
 	    		mPreviewSize = getOptimalPreviewSize(parameters, width, height);
 	            if (mPreviewSize != null)
 	            	parameters.setPreviewSize(mPreviewSize.width, mPreviewSize.height);
-//	            layout(width, height);
+	            //layout(width, height);
 		        mCamera.setParameters(parameters);
 	            mCamera.setPreviewDisplay(holder);
 
@@ -86,7 +86,7 @@ public class KameraPreview extends SurfaceView implements SurfaceHolder.Callback
     }
     
     private void layout(int width, int height) {
-        final View child = findViewById(R.id.kamera_preview);
+        final View camera = findViewById(R.id.kamera_preview);
 
         int previewWidth = width;
         int previewHeight = height;
@@ -99,11 +99,11 @@ public class KameraPreview extends SurfaceView implements SurfaceHolder.Callback
         // Center the child SurfaceView within the parent.
         if (width * previewHeight > height * previewWidth) {
             final int scaledChildWidth = previewWidth * height / previewHeight;
-            child.layout((width - scaledChildWidth) / 2, 0,
-                    (width + scaledChildWidth) / 2, height);
+	          camera.layout((width - scaledChildWidth) / 2, 0,
+	          (width + scaledChildWidth) / 2, height);
         } else {
             final int scaledChildHeight = previewHeight * width / previewWidth;
-            child.layout(0, (height - scaledChildHeight) / 2,
+            camera.layout(0, (height - scaledChildHeight) / 2,
                     width, (height + scaledChildHeight) / 2);
         }
     }
@@ -124,7 +124,6 @@ public class KameraPreview extends SurfaceView implements SurfaceHolder.Callback
 		if (event.getAction()==MotionEvent.ACTION_UP) {
 			takeAPicture();
 		}
-		if (tapAction != null) tapAction.kameraTap();
 		return(true);
 	}
     
@@ -144,6 +143,7 @@ public class KameraPreview extends SurfaceView implements SurfaceHolder.Callback
 
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 mBitmap = BitmapFactory.decodeByteArray(data, 0, data.length, options);
+        		if (tapAction != null) tapAction.kameraTap();
             }
         };
         mCamera.takePicture(null, null, mPictureCallback);
