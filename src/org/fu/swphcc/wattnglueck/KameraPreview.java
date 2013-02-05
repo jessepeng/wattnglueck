@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
+import android.hardware.Camera.AutoFocusCallback;
 import android.hardware.Camera.PictureCallback;
 import android.hardware.Camera.Size;
 import android.util.AttributeSet;
@@ -75,6 +76,8 @@ public class KameraPreview extends SurfaceView implements SurfaceHolder.Callback
 	    		mPreviewSize = getOptimalPreviewSize(parameters, width, height);
 	            if (mPreviewSize != null)
 	            	parameters.setPreviewSize(mPreviewSize.width, mPreviewSize.height);
+	            List<Size> pictureSizes = parameters.getSupportedPictureSizes();
+	            parameters.setPictureSize(pictureSizes.get(pictureSizes.size() - 1).width, pictureSizes.get(pictureSizes.size() - 1).height);
 	            //layout(width, height);
 		        mCamera.setParameters(parameters);
 	            mCamera.setPreviewDisplay(holder);
@@ -136,17 +139,27 @@ public class KameraPreview extends SurfaceView implements SurfaceHolder.Callback
      *  
      */
     public void takeAPicture(){  
+    	
+    	AutoFocusCallback mAutoFocusCallback = new AutoFocusCallback() {
+			
+			@Override
+			public void onAutoFocus(boolean success, Camera camera) {
+				Camera.PictureCallback mPictureCallback = new PictureCallback() {
+		            @Override
+		            public void onPictureTaken(byte[] data, Camera camera) {
 
-        Camera.PictureCallback mPictureCallback = new PictureCallback() {
-            @Override
-            public void onPictureTaken(byte[] data, Camera camera) {
+		                BitmapFactory.Options options = new BitmapFactory.Options();
+		                mBitmap = BitmapFactory.decodeByteArray(data, 0, data.length, options);
+		        		if (tapAction != null) tapAction.kameraTap();
+		            }
+		        };
+		        mCamera.takePicture(null, null, mPictureCallback);
+			}
+		};
+		
+		mCamera.autoFocus(mAutoFocusCallback);
 
-                BitmapFactory.Options options = new BitmapFactory.Options();
-                mBitmap = BitmapFactory.decodeByteArray(data, 0, data.length, options);
-        		if (tapAction != null) tapAction.kameraTap();
-            }
-        };
-        mCamera.takePicture(null, null, mPictureCallback);
+        
     }
     
     public interface KameraTapAction {
