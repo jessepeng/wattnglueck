@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SurfaceView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/view_kamera">
-   
+    android:layout_height="match_parent" >
 
-</SurfaceView>
+    <org.fu.swphcc.wattnglueck.KameraPreview
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/kamera_preview" >
+    </org.fu.swphcc.wattnglueck.KameraPreview>
+    
+   <RelativeLayout
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"
+       android:background="#29000000"
+       >
+       
+   </RelativeLayout>
+    
+</RelativeLayout>
