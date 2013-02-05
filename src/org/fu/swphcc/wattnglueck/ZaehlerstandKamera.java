@@ -5,10 +5,10 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -72,8 +72,10 @@ public class ZaehlerstandKamera extends WattnActivity {
 		Bitmap newBitmap = Bitmap.createBitmap(bitmap, top, left, width, height);
 		
 		try {
-			FileOutputStream fos = openFileOutput("test.jpg", Context.MODE_WORLD_WRITEABLE);
+			String root = Environment.getExternalStorageDirectory().toString();
+			FileOutputStream fos = new FileOutputStream(root + "/wattnglueck/picture.jpg");
 			newBitmap.compress(Bitmap.CompressFormat.JPEG, 50, fos);
+			fos.close();
 		} catch (IOException e) {
 			
 		}
