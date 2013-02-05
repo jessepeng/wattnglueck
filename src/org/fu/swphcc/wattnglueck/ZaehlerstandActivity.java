@@ -78,9 +78,9 @@ public class ZaehlerstandActivity extends WattnActivity {
 			cell = new LinearLayout(this);
 			//New Button
 			ImageButton ib=new ImageButton(this);
-			String uri = "drawable/delete.png";
-
-			ib.setBackgroundDrawable(getResources().getDrawable(R.drawable.delete));
+			ib.setImageResource(R.drawable.delete);
+			ib.setBackground(null);
+			ib.setPadding(0, 3, 2, 1);
 			//add to Row
 			cell.addView(ib);
 			tr.addView(cell);
