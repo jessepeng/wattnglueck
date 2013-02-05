@@ -130,9 +130,11 @@ public class Database extends SQLiteOpenHelper{
 		if(c.getCount() > 0) {
 			Zaehlerstand z = new Zaehlerstand();
 			z.setZaehlerstand(c.getFloat(2));
+			z.setId(id);
 			try {
 				z.setDate(Constants.DBDateFormat.parse(c.getString(1)));
 			} catch (ParseException e) { 
+				return null;
 				// vlt. testausgabe
 			}
 			return z;
@@ -161,6 +163,7 @@ public class Database extends SQLiteOpenHelper{
 			while(c.moveToNext()) {
 				Zaehlerstand z = new Zaehlerstand();
 				z.setZaehlerstand(c.getFloat(2));
+				z.setId(c.getInt(0));
 				try {
 					z.setDate(Constants.DBDateFormat.parse(c.getString(1)));
 				} catch (ParseException e) { 
@@ -203,5 +206,21 @@ public class Database extends SQLiteOpenHelper{
 	public void clearDatabase() {
 		SQLiteDatabase writeDB = getWritableDatabase();
 		writeDB.delete(DATABASE_TABLE, "1=1", null);
+	}
+	
+	/**
+	 * Löscht den übergebenen Zaehlerstand aus der Datenbank
+	 * @param z
+	 */
+	public void deleteZaehlerstand(Zaehlerstand z) {
+		if(z!= null && z.getId()>=0) {
+			SQLiteDatabase writeDB = getWritableDatabase();
+			String s[] = {Integer.toString(z.getId())};
+			writeDB.delete(DATABASE_TABLE,"id=?",s);
+		} else if(z!= null) {
+			SQLiteDatabase writeDB = getWritableDatabase();
+			String s[] = {Constants.DBDateFormat.format(z.getDate())};
+			writeDB.delete(DATABASE_TABLE,"date=?",s);
+		}
 	}
 }
