@@ -75,6 +75,14 @@
         <activity android:name="org.achartenginge.GraphicalActivity" >
         </activity>
         <activity
+            android:name="org.fu.swphcc.wattnglueck.Kamera"
+            android:label="@string/title_activity_kamera"
+            android:parentActivityName="org.fu.swphcc.wattnglueck.HomeScreen" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.fu.swphcc.wattnglueck.HomeScreen" />
+        </activity>
+        <activity
             android:name="org.fu.swphcc.wattnglueck.ZaehlerstandActivity"
             android:label="@string/title_activity_zaehlerstand"
             android:parentActivityName="org.fu.swphcc.wattnglueck.HomeScreen" >

@@ -23,8 +23,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
-import com.googlecode.tesseract.android.TessBaseAPI;
-
 public class ZaehlerstandKamera extends WattnActivity {
 	
 	protected String file;
@@ -120,16 +118,10 @@ public class ZaehlerstandKamera extends WattnActivity {
 	    		Canvas myCanvas = new Canvas(bitmap);
 	    		myCanvas.drawBitmap(bitmap, 0, 0, paint);
 	    		
-	    		TessBaseAPI baseApi = new TessBaseAPI();
-	    		// DATA_PATH = Path to the storage
-	    		// lang for which the language data exists, usually "eng"
-	    		baseApi.init(path, "eng"); baseApi.setImage(bitmap);
-	    		baseApi.setDebug(true);
-	    		String recognizedText = baseApi.getUTF8Text();
-	    		baseApi.end();
+	    		
 	    		
 	    		TextView textView = (TextView) findViewById(R.id.textKameraZaehlerstand);
-	    		textView.setText(recognizedText);
+	    		textView.setText("");
 	    		
 	    		break;
 	    }
