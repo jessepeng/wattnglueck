@@ -10,7 +10,7 @@
     <string name="home_status">vom $date</string>
     <string name="home_status_ende">sehen.</string>
     <string name="home_moechte">Ich möchte </string>
-    <string name="menu_zaehler">Meine Zählerstände</string>title_activity_zaehlerstand
+    <string name="menu_zaehler">Meine Zählerstände</string>
     <string name="menu_vertrag">Mein Vertrag</string>
     <string name="menu_abrechnung">Jahresabrechnung</string>
     <string name="menu_about">Über</string>
