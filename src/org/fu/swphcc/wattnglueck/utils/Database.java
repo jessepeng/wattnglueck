@@ -117,6 +117,7 @@ public class Database extends SQLiteOpenHelper{
 			while(c.moveToNext()) {
 				Zaehlerstand z = new Zaehlerstand();
 				z.setZaehlerstand(c.getFloat(2));
+				z.setId(c.getInt(0));
 				try {
 					z.setDate(Constants.DBDateFormat.parse(c.getString(1)));
 				} catch (ParseException e) { 

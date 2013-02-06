@@ -34,6 +34,8 @@ public class EditZaehlerstandDialog extends Activity {
 			db.updateZaehlerstand(z);
 			Intent returnIntent = new Intent();
 			returnIntent.putExtra("zaehlerstand", z.getZaehlerstand());
+			returnIntent.putExtra("id", z.getId());
+			returnIntent.putExtra("datum", z.getDate());
 			setResult(RESULT_OK,returnIntent);     
 			this.finish();
 	}

@@ -1,18 +1,26 @@
 package org.fu.swphcc.wattnglueck;
 
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.fu.swphcc.wattnglueck.utils.Constants;
 import org.fu.swphcc.wattnglueck.utils.Database;
 import org.fu.swphcc.wattnglueck.utils.Zaehlerstand;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -50,7 +58,48 @@ public class ZaehlerstandActivity extends WattnActivity {
 				TextView tv = new TextView(this);
 				tv.setText(Constants.ViewDateFormat.format(z.getDate()));
 				tv.setPadding(10, 0, 4, 3);
+				tv.setClickable(true);
+				
+				final OnDateSetListener odsl=new OnDateSetListener()
+				{
+					Zaehlerstand zstand=z;
+					public void onDateSet(DatePicker arg0, int year, int month, int dayOfMonth) {
+						if(edited!=null) {
+							try {
+								DecimalFormat df2 = new DecimalFormat( "00" );		
+								edited.setText( df2.format(dayOfMonth)+"."+df2.format(month)+"."+year);
+								
+								z.setDate(Constants.ViewDateFormat.parse( df2.format(dayOfMonth)+"."+df2.format(month)+"."+year));
+								Database db = new Database(ZaehlerstandActivity.this);
+								db.updateZaehlerstand(z);
+							} catch (ParseException e) {
 
+							}
+
+						}
+					}
+
+				};
+
+				tv.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						edited=(TextView)v;
+						Calendar cal=Calendar.getInstance();
+
+						try {
+							cal.setTime(Constants.ViewDateFormat.parse(edited.getText().toString()));
+						} catch (ParseException e) {
+
+						}
+						DatePickerDialog datePickDiag=new DatePickerDialog(ZaehlerstandActivity.this,odsl,cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.get(Calendar.DAY_OF_MONTH));
+						datePickDiag.setCancelable(true);
+						datePickDiag.show();
+
+					}
+
+				});
 				cell.addView(tv);
 				tr.addView(cell);
 
@@ -140,10 +189,16 @@ public class ZaehlerstandActivity extends WattnActivity {
 		if (requestCode == 1) {
 
 			if(resultCode == RESULT_OK){
+				Zaehlerstand z=new Zaehlerstand();
+				z.setId(data.getIntExtra("id", -1));
 
-				Float result=data.getFloatExtra("zaehlerstand",0f);
+				z.setDate((Date)data.getSerializableExtra("datum"));
+				z.setZaehlerstand(data.getFloatExtra("zaehlerstand", 0f));
 				if(edited!=null) {
-					edited.setText(result.toString());
+					edited.setText(z.getZaehlerstand().toString());
+					Database db = new Database(ZaehlerstandActivity.this);
+					db.updateZaehlerstand(z);
+					edited=null;
 				}
 
 			}
