@@ -5,8 +5,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.MotionEvent;
@@ -17,6 +18,8 @@ public class ZaehlerstandKamera extends WattnActivity {
 	
 	private Bitmap bitmap;
 	
+	private static final int RGB_MASK = 0x00FFFFFF;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -24,8 +27,8 @@ public class ZaehlerstandKamera extends WattnActivity {
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
-		Intent intent = getIntent();
-		bitmap = intent.getParcelableExtra("picture");
+		String root = Environment.getExternalStorageDirectory().toString();
+		bitmap = BitmapFactory.decodeFile(root + "/wattnglueck/picture.jpg");
 		
 		initViews();
 		
@@ -69,16 +72,44 @@ public class ZaehlerstandKamera extends WattnActivity {
 		int height = (int)(origHeight * (5.0/11.0));
 		int width = (int)(origWidth * (6.0/8.0));
 		
-		Bitmap newBitmap = Bitmap.createBitmap(bitmap, top, left, width, height);
+		System.gc();
+		Bitmap newBitmap = Bitmap.createBitmap(bitmap, left, top, width, height);
+		bitmap = null;
+		System.gc();
+		newBitmap = invert(newBitmap);
 		
 		try {
 			String root = Environment.getExternalStorageDirectory().toString();
-			FileOutputStream fos = new FileOutputStream(root + "/wattnglueck/picture.jpg");
-			newBitmap.compress(Bitmap.CompressFormat.JPEG, 50, fos);
+			FileOutputStream fos = new FileOutputStream(root + "/wattnglueck/picture_crop.jpg");
+			newBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
 			fos.close();
 		} catch (IOException e) {
 			
 		}
 	}
+
+
+	public static Bitmap invert(Bitmap src) {
+        Bitmap output = Bitmap.createBitmap(src.getWidth(), src.getHeight(), src.getConfig());
+        int A, R, G, B;
+        int pixelColor;
+        int height = src.getHeight();
+        int width = src.getWidth();
+
+	    for (int y = 0; y < height; y++) {
+	        for (int x = 0; x < width; x++) {
+	            pixelColor = src.getPixel(x, y);
+	            A = Color.alpha(pixelColor);
+	            
+	            R = 255 - Color.red(pixelColor);
+	            G = 255 - Color.green(pixelColor);
+	            B = 255 - Color.blue(pixelColor);
+	            
+	            output.setPixel(x, y, Color.argb(A, R, G, B));
+	        }
+	    }
+
+    return output;
+	}  
 
 }
