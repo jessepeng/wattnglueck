@@ -16,6 +16,7 @@ import android.content.Context;
  */
 public class Zaehlerstand implements Comparable<Zaehlerstand>{
 
+	private int id=-1;
 	private Float Zaehlerstand;
 	private Date date;
 
@@ -36,7 +37,7 @@ public class Zaehlerstand implements Comparable<Zaehlerstand>{
 			if (dateBegin != null) {
 
 				c.setTime(Constants.DBDateFormat.parse(dateBegin));
-	
+
 				c.add(Calendar.YEAR, 1);
 
 				//Zählerstände holen
@@ -98,7 +99,12 @@ public class Zaehlerstand implements Comparable<Zaehlerstand>{
 	public void setDate(Date date) {
 		this.date = date;
 	}
-
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	//zum Sortieren
 	@Override
 	public int compareTo(Zaehlerstand z) {

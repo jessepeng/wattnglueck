@@ -1,36 +1,25 @@
 package org.fu.swphcc.wattnglueck;
 
-import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.media.ExifInterface;
-import android.net.Uri;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.v4.app.NavUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
 public class ZaehlerstandKamera extends WattnActivity {
 	
-	protected String file;
-	protected String path;
-	protected boolean taken;
-		
-	protected static final String PHOTO_TAKEN = "photo_taken";
-
+	private Bitmap bitmap;
+	
+	private static final int RGB_MASK = 0x00FFFFFF;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,95 +27,14 @@ public class ZaehlerstandKamera extends WattnActivity {
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
-		if (!taken) {
-			
-			path = Environment.getExternalStorageDirectory() + "/wattnglueck/";
-			file = path + "photo.jpg";
-			
-			File imageFile = new File(file);
-			Uri outputFileUri = Uri.fromFile(imageFile);
-			
-			Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-			intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
-			
-			startActivityForResult(intent, 0);
-		}
+		String root = Environment.getExternalStorageDirectory().toString();
+		bitmap = BitmapFactory.decodeFile(root + "/wattnglueck/picture.jpg");
 		
 		initViews();
+		
+		workWithPicture();
 	}
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) 
-	{	
-	    switch(resultCode)
-	    {
-	    	case 0:
-	    		NavUtils.navigateUpFromSameTask(this);
-	    		break;
-	    	case -1:
-	    		BitmapFactory.Options options = new BitmapFactory.Options();
-	    	    options.inSampleSize = 4;
-	    	    	
-	    	    Bitmap bitmap = BitmapFactory.decodeFile(file, options);
-	    		
-				ExifInterface exif = null;
-				try {
-					exif = new ExifInterface(file);
-				} catch (IOException e) {
-					NavUtils.navigateUpFromSameTask(this);
-					break;
-				}
-	    		int exifOrientation = exif.getAttributeInt(
-	    		        ExifInterface.TAG_ORIENTATION,
-	    		        ExifInterface.ORIENTATION_NORMAL);
-
-	    		int rotate = 0;
-
-	    		switch (exifOrientation) {
-	    		case ExifInterface.ORIENTATION_ROTATE_90:
-	    		    rotate = 90;
-	    		    break;
-	    		case ExifInterface.ORIENTATION_ROTATE_180:
-	    		    rotate = 180;
-	    		    break;
-	    		case ExifInterface.ORIENTATION_ROTATE_270:
-	    		    rotate = 270;
-	    		    break;
-	    		}
-
-	    		if (rotate != 0) {
-	    		    int w = bitmap.getWidth();
-	    		    int h = bitmap.getHeight();
-
-	    		    // Setting pre rotate
-	    		    Matrix mtx = new Matrix();
-	    		    mtx.preRotate(rotate);
-
-	    		    // Rotating Bitmap & convert to ARGB_8888, required by tess
-	    		    bitmap = Bitmap.createBitmap(bitmap, 0, 0, w, h, mtx, false);
-	    		}
-	    		
-	    		ColorMatrix bwMatrix = new ColorMatrix();
-	    		bwMatrix.setSaturation(0);
-	    		final ColorMatrixColorFilter colorFilter = new ColorMatrixColorFilter(bwMatrix);
-	    		
-	    		bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
-	    		
-	    		Paint paint = new Paint();
-	    		paint.setColorFilter(colorFilter);
-	    		
-	    		Canvas myCanvas = new Canvas(bitmap);
-	    		myCanvas.drawBitmap(bitmap, 0, 0, paint);
-	    		
-	    		
-	    		
-	    		TextView textView = (TextView) findViewById(R.id.textKameraZaehlerstand);
-	    		textView.setText("");
-	    		
-	    		break;
-	    }
-	}
-	
 	@Override
 	protected List<TextView> getTextViewsForFont() {
 		return null;
@@ -146,5 +54,62 @@ public class ZaehlerstandKamera extends WattnActivity {
 	public boolean onClick(View arg0, MotionEvent arg1) {
 		return false;
 	}
+	
+	private void workWithPicture() {
+		
+		int origHeight = bitmap.getHeight();
+		int origWidth = bitmap.getWidth();
+		
+		/**
+		 * Im Kamerainterface werden 3/11 des Bildes von oben und unten abgeschnitten
+		 * sowie 1/8 links und rechts.
+		 * 
+		 * 
+		 */
+		
+		int top = (int)(origHeight * (3.0/11.0));
+		int left = (int)(origWidth * (1.0 / 8.0));
+		int height = (int)(origHeight * (5.0/11.0));
+		int width = (int)(origWidth * (6.0/8.0));
+		
+		System.gc();
+		Bitmap newBitmap = Bitmap.createBitmap(bitmap, left, top, width, height);
+		bitmap = null;
+		System.gc();
+		newBitmap = invert(newBitmap);
+		
+		try {
+			String root = Environment.getExternalStorageDirectory().toString();
+			FileOutputStream fos = new FileOutputStream(root + "/wattnglueck/picture_crop.jpg");
+			newBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+			fos.close();
+		} catch (IOException e) {
+			
+		}
+	}
+
+
+	public static Bitmap invert(Bitmap src) {
+        Bitmap output = Bitmap.createBitmap(src.getWidth(), src.getHeight(), src.getConfig());
+        int A, R, G, B;
+        int pixelColor;
+        int height = src.getHeight();
+        int width = src.getWidth();
+
+	    for (int y = 0; y < height; y++) {
+	        for (int x = 0; x < width; x++) {
+	            pixelColor = src.getPixel(x, y);
+	            A = Color.alpha(pixelColor);
+	            
+	            R = 255 - Color.red(pixelColor);
+	            G = 255 - Color.green(pixelColor);
+	            B = 255 - Color.blue(pixelColor);
+	            
+	            output.setPixel(x, y, Color.argb(A, R, G, B));
+	        }
+	    }
+
+    return output;
+	}  
 
 }

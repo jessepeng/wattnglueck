@@ -104,7 +104,7 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 			prefsDeleted.show(getFragmentManager(), "prefs_deleted");
 			return true;
 		case R.id.itemZaehlerstaende:
-			startActivity(new Intent(this, ZaehlerstandActivity.class));
+			startActivity(new Intent(this,ZaehlerstandActivity.class));
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

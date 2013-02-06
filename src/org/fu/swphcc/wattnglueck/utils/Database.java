@@ -48,7 +48,7 @@ public class Database extends SQLiteOpenHelper{
 		cv.put("value", stand);
 		writeDB.insert(DATABASE_TABLE, null, cv);
 	}
-	
+
 	/**
 	 * Fügt einen Zählerstand zur Datenbank ein, als Datum wird date genommen
 	 * @param stand Zaehlerstand in kWh
@@ -61,7 +61,7 @@ public class Database extends SQLiteOpenHelper{
 		cv.put("value", stand);
 		writeDB.insert(DATABASE_TABLE, null, cv);
 	}
-	
+
 	/**
 	 * Ändert einen sich bereits in der Datenbank befindlichen Zählerstand
 	 * @param date
@@ -77,6 +77,20 @@ public class Database extends SQLiteOpenHelper{
 
 	/**
 	 * Ändert einen sich bereits in der Datenbank befindlichen Zählerstand
+	 * @param z der Zählerstand
+	 */
+	public void updateZaehlerstand(Zaehlerstand z) {
+		if(z.getId()>=0) {
+			SQLiteDatabase writeDB = getWritableDatabase();
+			ContentValues cv = new ContentValues();
+			cv.put("date", Constants.DBDateFormat.format(z.getDate()));
+			cv.put("value", z.getZaehlerstand());
+			writeDB.update(DATABASE_TABLE, cv, "id = ?", new String[] {Integer.toString(z.getId())});
+		}
+	}
+
+	/**
+	 * Ändert einen sich bereits in der Datenbank befindlichen Zählerstand
 	 * @param date
 	 * @param stand
 	 */
@@ -88,7 +102,7 @@ public class Database extends SQLiteOpenHelper{
 		writeDB.update(DATABASE_TABLE, cv, "date = ?", new String[] {date});
 	}
 
-	
+
 	/**
 	 * Holt alle Zählerstände aus der Datenbank und gibt sie Sortiert nach dem Datum zurück
 	 * 
@@ -97,7 +111,7 @@ public class Database extends SQLiteOpenHelper{
 	public List<Zaehlerstand> getAll() {
 		SQLiteDatabase readDB = getReadableDatabase();
 		Cursor c = readDB.query(true, DATABASE_TABLE, null, null, null, null, null, "date", null, null);
-		
+
 		if(c.getCount()>0) {
 			List<Zaehlerstand> zlist = new LinkedList<Zaehlerstand>();
 			while(c.moveToNext()) {
@@ -114,7 +128,7 @@ public class Database extends SQLiteOpenHelper{
 		} else 
 			return null;
 	}
-	
+
 	/**
 	 * Holt einen Datensatz, der per Id definiert ist, aus der Datenbank und gibt ihn zurück
 	 * 
@@ -130,16 +144,18 @@ public class Database extends SQLiteOpenHelper{
 		if(c.getCount() > 0) {
 			Zaehlerstand z = new Zaehlerstand();
 			z.setZaehlerstand(c.getFloat(2));
+			z.setId(id);
 			try {
 				z.setDate(Constants.DBDateFormat.parse(c.getString(1)));
 			} catch (ParseException e) { 
+				return null;
 				// vlt. testausgabe
 			}
 			return z;
 		} else 
 			return null;
 	}
-	
+
 	/**
 	 * Gibt alle Zählerstände zurück die in einem Zeitraum liegen
 	 * 
@@ -153,14 +169,15 @@ public class Database extends SQLiteOpenHelper{
 		String[]  args= new String[2];
 		args[0]=von;	
 		args[1]=bis;
-		
+
 		Cursor c = readDB.query(true, DATABASE_TABLE, null, "date >= ? AND date <= ?", args, null, null, null, null, null);
-		
+
 		if(c.getCount() >= 1) {
 			List<Zaehlerstand> zlist = new LinkedList<Zaehlerstand>();
 			while(c.moveToNext()) {
 				Zaehlerstand z = new Zaehlerstand();
 				z.setZaehlerstand(c.getFloat(2));
+				z.setId(c.getInt(0));
 				try {
 					z.setDate(Constants.DBDateFormat.parse(c.getString(1)));
 				} catch (ParseException e) { 
@@ -173,15 +190,15 @@ public class Database extends SQLiteOpenHelper{
 			return null;
 
 	}
-	
+
 	/**
 	 * Füllt die DB mit zwei Dummy Einträgen
 	 */
 	public void setDummyValues() {
-		
+
 		SQLiteDatabase writeDB = getWritableDatabase();
 		ContentValues cv = new ContentValues();
-		
+
 		cv.put("date", "2012-01-01");
 		cv.put("value", 71010f);
 		writeDB.insert(DATABASE_TABLE, null, cv);
@@ -194,14 +211,30 @@ public class Database extends SQLiteOpenHelper{
 		cv.put("date", "2013-01-03");
 		cv.put("value", 74019f);
 		writeDB.insert(DATABASE_TABLE, null, cv);
-		
+
 	}
-	
+
 	/**
 	 * Leert die Datenbank
 	 */
 	public void clearDatabase() {
 		SQLiteDatabase writeDB = getWritableDatabase();
 		writeDB.delete(DATABASE_TABLE, "1=1", null);
+	}
+
+	/**
+	 * Löscht den übergebenen Zaehlerstand aus der Datenbank
+	 * @param z
+	 */
+	public void deleteZaehlerstand(Zaehlerstand z) {
+		if(z!= null && z.getId()>=0) {
+			SQLiteDatabase writeDB = getWritableDatabase();
+			String s[] = {Integer.toString(z.getId())};
+			writeDB.delete(DATABASE_TABLE,"id=?",s);
+		} else if(z!= null) {
+			SQLiteDatabase writeDB = getWritableDatabase();
+			String s[] = {Constants.DBDateFormat.format(z.getDate())};
+			writeDB.delete(DATABASE_TABLE,"date=?",s);
+		}
 	}
 }

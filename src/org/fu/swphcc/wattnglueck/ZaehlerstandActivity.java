@@ -6,10 +6,13 @@ import org.fu.swphcc.wattnglueck.utils.Constants;
 import org.fu.swphcc.wattnglueck.utils.Database;
 import org.fu.swphcc.wattnglueck.utils.Zaehlerstand;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -19,75 +22,93 @@ import android.widget.TextView;
 
 
 public class ZaehlerstandActivity extends WattnActivity {
-	TableLayout tl=null;
+
+	TextView edited=null;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState){
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_zaehlerstand);
 
-		tl = (TableLayout) findViewById(R.id.TableLayout);
+		TableLayout table = (TableLayout) findViewById( R.id.table);
+		final Database db = new Database(this);
+		if(db.getAll()!=null) {
+			for(final Zaehlerstand z : db.getAll()) {
+				TableRow tr = new TableRow(this);
 
-		Database db = new Database(this);
-		
-		TableRow.LayoutParams llp = new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
-		llp.setMargins(0, 0, 4, 0);//2px right-margin
-		
-		for(Zaehlerstand z : db.getAll()) {
-			
-			//New Row
-			TableRow tr = new TableRow(this);
-			tr.setLayoutParams(new LayoutParams(
-					LayoutParams.FILL_PARENT,
-					LayoutParams.WRAP_CONTENT));
-			
-			//DATUM---------------------------------------------------------------------
-			//New Cell
-			TextView tv = new TextView(this);
-			LinearLayout cell = new LinearLayout(this);
-			cell.setBackgroundColor(Color.GRAY);
-			cell.setLayoutParams(llp);//2px border on the right for the cell	
-			//New Textview
-			tv.setLayoutParams(new LayoutParams(
-					LayoutParams.FILL_PARENT,
-					LayoutParams.WRAP_CONTENT));
-			tv.setText(Constants.DBDateFormat.format( z.getDate()));
-			tv.setPadding(0, 0, 4, 3);		
-			//add to Row
-			cell.addView(tv);
-			tr.addView(cell);
-			
-			//Zaehlerstand---------------------------------------------------------------
-			//New Cell
-			cell = new LinearLayout(this);
-			cell.setBackgroundColor(Color.GRAY);
-			cell.setLayoutParams(llp);//2px border on the right for the cell
-			//New TextView
-			tv = new TextView(this);
-			tv.setLayoutParams(new LayoutParams(
-					LayoutParams.FILL_PARENT,
-					LayoutParams.WRAP_CONTENT));
-			tv.setText(z.getZaehlerstand().toString());			
-			tv.setPadding(0, 0, 4, 3);
-			//Add to Row
-			cell.addView(tv);
-			tr.addView(cell);
-			
-			//Buttons-------------------------------------------------------------------
-			//New Cell
-			cell = new LinearLayout(this);
-			//New Button
-			ImageButton ib=new ImageButton(this);
-			ib.setImageResource(R.drawable.delete);
-			ib.setBackground(null);
-			ib.setPadding(0, 3, 2, 1);
-			//add to Row
-			cell.addView(ib);
-			tr.addView(cell);
-			//Add Row to Table
-			tl.addView(tr,new TableLayout.LayoutParams(
-					LayoutParams.FILL_PARENT,
-					LayoutParams.WRAP_CONTENT));
+				tr.setPadding(0, 0, 0, 2); //Border between rows
+
+				TableRow.LayoutParams llp = new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+				llp.setMargins(0, 0, 2, 0);//2px right-margin
+
+				//Datum
+				//New Cell
+				LinearLayout cell = new LinearLayout(this);
+				cell.setBackgroundColor(Color.GRAY);
+				cell.setLayoutParams(llp);//2px border on the right for the cell
+
+				TextView tv = new TextView(this);
+				tv.setText(Constants.ViewDateFormat.format(z.getDate()));
+				tv.setPadding(10, 0, 4, 3);
+
+				cell.addView(tv);
+				tr.addView(cell);
+
+				//Zaehlerstand
+				//New Cell
+				cell = new LinearLayout(this);
+				cell.setBackgroundColor(Color.GRAY);
+				cell.setLayoutParams(llp);//2px border on the right for the cell
+
+				tv = new TextView(this);
+				tv.setText(z.getZaehlerstand().toString());
+				tv.setPadding(5, 0, 4, 3);
+				tv.setClickable(true);
+				tv.setOnClickListener(new OnClickListener() {
+					Zaehlerstand zstand=z;
+
+					@Override
+					public void onClick(View v) {
+
+						Intent i = new Intent(v.getContext(), EditZaehlerstandDialog.class);
+						i.putExtra("id", z.getId());
+						i.putExtra("zaehlerstand", z.getZaehlerstand());
+						i.putExtra("datum", z.getDate());
+						startActivityForResult(i, 1);
+						edited=(TextView) v;
+					}
+				});
+
+				cell.addView(tv);
+				tr.addView(cell);
+
+				//Delete-Button
+				cell = new LinearLayout(this);
+
+				cell.setLayoutParams(llp);//2px border on the right for the cell
+
+				ImageButton ib = new ImageButton(this);
+				ib.setImageDrawable(getResources().getDrawable(R.drawable.delete));
+				ib.setPadding(2, 0, 4, 0);
+				ib.setBackground(null);
+				ib.setOnClickListener(new OnClickListener() {
+					Zaehlerstand zstand=z;
+
+					@Override
+					public void onClick(View v) {
+						db.deleteZaehlerstand(z);
+						TableLayout table = (TableLayout) ((Activity) v.getContext()).findViewById( R.id.table);
+						if( v.getParent().getParent() instanceof TableRow)
+							table.removeView((TableRow) v.getParent().getParent());
+					}
+				});
+
+				cell.addView(ib);
+
+				tr.addView(cell,20,20);
+
+				table.addView(tr);
+			}
 		}
 	}
 
@@ -110,10 +131,27 @@ public class ZaehlerstandActivity extends WattnActivity {
 	}
 
 	@Override
-	public boolean onClick(View arg0, MotionEvent arg1) {
-
-
+	public boolean onClick(View arg0, MotionEvent arg1) {	 
 		return false;
 	}
 
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		if (requestCode == 1) {
+
+			if(resultCode == RESULT_OK){
+
+				Float result=data.getFloatExtra("zaehlerstand",0f);
+				if(edited!=null) {
+					edited.setText(result.toString());
+				}
+
+			}
+
+			if (resultCode == RESULT_CANCELED) {
+
+
+			}
+		}
+	}
 }
