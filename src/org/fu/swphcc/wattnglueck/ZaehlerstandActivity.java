@@ -7,6 +7,7 @@ import org.fu.swphcc.wattnglueck.utils.Database;
 import org.fu.swphcc.wattnglueck.utils.Zaehlerstand;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 
 public class ZaehlerstandActivity extends WattnActivity {
 
+	TextView edited=null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +63,25 @@ public class ZaehlerstandActivity extends WattnActivity {
 				tv = new TextView(this);
 				tv.setText(z.getZaehlerstand().toString());
 				tv.setPadding(5, 0, 4, 3);
+				tv.setClickable(true);
+				tv.setOnClickListener(new OnClickListener() {
+					Zaehlerstand zstand=z;
+
+					@Override
+					public void onClick(View v) {
+
+						Intent i = new Intent(v.getContext(), EditZaehlerstandDialog.class);
+						i.putExtra("id", z.getId());
+						i.putExtra("zaehlerstand", z.getZaehlerstand());
+						i.putExtra("datum", z.getDate());
+						startActivityForResult(i, 1);
+						edited=(TextView) v;
+					}
+				});
 
 				cell.addView(tv);
 				tr.addView(cell);
+
 				//Delete-Button
 				cell = new LinearLayout(this);
 
@@ -86,7 +104,7 @@ public class ZaehlerstandActivity extends WattnActivity {
 				});
 
 				cell.addView(ib);
-				
+
 				tr.addView(cell,20,20);
 
 				table.addView(tr);
@@ -117,4 +135,23 @@ public class ZaehlerstandActivity extends WattnActivity {
 		return false;
 	}
 
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		if (requestCode == 1) {
+
+			if(resultCode == RESULT_OK){
+
+				Float result=data.getFloatExtra("zaehlerstand",0f);
+				if(edited!=null) {
+					edited.setText(result.toString());
+				}
+
+			}
+
+			if (resultCode == RESULT_CANCELED) {
+
+
+			}
+		}
+	}
 }

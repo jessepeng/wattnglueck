@@ -61,6 +61,9 @@
     <string name="title_activity_details">Details</string>
     <string name="title_activity_zaehlerstand">Zählerstände</string>
     <string name="title_activity_kamera">Kamera</string>
+    <string name="editdialog_zaehlerstand">Zählerstand</string>
+    <string name="cancel">Cancel</string>
+    <string name="OK">OK</string>
 
 
 </resources>

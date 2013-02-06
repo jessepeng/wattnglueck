@@ -112,6 +112,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.fu.swphcc.wattnglueck.HomeScreen" />
         </activity>
+        <activity
+            android:name="org.fu.swphcc.wattnglueck.EditZaehlerstandDialog"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:parentActivityName="org.fu.swphcc.wattnglueck.HomeScreen"
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.fu.swphcc.wattnglueck.HomeScreen" />
+        </activity>
     </application>
 
 </manifest>
