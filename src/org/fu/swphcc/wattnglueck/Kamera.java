@@ -1,10 +1,14 @@
 package org.fu.swphcc.wattnglueck;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -55,9 +59,19 @@ public class Kamera extends WattnActivity implements KameraPreview.KameraTapActi
 	@Override
 	public void kameraTap() {
 		Bitmap picture = preview.mBitmap;
-		Intent intent = new Intent(this, ZaehlerstandKamera.class);
-		intent.putExtra("picture", picture);
-		startActivity(intent);
+		try {
+			File pictureFile = new File(Environment.getExternalStorageDirectory() + "/wattnglueck/picture.jpg");
+			pictureFile.mkdirs();
+			if (pictureFile.exists()) pictureFile.delete();
+			FileOutputStream fileStream = new FileOutputStream(pictureFile);
+			picture.compress(Bitmap.CompressFormat.JPEG, 100, fileStream);
+			fileStream.close();
+			picture = null;
+			System.gc();
+		} catch (IOException e) {
+			
+		}
+		startActivity(new Intent(this, ZaehlerstandKamera.class));
 		finish();
 	}
 }
