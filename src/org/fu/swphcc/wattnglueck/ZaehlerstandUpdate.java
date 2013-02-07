@@ -9,6 +9,7 @@ import org.fu.swphcc.wattnglueck.utils.Database;
 import org.fu.swphcc.wattnglueck.utils.Preferences;
 import org.fu.swphcc.wattnglueck.utils.Zaehlerstand;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MotionEvent;
@@ -44,44 +45,53 @@ public class ZaehlerstandUpdate extends WattnActivity {
 		num5.setMaxValue(9);
 		Database db = new Database(this);
 		Preferences pref = new Preferences(this);
-		List<Zaehlerstand> zaehlerList = db.getByRange(pref.getBeginn(), Constants.DBDateFormat.format(new Date()));
-		if (zaehlerList != null) {
-			zaehlerstand = zaehlerList.get(zaehlerList.size() - 1);
-			if (zaehlerstand != null) {
-				String zaehlerstandString = zaehlerstand.getZaehlerstand().toString();
-				int len = zaehlerstandString.length() - 2;
-				if (len >= 5) {
-					num1.setValue(Integer.parseInt(zaehlerstandString.substring(0, 1)));
-				} else {
-					num1.setValue(0);
-				}
-				num2.setMinValue(0);
-				num2.setMaxValue(9);
-				if (len >= 4) {
-					num2.setValue(Integer.parseInt(zaehlerstandString.substring(len - 4, len - 3)));
-				} else {
-					num2.setValue(0);
-				}
-				num3.setMinValue(0);
-				num3.setMaxValue(9);
-				if (len >= 3) {
-					num3.setValue(Integer.parseInt(zaehlerstandString.substring(len - 3, len - 2)));
-				} else {
-					num3.setValue(0);
-				}
-				num4.setMinValue(0);
-				num4.setMaxValue(9);
-				if (len >= 2) {
-					num4.setValue(Integer.parseInt(zaehlerstandString.substring(len - 2, len - 1)));
-				} else {
-					num4.setValue(0);
-				}
-				num5.setMinValue(0);
-				num5.setMaxValue(9);
-				num5.setValue(Integer.parseInt(zaehlerstandString.substring(len - 1, len)));
-				
-			}
-		}
+		
+		Intent i = getIntent();
+		zaehlerstand.setId(i.getIntExtra("id", -1));
+		zaehlerstand.setDate((Date)i.getSerializableExtra("datum"));
+		zaehlerstand.setZaehlerstand(i.getFloatExtra("zaehlerstand", 0));
+		//			if (zaehlerstand != null) {
+		//				String zaehlerstandString = zaehlerstand.getZaehlerstand().toString();
+		//				int len = zaehlerstandString.length() - 2;
+		//				if (len >= 5) {
+		//					num1.setValue(Integer.parseInt(zaehlerstandString.substring(0, 1)));
+		//				} else {
+		//					num1.setValue(0);
+		//				}
+		//				num2.setMinValue(0);
+		//				num2.setMaxValue(9);
+		//				if (len >= 4) {
+		//					num2.setValue(Integer.parseInt(zaehlerstandString.substring(len - 4, len - 3)));
+		//				} else {
+		//					num2.setValue(0);
+		//				}
+		//				num3.setMinValue(0);
+		//				num3.setMaxValue(9);
+		//				if (len >= 3) {
+		//					num3.setValue(Integer.parseInt(zaehlerstandString.substring(len - 3, len - 2)));
+		//				} else {
+		//					num3.setValue(0);
+		//				}
+		//				num4.setMinValue(0);
+		//				num4.setMaxValue(9);
+		//				if (len >= 2) {
+		//					num4.setValue(Integer.parseInt(zaehlerstandString.substring(len - 2, len - 1)));
+		//				} else {
+		//					num4.setValue(0);
+		//				}
+		//				num5.setMinValue(0);
+		//				num5.setMaxValue(9);
+		//				num5.setValue(Integer.parseInt(zaehlerstandString.substring(len - 1, len)));
+		//				
+		//			}
+		//}
+
+		
+		
+		
+		
+		
+
 		
 		initViews();
 	}
@@ -128,7 +138,12 @@ public class ZaehlerstandUpdate extends WattnActivity {
 			}
 		}
 		Database db = new Database(this);
-		db.addZaehlerstand(zaehlerstand);
+		db.updateZaehlerstand(this.zaehlerstand);
+		Intent returnIntent = new Intent();
+		returnIntent.putExtra("zaehlerstand", this.zaehlerstand.getZaehlerstand());
+		returnIntent.putExtra("id", this.zaehlerstand.getId());
+		returnIntent.putExtra("datum", this.zaehlerstand.getDate());
+		setResult(RESULT_OK,returnIntent); 
 		Toast.makeText(this, zaehlerstand + " kWh hinzugefuegt.", Toast.LENGTH_SHORT).show();
 		NavUtils.navigateUpFromSameTask(this);
 		return true;
