@@ -19,7 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ZaehlerstandUpdate extends WattnActivity {
-	
+
 	private Zaehlerstand zaehlerstand;
 
 	@Override
@@ -45,47 +45,48 @@ public class ZaehlerstandUpdate extends WattnActivity {
 		num5.setMaxValue(9);
 		Database db = new Database(this);
 		Preferences pref = new Preferences(this);
-		
+
 		Intent i = getIntent();
+		zaehlerstand = new Zaehlerstand();
 		zaehlerstand.setId(i.getIntExtra("id", -1));
 		zaehlerstand.setDate((Date)i.getSerializableExtra("datum"));
 		zaehlerstand.setZaehlerstand(i.getFloatExtra("zaehlerstand", 0));
-		//			if (zaehlerstand != null) {
-		//				String zaehlerstandString = zaehlerstand.getZaehlerstand().toString();
-		//				int len = zaehlerstandString.length() - 2;
-		//				if (len >= 5) {
-		//					num1.setValue(Integer.parseInt(zaehlerstandString.substring(0, 1)));
-		//				} else {
-		//					num1.setValue(0);
-		//				}
-		//				num2.setMinValue(0);
-		//				num2.setMaxValue(9);
-		//				if (len >= 4) {
-		//					num2.setValue(Integer.parseInt(zaehlerstandString.substring(len - 4, len - 3)));
-		//				} else {
-		//					num2.setValue(0);
-		//				}
-		//				num3.setMinValue(0);
-		//				num3.setMaxValue(9);
-		//				if (len >= 3) {
-		//					num3.setValue(Integer.parseInt(zaehlerstandString.substring(len - 3, len - 2)));
-		//				} else {
-		//					num3.setValue(0);
-		//				}
-		//				num4.setMinValue(0);
-		//				num4.setMaxValue(9);
-		//				if (len >= 2) {
-		//					num4.setValue(Integer.parseInt(zaehlerstandString.substring(len - 2, len - 1)));
-		//				} else {
-		//					num4.setValue(0);
-		//				}
-		//				num5.setMinValue(0);
-		//				num5.setMaxValue(9);
-		//				num5.setValue(Integer.parseInt(zaehlerstandString.substring(len - 1, len)));
-		//				
-		//			}
-		//}
-	
+		if (zaehlerstand != null) {
+			String zaehlerstandString = zaehlerstand.getZaehlerstand().toString();
+			int len = zaehlerstandString.length() - 2;
+			if (len >= 5) {
+				num1.setValue(Integer.parseInt(zaehlerstandString.substring(0, 1)));
+			} else {
+				num1.setValue(0);
+			}
+			num2.setMinValue(0);
+			num2.setMaxValue(9);
+			if (len >= 4) {
+				num2.setValue(Integer.parseInt(zaehlerstandString.substring(len - 4, len - 3)));
+			} else {
+				num2.setValue(0);
+			}
+			num3.setMinValue(0);
+			num3.setMaxValue(9);
+			if (len >= 3) {
+				num3.setValue(Integer.parseInt(zaehlerstandString.substring(len - 3, len - 2)));
+			} else {
+				num3.setValue(0);
+			}
+			num4.setMinValue(0);
+			num4.setMaxValue(9);
+			if (len >= 2) {
+				num4.setValue(Integer.parseInt(zaehlerstandString.substring(len - 2, len - 1)));
+			} else {
+				num4.setValue(0);
+			}
+			num5.setMinValue(0);
+			num5.setMaxValue(9);
+			num5.setValue(Integer.parseInt(zaehlerstandString.substring(len - 1, len)));
+
+		}
+
+
 		initViews();
 	}
 
@@ -120,7 +121,7 @@ public class ZaehlerstandUpdate extends WattnActivity {
 		if (this.zaehlerstand != null) {
 			if (this.zaehlerstand.getZaehlerstand() > zaehlerstand) {
 				OKMessageDialog zaehlerstandNiedrig = new OKMessageDialog("Du hast einen Zählerstand eingegeben, der niedriger als dein letzter Zählerstand ist. Bitte gebe einen höheren Wert ein.") {
-					
+
 					@Override
 					protected void onOKAction() {
 						dismiss();
