@@ -27,7 +27,7 @@ public class ZaehlerstandUpdate extends WattnActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_zaehlerstand_update);
 		// Show the Up button in the action bar.
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+//		getActionBar().setDisplayHomeAsUpEnabled(true);
 		NumberPicker num1 = (NumberPicker) findViewById(R.id.manuellNumberPicker1);
 		NumberPicker num2 = (NumberPicker) findViewById(R.id.manuellNumberPicker2);
 		NumberPicker num3 = (NumberPicker) findViewById(R.id.manuellNumberPicker3);
