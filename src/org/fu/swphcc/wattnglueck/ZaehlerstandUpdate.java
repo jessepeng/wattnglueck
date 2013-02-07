@@ -85,14 +85,7 @@ public class ZaehlerstandUpdate extends WattnActivity {
 		//				
 		//			}
 		//}
-
-		
-		
-		
-		
-		
-
-		
+	
 		initViews();
 	}
 
