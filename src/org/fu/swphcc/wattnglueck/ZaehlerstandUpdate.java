@@ -139,8 +139,7 @@ public class ZaehlerstandUpdate extends WattnActivity {
 		returnIntent.putExtra("id", this.zaehlerstand.getId());
 		returnIntent.putExtra("datum", this.zaehlerstand.getDate());
 		setResult(RESULT_OK,returnIntent); 
-//		Toast.makeText(this, zaehlerstand + " kWh hinzugefuegt.", Toast.LENGTH_SHORT).show();
-//		NavUtils.navigateUpFromSameTask(this);
+
 		this.finish();
 		return true;
 	}
