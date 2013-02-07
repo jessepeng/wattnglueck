@@ -15,12 +15,13 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal" 
+        android:layout_gravity="center">
 
         <Button
             android:id="@+id/cancel"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:onClick="onClickCancel"
             android:text="@string/cancel" >
         </Button>
@@ -28,7 +29,7 @@
         <Button
             android:id="@+id/ok"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:onClick="onClickOK"
             android:text="@string/OK" >
         </Button>

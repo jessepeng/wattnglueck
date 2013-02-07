@@ -67,7 +67,7 @@ public class ZaehlerstandActivity extends WattnActivity {
 						if(edited!=null) {
 							try {
 								DecimalFormat df2 = new DecimalFormat( "00" );		
-								edited.setText( df2.format(dayOfMonth)+"."+df2.format(month)+"."+year);
+								edited.setText( df2.format(dayOfMonth)+"."+df2.format(month+1)+"."+year);
 								
 								z.setDate(Constants.ViewDateFormat.parse( df2.format(dayOfMonth)+"."+df2.format(month)+"."+year));
 								Database db = new Database(ZaehlerstandActivity.this);
