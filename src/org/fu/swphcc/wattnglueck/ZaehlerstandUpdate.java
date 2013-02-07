@@ -132,14 +132,15 @@ public class ZaehlerstandUpdate extends WattnActivity {
 			}
 		}
 		Database db = new Database(this);
+		this.zaehlerstand.setZaehlerstand(zaehlerstand);
 		db.updateZaehlerstand(this.zaehlerstand);
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra("zaehlerstand", this.zaehlerstand.getZaehlerstand());
 		returnIntent.putExtra("id", this.zaehlerstand.getId());
 		returnIntent.putExtra("datum", this.zaehlerstand.getDate());
 		setResult(RESULT_OK,returnIntent); 
-		Toast.makeText(this, zaehlerstand + " kWh hinzugefuegt.", Toast.LENGTH_SHORT).show();
-		NavUtils.navigateUpFromSameTask(this);
+//		Toast.makeText(this, zaehlerstand + " kWh hinzugefuegt.", Toast.LENGTH_SHORT).show();
+//		NavUtils.navigateUpFromSameTask(this);
 		this.finish();
 		return true;
 	}
