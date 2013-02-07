@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    tools:context=".ZaehlerstandManuell" >
+
+    <TextView
+        android:id="@+id/textManuellZaehlerAnfang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="24dp"
+        android:text="@string/update_zaehler_anfang"
+        android:textSize="36sp" />
+
+    <NumberPicker
+        android:id="@+id/manuellNumberPicker1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textManuellZaehlerAnfang"
+        android:layout_below="@+id/textManuellZaehlerAnfang"
+        android:layout_marginTop="24dp" />
+
+    <NumberPicker
+        android:id="@+id/manuellNumberPicker2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/manuellNumberPicker1"
+        android:layout_toRightOf="@+id/manuellNumberPicker1" />
+
+    <NumberPicker
+        android:id="@+id/manuellNumberPicker3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/manuellNumberPicker2"
+        android:layout_toRightOf="@+id/manuellNumberPicker2" />
+
+    <NumberPicker
+        android:id="@+id/manuellNumberPicker4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/manuellNumberPicker3"
+        android:layout_toRightOf="@+id/manuellNumberPicker3" />
+
+    <NumberPicker
+        android:id="@+id/manuellNumberPicker5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/manuellNumberPicker4"
+        android:layout_toRightOf="@+id/manuellNumberPicker4" />
+
+    <TextView
+        android:id="@+id/textManuellZaehlerEnde"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/manuellNumberPicker1"
+        android:layout_below="@+id/manuellNumberPicker1"
+        android:layout_marginTop="24dp"
+        android:text="@string/manuell_zaehler_ende"
+        android:textSize="36sp" />
+
+    <TextView
+        android:id="@+id/textManuellWeiter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textManuellZaehlerEnde"
+        android:layout_below="@+id/textManuellZaehlerEnde"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/button_background"
+        android:clickable="true"
+        android:text="@string/generic_weiter"
+        android:textColor="#ffffff"
+        android:textSize="36sp" />
+
+</RelativeLayout>

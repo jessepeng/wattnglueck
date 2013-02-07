@@ -119,7 +119,7 @@ public class ZaehlerstandActivity extends WattnActivity {
 					@Override
 					public void onClick(View v) {
 
-						Intent i = new Intent(v.getContext(), EditZaehlerstandDialog.class);
+						Intent i = new Intent(v.getContext(), ZaehlerstandUpdate.class);
 						i.putExtra("id", z.getId());
 						i.putExtra("zaehlerstand", z.getZaehlerstand());
 						i.putExtra("datum", z.getDate());
