@@ -14,8 +14,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingBottom="10dp" >
-        <TextView android:text="Datum"/>
-        <TextView android:text="Zählerstand"/>
+        <TextView android:id="@+id/zaehlerstand_datum" android:text="Datum"/>
+        <TextView android:id="@+id/zaehlerstand_stand" android:text="Zählerstand"/>
     </TableRow>
 
 </TableLayout>

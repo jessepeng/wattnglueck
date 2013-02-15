@@ -2,6 +2,7 @@ package org.fu.swphcc.wattnglueck;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -16,6 +17,7 @@ import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -38,7 +40,11 @@ public class ZaehlerstandActivity extends WattnActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_zaehlerstand);
 
+		initViews();
+		
 		TableLayout table = (TableLayout) findViewById( R.id.table);
+		Typeface customFont = Typeface.createFromAsset(getAssets(), getString(R.string.setting_fontfilename));
+		
 		final Database db = new Database(this);
 		if(db.getAll()!=null) {
 			for(final Zaehlerstand z : db.getAll()) {
@@ -56,11 +62,12 @@ public class ZaehlerstandActivity extends WattnActivity {
 				cell.setLayoutParams(llp);//2px border on the right for the cell
 
 				TextView tv = new TextView(this);
+				tv.setTypeface(customFont);
 				tv.setTextColor(Color.WHITE);
 				tv.setText(Constants.ViewDateFormat.format(z.getDate()));
 				tv.setPadding(10, 0, 4, 3);
 				tv.setClickable(true);
-				
+
 				final OnDateSetListener odsl=new OnDateSetListener()
 				{
 					Zaehlerstand zstand=z;
@@ -69,7 +76,7 @@ public class ZaehlerstandActivity extends WattnActivity {
 							try {
 								DecimalFormat df2 = new DecimalFormat( "00" );		
 								edited.setText( df2.format(dayOfMonth)+"."+df2.format(month+1)+"."+year);
-								
+
 								z.setDate(Constants.ViewDateFormat.parse( df2.format(dayOfMonth)+"."+df2.format(month)+"."+year));
 								Database db = new Database(ZaehlerstandActivity.this);
 								db.updateZaehlerstand(z);
@@ -112,9 +119,10 @@ public class ZaehlerstandActivity extends WattnActivity {
 				cell.setLayoutParams(llp);//2px border on the right for the cell
 
 				tv = new TextView(this);
+				tv.setTypeface(customFont);
 				tv.setTextColor(Color.WHITE);
 				tv.setText(z.getZaehlerstand().toString());
-				tv.setPadding(5, 0, 4, 3);
+				tv.setPadding(15, 0, 4, 3);
 				tv.setClickable(true);
 				tv.setOnClickListener(new OnClickListener() {
 					Zaehlerstand zstand=z;
@@ -141,7 +149,7 @@ public class ZaehlerstandActivity extends WattnActivity {
 
 				ImageButton ib = new ImageButton(this);
 				ib.setImageDrawable(getResources().getDrawable(R.drawable.delete));
-				ib.setPadding(2, 0, 4, 0);
+				ib.setPadding(2, 5, 4, 0);
 				ib.setBackground(null);
 				ib.setOnClickListener(new OnClickListener() {
 					Zaehlerstand zstand=z;
@@ -157,7 +165,7 @@ public class ZaehlerstandActivity extends WattnActivity {
 
 				cell.addView(ib);
 
-				tr.addView(cell,25,25);
+				tr.addView(cell);
 
 				table.addView(tr);
 			}
@@ -166,8 +174,7 @@ public class ZaehlerstandActivity extends WattnActivity {
 
 	@Override
 	protected List<TextView> getTextViewsForFont() {
-
-		return null;
+		return Arrays.asList((TextView) findViewById(R.id.zaehlerstand_datum), (TextView) findViewById(R.id.zaehlerstand_stand));
 	}
 
 	@Override
