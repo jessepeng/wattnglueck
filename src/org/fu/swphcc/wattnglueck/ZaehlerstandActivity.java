@@ -157,7 +157,7 @@ public class ZaehlerstandActivity extends WattnActivity {
 
 				cell.addView(ib);
 
-				tr.addView(cell,15,15);
+				tr.addView(cell,25,25);
 
 				table.addView(tr);
 			}
