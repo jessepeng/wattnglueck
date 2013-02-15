@@ -8,7 +8,6 @@ import org.achartengine.chart.PointStyle;
 import org.achartengine.model.TimeSeries;
 import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
-import org.achartengine.renderer.XYMultipleSeriesRenderer.Orientation;
 import org.achartengine.renderer.XYSeriesRenderer;
 import org.fu.swphcc.wattnglueck.utils.Database;
 import org.fu.swphcc.wattnglueck.utils.Zaehlerstand;
@@ -17,11 +16,10 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
 /**
@@ -54,7 +52,7 @@ public class Details extends WattnActivity{
 				if(oldz!=null) {
 					float tage = (z.getDate().getTime()-oldz.getDate().getTime())/ 86400000f;
 					if(tage>0) {
-						series.add(z.getDate(), (z.getZaehlerstand()-oldz.getZaehlerstand())/tage);
+						series.add(z.getDate(), Math.round(((z.getZaehlerstand()-oldz.getZaehlerstand())/tage)*100.0)/100.0);
 					}
 				}
 				oldz=z;
@@ -67,9 +65,10 @@ public class Details extends WattnActivity{
 			XYSeriesRenderer renderer = new XYSeriesRenderer();
 			renderer.setColor(Color.GREEN);
 			renderer.setDisplayChartValues(true);
+			renderer.setChartValuesTextSize(25);
 			renderer.setPointStyle(PointStyle.DIAMOND);
-			
-			
+
+
 			XYMultipleSeriesRenderer mrenderer = new XYMultipleSeriesRenderer();
 			mrenderer.addSeriesRenderer(renderer);
 			mrenderer.setApplyBackgroundColor(true);
@@ -78,9 +77,14 @@ public class Details extends WattnActivity{
 			mrenderer.setAxesColor(Color.DKGRAY);
 			mrenderer.setXLabelsColor(Color.DKGRAY);
 			mrenderer.setYLabelsColor(0,Color.DKGRAY);
-			mrenderer.setLabelsTextSize(14);
-
+			mrenderer.setLabelsTextSize(30);
+			mrenderer.setAxisTitleTextSize(35);
+			mrenderer.setLegendTextSize(25);
+			mrenderer.setMargins(new int[] { 50, 75, 75, 30 });
 			
+			mrenderer.setZoomButtonsVisible(true);
+			mrenderer.setPointSize(10);
+
 			mrenderer.setYLabelsAlign(Align.RIGHT);
 			mrenderer.setYTitle("KWh");
 			mrenderer.setXTitle("Datum");
