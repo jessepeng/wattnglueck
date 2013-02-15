@@ -46,7 +46,7 @@ public class Status extends WattnActivity {
 			TextView statusAnfang = (TextView) findViewById(R.id.textStatusZahlungAnfang);
 			betragText = betragText.replace("$betrag", betrag.toString());
 			statusAnfang.setText(betragText);
-			((TextView) findViewById(R.id.textStatusZahlungAnfang)).setText(meldungText);
+			((TextView) findViewById(R.id.textStatusZahlungsMeldung)).setText(meldungText);
 			
 			initViews();
 		} else {
@@ -79,7 +79,8 @@ public class Status extends WattnActivity {
 				(TextView) findViewById(R.id.textStatusDetails),
 				(TextView) findViewById(R.id.textStatusDetailsAnfang),
 				(TextView) findViewById(R.id.textStatusDetailsEnde),
-				(TextView) findViewById(R.id.textStatusZahlungAnfang)
+				(TextView) findViewById(R.id.textStatusZahlungAnfang),
+				(TextView) findViewById(R.id.textStatusZahlungsMeldung)
 				);
 	}
 

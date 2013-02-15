@@ -48,6 +48,8 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 			TextView title = (TextView) getWindow().findViewById(titleId);
 			title.setTextSize(24);
 			title.setTextColor(Color.parseColor("#5e625b"));
+			Typeface customFont = Typeface.createFromAsset(getAssets(), getString(R.string.setting_fontfilename));
+			title.setTypeface(customFont);
 		} catch(Exception e) {}
 		
 		Typeface customFont = Typeface.createFromAsset(getAssets(), getString(R.string.setting_fontfilename));
