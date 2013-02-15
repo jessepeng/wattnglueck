@@ -61,13 +61,15 @@ public class Details extends WattnActivity{
 
 			XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
 			dataset.addSeries(series);
-
+			
+			
 			XYSeriesRenderer renderer = new XYSeriesRenderer();
-			renderer.setColor(Color.GREEN);
-			renderer.setDisplayChartValues(true);
+			renderer.setColor(Color.parseColor("#68A423"));
+			renderer.setDisplayChartValues(false);
 			renderer.setChartValuesTextSize(25);
-			renderer.setPointStyle(PointStyle.DIAMOND);
-
+			renderer.setPointStyle(PointStyle.POINT);
+			renderer.setFillBelowLine(true);
+			renderer.setFillBelowLineColor(Color.parseColor("#97FF82"));
 
 			XYMultipleSeriesRenderer mrenderer = new XYMultipleSeriesRenderer();
 			mrenderer.addSeriesRenderer(renderer);

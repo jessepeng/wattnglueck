@@ -52,10 +52,11 @@ public class ZaehlerstandActivity extends WattnActivity {
 				//Datum
 				//New Cell
 				LinearLayout cell = new LinearLayout(this);
-				cell.setBackgroundColor(Color.GRAY);
+				cell.setBackground(getResources().getDrawable(R.drawable.button_background));
 				cell.setLayoutParams(llp);//2px border on the right for the cell
 
 				TextView tv = new TextView(this);
+				tv.setTextColor(Color.WHITE);
 				tv.setText(Constants.ViewDateFormat.format(z.getDate()));
 				tv.setPadding(10, 0, 4, 3);
 				tv.setClickable(true);
@@ -106,10 +107,12 @@ public class ZaehlerstandActivity extends WattnActivity {
 				//Zaehlerstand
 				//New Cell
 				cell = new LinearLayout(this);
-				cell.setBackgroundColor(Color.GRAY);
+				//cell.setBackgroundColor(Color.GRAY);
+				cell.setBackground(getResources().getDrawable(R.drawable.button_background));
 				cell.setLayoutParams(llp);//2px border on the right for the cell
 
 				tv = new TextView(this);
+				tv.setTextColor(Color.WHITE);
 				tv.setText(z.getZaehlerstand().toString());
 				tv.setPadding(5, 0, 4, 3);
 				tv.setClickable(true);
