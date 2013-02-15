@@ -18,7 +18,7 @@
     <string name="menu_dev_clear_db">Datenbank leeren</string>
     <string name="home_font">Hier wird eine benutzerdefinierte Font genutzt.</string>
     <string name="title_activity_status">Status</string>
-    <string name="status_rueckzahlung_start">Du bekommst wahrscheinlich $betrag € zurück.</string>
+    <string name="status_rueckzahlung_start">Du bekommst wahrscheinlich $betrag € zurückgezahlt.</string>
     <string name="status_nachzahlung_start">Du musst wahrscheinlich $betrag € nachzahlen.</string>
     <string name="status_detail_anfang">Ich möchte</string>
     <string name="status_detail">mehr Details</string>
@@ -39,8 +39,8 @@
     <string name="generic_komma">,</string>
     <string name="generic_euro">€.</string>
     <string name="generic_cent">ct.</string>
-    <string name="dialog_stromvertrag">Bitte halte deinen Stromvertrag bereit.</string>
-    <string name="dialog_stromzaehler">Bitte gehe jetzt zu deinem Stromzähler.</string>
+    <string name="dialog_stromvertrag">Bitte halte Deinen Stromvertrag bereit.</string>
+    <string name="dialog_stromzaehler">Bitte gehe jetzt zu Deinem Stromzähler.</string>
     <string name="title_activity_vertrag">Vertrag</string>
     <string name="vertrag_beginn">Mein Abrechnungs-\nzeitraum beginnt am</string>
     <string name="gebuehren_beginn">Monatlich zahle ich</string>
@@ -66,7 +66,7 @@
     <string name="OK">OK</string>
     <string name="title_activity_date_picker">DatePicker</string>
     <string name="update_zaehler_anfang">Neuen Zählerstand eingeben</string>
-    <string name="status_rueckzahlung_meldung">Glückwunsch!!</string>
-    <string name="status_nachzahlung_meldung">Schade!!</string>
+    <string name="status_rueckzahlung_meldung">Glückwunsch!</string>
+    <string name="status_nachzahlung_meldung">Schade!</string>
 
 </resources>

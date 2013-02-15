@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="65dp"
         android:text="@string/home_zaehlerstand_anfang"
         android:lineSpacingExtra="3dip"
         android:textSize="38sp" />

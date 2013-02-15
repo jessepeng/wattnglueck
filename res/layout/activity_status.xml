@@ -12,8 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="65dp"
         android:text="@string/status_rueckzahlung_meldung"
+        android:lineSpacingExtra="3dip"
         android:textSize="36sp" />
 
     <TextView
@@ -21,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textStatusZahlungsMeldung"
-        android:layout_marginTop="24dp"
+        android:lineSpacingExtra="3dip"
         android:text="@string/status_rueckzahlung_start"
         android:textSize="36sp" />
 
@@ -31,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textStatusZahlungAnfang"
-        android:layout_marginTop="24dp"
+        android:lineSpacingExtra="3dip"
         android:text="@string/status_detail_anfang"
         android:textSize="36sp" />
 
