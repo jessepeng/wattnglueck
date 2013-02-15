@@ -66,5 +66,7 @@
     <string name="OK">OK</string>
     <string name="title_activity_date_picker">DatePicker</string>
     <string name="update_zaehler_anfang">Neuen Zählerstand eingeben</string>
+    <string name="status_rueckzahlung_meldung">Glückwunsch!!</string>
+    <string name="status_nachzahlung_meldung">Schade!!</string>
 
 </resources>
