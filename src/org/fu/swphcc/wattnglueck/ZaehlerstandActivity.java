@@ -122,7 +122,7 @@ public class ZaehlerstandActivity extends WattnActivity {
 				tv.setTypeface(customFont);
 				tv.setTextColor(Color.WHITE);
 				tv.setText(z.getZaehlerstand().toString());
-				tv.setPadding(15, 0, 4, 3);
+				tv.setPadding(10, 0, 4, 3);
 				tv.setClickable(true);
 				tv.setOnClickListener(new OnClickListener() {
 					Zaehlerstand zstand=z;
@@ -149,7 +149,7 @@ public class ZaehlerstandActivity extends WattnActivity {
 
 				ImageButton ib = new ImageButton(this);
 				ib.setImageDrawable(getResources().getDrawable(R.drawable.delete));
-				ib.setPadding(2, 5, 4, 0);
+				ib.setPadding(10, 7, 7, 7);
 				ib.setBackground(null);
 				ib.setOnClickListener(new OnClickListener() {
 					Zaehlerstand zstand=z;
