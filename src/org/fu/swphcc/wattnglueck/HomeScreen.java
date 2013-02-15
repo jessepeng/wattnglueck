@@ -75,7 +75,17 @@ public class HomeScreen extends WattnActivity {
 
 	@Override
 	protected List<TextView> getTextViewsForFont() {
-		return null;
+		return Arrays.asList(
+				(TextView) findViewById(R.id.textStatus), 
+				(TextView) findViewById(R.id.textZaehlerstand),
+				(TextView) findViewById(R.id.textZaehler),
+				(TextView) findViewById(R.id.textZaehlerstand),
+				(TextView) findViewById(R.id.textZaehlerEnde),
+				(TextView) findViewById(R.id.textStatusAnfang),
+				(TextView) findViewById(R.id.textStatus),
+				(TextView) findViewById(R.id.textStatusEnde)
+				
+				);
 	}
 	
 	@Override

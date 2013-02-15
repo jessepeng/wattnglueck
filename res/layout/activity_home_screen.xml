@@ -13,7 +13,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="48dp"
         android:text="@string/home_zaehlerstand_anfang"
-        android:textSize="36sp" />
+        android:textSize="38sp" />
 
 	<TextView
 	    android:id="@+id/textZaehlerstand"
@@ -26,18 +26,18 @@
 	    android:background="@drawable/button_background"
 	    android:text="@string/home_zaehlerstand"
 	    android:textColor="#ffffff"
-	    android:textSize="36sp" />
+	    android:textSize="38sp" />
 	
 	<TextView
-        android:id="@+id/textZaehlerEnde"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textZaehlerstand"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="0dp"
-        android:text="@string/home_zaehlerstand_ende"
-        android:textSize="36sp" />
+	    android:id="@+id/textZaehlerEnde"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_below="@+id/textZaehlerstand"
+	    android:layout_marginLeft="0dp"
+	    android:layout_marginTop="0dp"
+	    android:text="@string/home_zaehlerstand_ende"
+	    android:textSize="38sp" />
     
     <TextView
         android:id="@+id/textStatusAnfang"
@@ -45,33 +45,32 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textZaehlerEnde"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="38dp"
         android:text="@string/home_status_anfang"
-        android:textSize="36sp" />
+        android:textSize="31sp" />
     
     	<TextView
-	    android:id="@+id/textStatus"
+    	    android:id="@+id/textStatus"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:layout_alignParentLeft="true"
+    	    android:layout_below="@+id/textStatusAnfang"
+    	    android:layout_marginLeft="0dp"
+    	    android:layout_marginTop="0dp"
+    	    android:background="@drawable/button_background"
+    	    android:clickable="true"
+    	    android:text="@string/home_status"
+    	    android:textColor="#ffffff"
+    	    android:textSize="38sp" />
+
+	<TextView
+	    android:id="@+id/textStatusEnde"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_alignParentLeft="true"
-	    android:layout_below="@+id/textStatusAnfang"
-	    android:layout_marginLeft="0dp"
-	    android:layout_marginTop="0dp"
-	    android:background="@drawable/button_background"
-	    android:text="@string/home_status"
-	    android:textColor="#ffffff"
-	    android:textSize="36sp"
-	    android:clickable="true" />
-	
-	<TextView
-        android:id="@+id/textStatusEnde"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textStatus"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="0dp"
-        android:text="@string/home_status_ende"
-        android:textSize="36sp" />
+	    android:layout_alignBaseline="@+id/textStatus"
+	    android:layout_alignBottom="@+id/textStatus"
+	    android:layout_alignRight="@+id/textStatusAnfang"
+	    android:text="@string/home_status_ende"
+	    android:textSize="38sp" />
 	
 </RelativeLayout>
