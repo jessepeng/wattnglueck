@@ -18,11 +18,11 @@
     <string name="menu_dev_clear_db">Datenbank leeren</string>
     <string name="home_font">Hier wird eine benutzerdefinierte Font genutzt.</string>
     <string name="title_activity_status">Status</string>
-    <string name="status_rueckzahlung_start">Du bekommst wahrscheinlich $betrag € zurückgezahlt.</string>
+    <string name="status_rueckzahlung_start">Du wirst vermutlich $betrag € zurückgezahlt bekommen.</string>
     <string name="status_nachzahlung_start">Du musst wahrscheinlich $betrag € nachzahlen.</string>
-    <string name="status_detail_anfang">Ich möchte</string>
-    <string name="status_detail">mehr Details</string>
-    <string name="status_detail_ende">sehen.</string>
+    <string name="status_detail_anfang">Mein Stromverbrauch</string>
+    <string name="status_detail">im Detail</string>
+    <string name="status_detail_ende">.</string>
     <string name="status_dialog">Du hast noch nicht genügend Zählerstände dokumentiert.\nMöchtest du jetzt einen Zählerstand dokumentieren?</string>
     <string name="testausgabe">DB Testausgabe</string>
     <string name="home_moechte_zaehlerstand">einen neuen Zählerstand dokumentieren.</string>
