@@ -97,7 +97,8 @@ public class Details extends WattnActivity{
 
 			GraphicalView view = ChartFactory.getTimeChartView(ctx, dataset, mrenderer,"dd.MM.yyyy");
 
-
+			
+			
 			return view;
 		}
 		return null;
@@ -115,6 +116,8 @@ public class Details extends WattnActivity{
 			layout.addView(view,LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT);
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
+		initViews();
 	}
 
 	@Override

@@ -7,6 +7,8 @@ import org.fu.swphcc.wattnglueck.utils.Preferences;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -40,6 +42,14 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 	 * Anweisung ausgefuert werden.
 	 */
 	protected void initViews() {
+		
+		try {
+			final int titleId =  Resources.getSystem().getIdentifier("action_bar_title", "id", "android");
+			TextView title = (TextView) getWindow().findViewById(titleId);
+			title.setTextSize(24);
+			title.setTextColor(Color.parseColor("#5e625b"));
+		} catch(Exception e) {}
+		
 		Typeface customFont = Typeface.createFromAsset(getAssets(), getString(R.string.setting_fontfilename));
 		List<TextView> textViews = getTextViewsForFont();
 		if (textViews != null) {

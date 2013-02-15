@@ -9,6 +9,8 @@ import org.fu.swphcc.wattnglueck.utils.Database;
 import org.fu.swphcc.wattnglueck.utils.Preferences;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -20,11 +22,11 @@ public class HomeScreen extends WattnActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_screen);
-		
+
 		Preferences pref = new Preferences(this);
 		if (!pref.isSet()) {
 			OKMessageDialog vertragDialog = new OKMessageDialog("Bitte halte deinen Stromvertrag bereit.") {
-				
+
 				@Override
 				protected void onOKAction() {
 					Intent vertragIntent = new Intent(getBaseContext(), Vertrag.class);
@@ -39,10 +41,10 @@ public class HomeScreen extends WattnActivity {
 		Date today = new Date();
 		String todayString = Constants.ViewDateFormat.format(today);
 		String showDate = getString(R.string.home_status).replace("$date", todayString);
-		
+
 		TextView statusView = (TextView) findViewById(R.id.textStatus); 
 		statusView.setText(showDate);
-		
+
 		initViews();
 	}
 
@@ -75,19 +77,20 @@ public class HomeScreen extends WattnActivity {
 
 	@Override
 	protected List<TextView> getTextViewsForFont() {
-		return Arrays.asList(
-				(TextView) findViewById(R.id.textStatus), 
-				(TextView) findViewById(R.id.textZaehlerstand),
-				(TextView) findViewById(R.id.textZaehler),
-				(TextView) findViewById(R.id.textZaehlerstand),
-				(TextView) findViewById(R.id.textZaehlerEnde),
-				(TextView) findViewById(R.id.textStatusAnfang),
-				(TextView) findViewById(R.id.textStatus),
-				(TextView) findViewById(R.id.textStatusEnde)
-				
-				);
+
+			return Arrays.asList(
+					(TextView) findViewById(R.id.textStatus), 
+					(TextView) findViewById(R.id.textZaehlerstand),
+					(TextView) findViewById(R.id.textZaehler),
+					(TextView) findViewById(R.id.textZaehlerstand),
+					(TextView) findViewById(R.id.textZaehlerEnde),
+					(TextView) findViewById(R.id.textStatusAnfang),
+					(TextView) findViewById(R.id.textStatus),
+					(TextView) findViewById(R.id.textStatusEnde)
+					);
+		
 	}
-	
+
 	@Override
 	protected List<TextView> getButtonTextViews() {
 		return Arrays.asList((TextView) findViewById(R.id.textStatus), (TextView) findViewById(R.id.textZaehlerstand));
