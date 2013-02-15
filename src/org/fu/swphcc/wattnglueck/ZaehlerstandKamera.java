@@ -14,7 +14,21 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
-public class ZaehlerstandKamera extends WattnActivity {
+import com.abbyy.mobile.ocr4.AssetDataSource;
+import com.abbyy.mobile.ocr4.DataSource;
+import com.abbyy.mobile.ocr4.Engine;
+import com.abbyy.mobile.ocr4.FileLicense;
+import com.abbyy.mobile.ocr4.License;
+import com.abbyy.mobile.ocr4.License.BadLicenseException;
+import com.abbyy.mobile.ocr4.RecognitionConfiguration;
+import com.abbyy.mobile.ocr4.RecognitionFailedException;
+import com.abbyy.mobile.ocr4.RecognitionManager;
+import com.abbyy.mobile.ocr4.RecognitionManager.RecognitionCallback;
+import com.abbyy.mobile.ocr4.RecognitionManager.RotationType;
+import com.abbyy.mobile.ocr4.layout.MocrLayout;
+import com.abbyy.mobile.ocr4.layout.MocrPrebuiltLayoutInfo;
+
+public class ZaehlerstandKamera extends WattnActivity implements RecognitionCallback {
 	
 	private Bitmap bitmap;
 	
@@ -83,9 +97,29 @@ public class ZaehlerstandKamera extends WattnActivity {
 			FileOutputStream fos = new FileOutputStream(root + "/wattnglueck/picture_crop.jpg");
 			newBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
 			fos.close();
+			
+			DataSource dataSource = new AssetDataSource(getAssets());
+			License license = new FileLicense(dataSource, "SMRT42000003000137604180.ABBYY.License", "org.fu.swphcc.wattnglueck.Stromzaehler");
+			
+			Engine ocrEngine = Engine.createInstance(Arrays.asList(dataSource), license);
+			RecognitionConfiguration config = new RecognitionConfiguration();
+			config.setRecognitionLanguages(ocrEngine.getLanguagesAvailableForOcr());
+			RecognitionManager recognitionManager = ocrEngine.getRecognitionManager(config);
+			MocrLayout result = recognitionManager.recognizeText(newBitmap, this);
+			
+			TextView zaehlerstand = (TextView) findViewById(R.id.textKameraZaehlerstand);
+			zaehlerstand.setText(result.getText());
 		} catch (IOException e) {
 			
+		} catch (BadLicenseException e) {
+			e.printStackTrace();
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (RecognitionFailedException e) {
+			e.printStackTrace();
 		}
+		
+		
 	}
 
 
@@ -110,6 +144,24 @@ public class ZaehlerstandKamera extends WattnActivity {
 	    }
 
     return output;
+	}
+
+	@Override
+	public void onPrebuiltWordsInfoReady(MocrPrebuiltLayoutInfo arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean onRecognitionProgress(int arg0, int arg1) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void onRotationTypeDetected(RotationType arg0) {
+		// TODO Auto-generated method stub
+		
 	}  
 
 }
