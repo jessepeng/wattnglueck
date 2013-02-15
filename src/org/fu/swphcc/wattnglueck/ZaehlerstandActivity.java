@@ -149,7 +149,7 @@ public class ZaehlerstandActivity extends WattnActivity {
 
 				ImageButton ib = new ImageButton(this);
 				ib.setImageDrawable(getResources().getDrawable(R.drawable.delete));
-				ib.setPadding(10, 7, 7, 7);
+				ib.setPadding(10, 3, 7, 3);
 				ib.setBackground(null);
 				ib.setOnClickListener(new OnClickListener() {
 					Zaehlerstand zstand=z;
