@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.abbyy.mobile.ocr4.AssetDataSource;
 import com.abbyy.mobile.ocr4.DataSource;
 import com.abbyy.mobile.ocr4.Engine;
+import com.abbyy.mobile.ocr4.Engine.DataFilesExtensions;
 import com.abbyy.mobile.ocr4.FileLicense;
 import com.abbyy.mobile.ocr4.License;
 import com.abbyy.mobile.ocr4.License.BadLicenseException;
@@ -93,7 +94,7 @@ public class ZaehlerstandKamera extends WattnActivity {
 			Bitmap newBitmap = Bitmap.createBitmap(bitmap, left, top, width, height);
 			bitmap = null;
 			System.gc();
-			newBitmap = invert(newBitmap);
+			//newBitmap = invert(newBitmap);
 			
 			try {
 				String root = Environment.getExternalStorageDirectory().toString();
@@ -101,14 +102,20 @@ public class ZaehlerstandKamera extends WattnActivity {
 				newBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
 				fos.close();
 				
-				DataSource dataSource = new AssetDataSource(getAssets());
-				License license = new FileLicense(dataSource, "SMRT42000003000137604180.ABBYY.License", "org.fu.swphcc.wattnglueck.Stromzaehler");
+				Engine.loadNativeLibrary();
 				
-				Engine ocrEngine = Engine.createInstance(Arrays.asList(dataSource), license);
+				DataSource dataSource = new AssetDataSource(getAssets());
+				License license = new FileLicense(dataSource, "SMRT42000003000137604180.ABBYY.License", "org.fu.swphcc.wattnglueck");
+				
+				Engine ocrEngine = Engine.createInstance(Arrays.asList(dataSource), license, new DataFilesExtensions(".mp3", ".mp3", ".mp3"));
+				
 				RecognitionConfiguration config = new RecognitionConfiguration();
 				config.setRecognitionLanguages(ocrEngine.getLanguagesAvailableForOcr());
+				
 				RecognitionManager recognitionManager = ocrEngine.getRecognitionManager(config);
 				MocrLayout result = recognitionManager.recognizeText(newBitmap, this);
+				
+				Engine.destroyInstance();
 				
 				return result.getText();
 			} catch (IOException e) {
@@ -121,7 +128,7 @@ public class ZaehlerstandKamera extends WattnActivity {
 				e.printStackTrace();
 			}
 			
-			return null;
+			return "Fehler";
 		}
 	
 	
