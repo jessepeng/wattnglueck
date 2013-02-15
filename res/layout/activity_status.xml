@@ -6,35 +6,32 @@
     android:paddingRight="24dp"
     tools:context=".Status" >
 
-    <TextView
-        android:id="@+id/textStatusZahlungsMeldung"
+    <RelativeLayout
+        android:id="@+id/textStatusWrap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="65dp"
-        android:text="@string/status_rueckzahlung_meldung"
-        android:lineSpacingExtra="3dip"
-        android:textSize="36sp" />
+        android:layout_marginTop="75dp" >
 
-    <TextView
-        android:id="@+id/textStatusZahlungAnfang"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textStatusZahlungsMeldung"
-        android:lineSpacingExtra="3dip"
-        android:text="@string/status_rueckzahlung_start"
-        android:textSize="36sp" />
+        <TextView
+            android:id="@+id/textStatusZahlungAnfang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="21dp"
+            android:lineSpacingExtra="-7dip"
+            android:text="@string/status_rueckzahlung_start"
+            android:textSize="38sp" />
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/textStatusDetailsAnfang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textStatusZahlungAnfang"
-        android:lineSpacingExtra="3dip"
+        android:layout_below="@+id/textStatusWrap"
+        android:layout_marginTop="21dp"
+        android:lineSpacingExtra="0dip"
         android:text="@string/status_detail_anfang"
-        android:textSize="36sp" />
+        android:textSize="38sp" />
 
     <TextView
         android:id="@+id/textStatusDetails"
@@ -48,17 +45,17 @@
         android:clickable="true"
         android:text="@string/status_detail"
         android:textColor="#ffffff"
-        android:textSize="36sp" />
+        android:textSize="38sp" />
 
     <TextView
         android:id="@+id/textStatusDetailsEnde"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textStatusDetails"
+        android:layout_below="@+id/textStatusDetailsAnfang"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="0dp"
+        android:layout_toRightOf="@+id/textStatusDetails"
         android:text="@string/status_detail_ende"
-        android:textSize="36sp" />
+        android:textSize="38sp" />
 
 </RelativeLayout>

@@ -30,23 +30,22 @@ public class Status extends WattnActivity {
 		if (exactBetrag != null) {
 			Integer betrag = Math.round(exactBetrag);
 			String betragText;
-			String meldungText;
+
 			if (betrag < 0) {
 				betrag = -betrag;
-				View me = findViewById(android.R.id.content);
-				me.setBackgroundResource(R.drawable.red_gradient);
+				View me = findViewById(R.id.textStatusWrap);
+				me.setBackgroundResource(R.drawable.red_background);
 				betragText = getString(R.string.status_nachzahlung_start);
-				meldungText = getString(R.string.status_nachzahlung_meldung);
+
 			} else {
-				View me = findViewById(android.R.id.content);
-				me.setBackgroundResource(R.drawable.green_gradient);
+				View me = findViewById(R.id.textStatusWrap);
+				me.setBackgroundResource(R.drawable.green_background);
 				betragText = getString(R.string.status_rueckzahlung_start);
-				meldungText = getString(R.string.status_rueckzahlung_meldung);
+
 			}
 			TextView statusAnfang = (TextView) findViewById(R.id.textStatusZahlungAnfang);
 			betragText = betragText.replace("$betrag", betrag.toString());
 			statusAnfang.setText(betragText);
-			((TextView) findViewById(R.id.textStatusZahlungsMeldung)).setText(meldungText);
 			
 			initViews();
 		} else {
@@ -79,8 +78,7 @@ public class Status extends WattnActivity {
 				(TextView) findViewById(R.id.textStatusDetails),
 				(TextView) findViewById(R.id.textStatusDetailsAnfang),
 				(TextView) findViewById(R.id.textStatusDetailsEnde),
-				(TextView) findViewById(R.id.textStatusZahlungAnfang),
-				(TextView) findViewById(R.id.textStatusZahlungsMeldung)
+				(TextView) findViewById(R.id.textStatusZahlungAnfang)
 				);
 	}
 
