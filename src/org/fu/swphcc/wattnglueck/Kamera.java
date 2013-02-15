@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Kamera extends WattnActivity implements KameraPreview.KameraTapAction {
 	
@@ -26,8 +27,10 @@ public class Kamera extends WattnActivity implements KameraPreview.KameraTapActi
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
-        setContentView(R.layout.view_kamera);
+        Toast.makeText(getApplicationContext(), "Tippe auf den Bildschirm, um ein Foto zu machen.", Toast.LENGTH_LONG).show();
         
+        setContentView(R.layout.view_kamera);
+		
         preview = (KameraPreview) findViewById(R.id.kamera_preview);
 		
         preview.setKameraTap(this);
@@ -58,20 +61,27 @@ public class Kamera extends WattnActivity implements KameraPreview.KameraTapActi
 
 	@Override
 	public void kameraTap() {
-		Bitmap picture = preview.mBitmap;
-		try {
-			File pictureFile = new File(Environment.getExternalStorageDirectory() + "/wattnglueck/picture.jpg");
-			pictureFile.mkdirs();
-			if (pictureFile.exists()) pictureFile.delete();
-			FileOutputStream fileStream = new FileOutputStream(pictureFile);
-			picture.compress(Bitmap.CompressFormat.JPEG, 100, fileStream);
-			fileStream.close();
-			picture = null;
-			System.gc();
-		} catch (IOException e) {
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				Bitmap picture = preview.mBitmap;
+				try {
+					File pictureFile = new File(Environment.getExternalStorageDirectory() + "/wattnglueck/picture.jpg");
+					pictureFile.mkdirs();
+					if (pictureFile.exists()) pictureFile.delete();
+					FileOutputStream fileStream = new FileOutputStream(pictureFile);
+					picture.compress(Bitmap.CompressFormat.JPEG, 100, fileStream);
+					fileStream.close();
+					picture = null;
+					System.gc();
+				} catch (IOException e) {
+					
+				}
+				startActivity(new Intent(getApplicationContext(), ZaehlerstandKamera.class));
+				finish();
+			}
 			
-		}
-		startActivity(new Intent(this, ZaehlerstandKamera.class));
-		finish();
+		}).start();
 	}
 }
