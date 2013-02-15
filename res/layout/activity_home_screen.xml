@@ -11,8 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="55dp"
         android:text="@string/home_zaehlerstand_anfang"
+        android:lineSpacingExtra="3dip"
         android:textSize="38sp" />
 
 	<TextView
@@ -23,10 +24,12 @@
 	    android:layout_below="@+id/textZaehler"
 	    android:layout_marginLeft="0dp"
 	    android:layout_marginTop="0dp"
+	    android:layout_marginBottom="3dp"
 	    android:background="@drawable/button_background"
 	    android:text="@string/home_zaehlerstand"
 	    android:textColor="#ffffff"
 	    android:textSize="38sp" />
+	
 	
 	<TextView
 	    android:id="@+id/textZaehlerEnde"
@@ -37,6 +40,7 @@
 	    android:layout_marginLeft="0dp"
 	    android:layout_marginTop="0dp"
 	    android:text="@string/home_zaehlerstand_ende"
+	    android:lineSpacingExtra="3dip"
 	    android:textSize="38sp" />
     
     <TextView
@@ -45,9 +49,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textZaehlerEnde"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="21dp"
         android:text="@string/home_status_anfang"
-        android:textSize="31sp" />
+        android:lineSpacingExtra="3dip"
+        android:textSize="38sp" />
     
     	<TextView
     	    android:id="@+id/textStatus"
@@ -67,9 +72,8 @@
 	    android:id="@+id/textStatusEnde"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_alignBaseline="@+id/textStatus"
-	    android:layout_alignBottom="@+id/textStatus"
-	    android:layout_alignRight="@+id/textStatusAnfang"
+	    android:layout_below="@+id/textStatusAnfang"
+	    android:layout_toRightOf="@+id/textStatus"
 	    android:text="@string/home_status_ende"
 	    android:textSize="38sp" />
 	

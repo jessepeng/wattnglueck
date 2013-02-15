@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Watt\'n\'Glück</string>
+    <string name="app_name">stromzähler</string>
     <string name="home_zaehlerstand_anfang">Ich möchte einen</string>
     <string name="home_zaehlerstand">neuen Zählerstand</string>
     <string name="home_zaehlerstand_ende">dokumentieren.</string>
