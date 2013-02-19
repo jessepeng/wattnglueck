@@ -34,15 +34,13 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 	}
-
+	
 	/**
-	 * Methode, die aufgerufen werden soll, um die TextViews und andere Views
-	 * vorzubereiten (zum Beispiel Touch-Events oder Custom-Font hinzufuegen).
-	 * Diese Methode sollte von jeder onCreate()-Methode als letzte
-	 * Anweisung ausgefuert werden.
+	 * Setzt die Schriftart richtig im Titel.
 	 */
-	protected void initViews() {
-		
+	protected void onResume() {
+		super.onResume();
+
 		try {
 			final int titleId =  Resources.getSystem().getIdentifier("action_bar_title", "id", "android");
 			TextView title = (TextView) getWindow().findViewById(titleId);
@@ -51,6 +49,15 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 			Typeface customFont = Typeface.createFromAsset(getAssets(), getString(R.string.setting_fontfilename));
 			title.setTypeface(customFont);
 		} catch(Exception e) {}
+	}
+
+	/**
+	 * Methode, die aufgerufen werden soll, um die TextViews und andere Views
+	 * vorzubereiten (zum Beispiel Touch-Events oder Custom-Font hinzufuegen).
+	 * Diese Methode sollte von jeder onCreate()-Methode als letzte
+	 * Anweisung ausgefuert werden.
+	 */
+	protected void initViews() {
 		
 		Typeface customFont = Typeface.createFromAsset(getAssets(), getString(R.string.setting_fontfilename));
 		List<TextView> textViews = getTextViewsForFont();

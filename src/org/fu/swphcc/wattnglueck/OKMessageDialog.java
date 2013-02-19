@@ -11,6 +11,7 @@ public abstract class OKMessageDialog extends DialogFragment {
 	private String message;
 
 	public OKMessageDialog(String message) {
+		this.setCancelable(false);
 		this.message = message;
 	}
 	

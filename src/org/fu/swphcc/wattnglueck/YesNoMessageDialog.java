@@ -12,12 +12,12 @@ public abstract class YesNoMessageDialog extends DialogFragment {
 
 	public YesNoMessageDialog(String message) {
 		this.message = message;
+		this.setCancelable(false);
 	}
 	
 	@Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-		builder.setCancelable(false);
 		builder.setMessage(message);
 		builder.setNegativeButton(R.string.yes_no_dialog_no, new DialogInterface.OnClickListener() {
 			 

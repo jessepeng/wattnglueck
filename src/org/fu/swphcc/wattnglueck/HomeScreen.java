@@ -7,10 +7,9 @@ import java.util.List;
 import org.fu.swphcc.wattnglueck.utils.Constants;
 import org.fu.swphcc.wattnglueck.utils.Database;
 import org.fu.swphcc.wattnglueck.utils.Preferences;
+import org.fu.swphcc.wattnglueck.utils.Zaehlerstand;
 
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,30 +21,47 @@ public class HomeScreen extends WattnActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_screen);
+		
+		new Thread(new Runnable() {
 
-		Preferences pref = new Preferences(this);
-		if (!pref.isSet()) {
-			OKMessageDialog vertragDialog = new OKMessageDialog("Bitte halte deinen Stromvertrag bereit.") {
+			@Override
+			public void run() {
+				Preferences pref = new Preferences(getBaseContext());
+				if (!pref.isSet()) {
+					OKMessageDialog vertragDialog = new OKMessageDialog("Bitte halte deinen Stromvertrag bereit.") {
 
-				@Override
-				protected void onOKAction() {
-					Intent vertragIntent = new Intent(getBaseContext(), Vertrag.class);
-					vertragIntent.putExtra("init", true);
-					startActivity(vertragIntent);
-					dismiss();
+						@Override
+						protected void onOKAction() {
+							Intent vertragIntent = new Intent(getBaseContext(), Vertrag.class);
+							vertragIntent.putExtra("init", true);
+							startActivity(vertragIntent);
+							dismiss();
+						}
+					};
+					vertragDialog.show(getFragmentManager(), "vertrag");
 				}
-			};
-			vertragDialog.show(getFragmentManager(), "vertrag");
-		}
 
-		Date today = new Date();
-		String todayString = Constants.ViewDateFormat.format(today);
-		String showDate = getString(R.string.home_status).replace("$date", todayString);
+				Date today = new Date();
+				String todayString = Constants.ViewDateFormat.format(today);
+				String showDate = getString(R.string.home_status).replace("$date", todayString);
+				
+				Database db = new Database(getBaseContext());
+				List<Zaehlerstand> zaehlerList = db.getByRange(pref.getBeginn(), Constants.DBDateFormat.format(new Date()));
+				if (zaehlerList != null) {
+					Zaehlerstand zaehlerstand = zaehlerList.get(zaehlerList.size() - 1);
+					if (zaehlerstand != null) {
+						showDate = getString(R.string.home_status).replace("$date", Constants.ViewDateFormat.format(zaehlerstand.getDate()));
+					}
+				}
+				
+				TextView statusView = (TextView) findViewById(R.id.textStatus); 
+				statusView.setText(showDate);
 
-		TextView statusView = (TextView) findViewById(R.id.textStatus); 
-		statusView.setText(showDate);
+				initViews();
+			}
+			
+		}).run();
 
-		initViews();
 	}
 
 	@Override

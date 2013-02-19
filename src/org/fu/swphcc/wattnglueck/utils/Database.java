@@ -170,6 +170,8 @@ public class Database extends SQLiteOpenHelper{
 		String[]  args= new String[2];
 		args[0]=von;	
 		args[1]=bis;
+		
+		try {
 
 		Cursor c = readDB.query(true, DATABASE_TABLE, null, "date >= ? AND date <= ?", args, null, null, null, null, null);
 
@@ -190,6 +192,9 @@ public class Database extends SQLiteOpenHelper{
 		} else 
 			return null;
 
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	/**
