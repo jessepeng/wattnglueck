@@ -1,23 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/table"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center" 
-    android:stretchColumns="*"
-    android:shrinkColumns="*"
-    android:layout_marginTop="50dp"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp">
-	
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingBottom="10dp"
-         >
-        <TextView android:textSize="20dp" android:id="@+id/zaehlerstand_datum" android:text="Datum"/>
-        <TextView android:textSize="20dp" android:id="@+id/zaehlerstand_stand" android:text="Zählerstand"/>
-    </TableRow>
+    android:layout_height="fill_parent"
+    android:layout_weight="1"
+    android:scrollbars="none" >
 
-</TableLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <TableLayout
+            android:id="@+id/table"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:shrinkColumns="*"
+            android:stretchColumns="*" >
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="10dp" >
+
+                <TextView
+                    android:id="@+id/zaehlerstand_datum"
+                    android:layout_gravity="left"
+                    android:text="Datum"
+                    android:textColor="#5e625b"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/zaehlerstand_stand"
+                    android:layout_gravity="left"
+                    android:text="Zählerstand"
+                    android:textColor="#5e625b"
+                    android:textSize="24sp" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+</ScrollView>

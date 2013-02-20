@@ -9,7 +9,6 @@ import org.fu.swphcc.wattnglueck.utils.Database;
 import org.fu.swphcc.wattnglueck.utils.Preferences;
 import org.fu.swphcc.wattnglueck.utils.Zaehlerstand;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MotionEvent;

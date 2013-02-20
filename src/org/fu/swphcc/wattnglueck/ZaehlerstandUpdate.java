@@ -4,19 +4,16 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import org.fu.swphcc.wattnglueck.utils.Constants;
 import org.fu.swphcc.wattnglueck.utils.Database;
-import org.fu.swphcc.wattnglueck.utils.Preferences;
 import org.fu.swphcc.wattnglueck.utils.Zaehlerstand;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.NumberPicker;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ZaehlerstandUpdate extends WattnActivity {
 
@@ -25,9 +22,14 @@ public class ZaehlerstandUpdate extends WattnActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
 		setContentView(R.layout.activity_zaehlerstand_update);
 		// Show the Up button in the action bar.
-//		getActionBar().setDisplayHomeAsUpEnabled(true);
+		//		getActionBar().setDisplayHomeAsUpEnabled(true);
+		((TextView) findViewById(R.id.textManuellOK)).setOnTouchListener(this);
+		((TextView) findViewById(R.id.textManuellCancel)).setOnTouchListener(this);
+		
 		NumberPicker num1 = (NumberPicker) findViewById(R.id.manuellNumberPicker1);
 		NumberPicker num2 = (NumberPicker) findViewById(R.id.manuellNumberPicker2);
 		NumberPicker num3 = (NumberPicker) findViewById(R.id.manuellNumberPicker3);
@@ -43,8 +45,6 @@ public class ZaehlerstandUpdate extends WattnActivity {
 		num4.setMaxValue(9);
 		num5.setMinValue(0);
 		num5.setMaxValue(9);
-		Database db = new Database(this);
-		Preferences pref = new Preferences(this);
 
 		Intent i = getIntent();
 		zaehlerstand = new Zaehlerstand();
@@ -92,7 +92,12 @@ public class ZaehlerstandUpdate extends WattnActivity {
 
 	@Override
 	protected List<TextView> getTextViewsForFont() {
-		return null;
+		return Arrays.asList((TextView) findViewById(R.id.textManuellWeiter), 
+				(TextView) findViewById(R.id.textManuellCancel), 
+				(TextView) findViewById(R.id.textManuellOK), 
+				(TextView) findViewById(R.id.textManuellZaehlerAnfang),
+				(TextView) findViewById(R.id.textManuellZaehlerEnde)
+				);
 	}
 
 	@Override
@@ -107,41 +112,46 @@ public class ZaehlerstandUpdate extends WattnActivity {
 
 	@Override
 	public boolean onClick(View arg0, MotionEvent arg1) {
-		Float zaehlerstand = 0f;
-		NumberPicker num1 = (NumberPicker) findViewById(R.id.manuellNumberPicker1);
-		NumberPicker num2 = (NumberPicker) findViewById(R.id.manuellNumberPicker2);
-		NumberPicker num3 = (NumberPicker) findViewById(R.id.manuellNumberPicker3);
-		NumberPicker num4 = (NumberPicker) findViewById(R.id.manuellNumberPicker4);
-		NumberPicker num5 = (NumberPicker) findViewById(R.id.manuellNumberPicker5);
-		zaehlerstand += 10000f * num1.getValue();
-		zaehlerstand += 1000f * num2.getValue(); 
-		zaehlerstand += 100f * num3.getValue(); 
-		zaehlerstand += 10f * num4.getValue(); 
-		zaehlerstand += 1f * num5.getValue(); 
-		if (this.zaehlerstand != null) {
-			if (this.zaehlerstand.getZaehlerstand() > zaehlerstand) {
-				OKMessageDialog zaehlerstandNiedrig = new OKMessageDialog("Du hast einen Z‰hlerstand eingegeben, der niedriger als dein letzter Z‰hlerstand ist. Bitte gebe einen hˆheren Wert ein.") {
+		if(arg1.getSource()==R.id.textManuellOK) {
+			Float zaehlerstand = 0f;
+			NumberPicker num1 = (NumberPicker) findViewById(R.id.manuellNumberPicker1);
+			NumberPicker num2 = (NumberPicker) findViewById(R.id.manuellNumberPicker2);
+			NumberPicker num3 = (NumberPicker) findViewById(R.id.manuellNumberPicker3);
+			NumberPicker num4 = (NumberPicker) findViewById(R.id.manuellNumberPicker4);
+			NumberPicker num5 = (NumberPicker) findViewById(R.id.manuellNumberPicker5);
+			zaehlerstand += 10000f * num1.getValue();
+			zaehlerstand += 1000f * num2.getValue(); 
+			zaehlerstand += 100f * num3.getValue(); 
+			zaehlerstand += 10f * num4.getValue(); 
+			zaehlerstand += 1f * num5.getValue(); 
+			if (this.zaehlerstand != null) {
+				if (this.zaehlerstand.getZaehlerstand() > zaehlerstand) {
+					OKMessageDialog zaehlerstandNiedrig = new OKMessageDialog("Du hast einen Z√§hlerstand eingegeben, der niedriger als dein letzter Z√§hlerstand ist. Bitte gebe einen h√∂heren Wert ein.") {
 
-					@Override
-					protected void onOKAction() {
-						dismiss();
-					}
-				};
-				zaehlerstandNiedrig.show(getFragmentManager(), "zaehlerstand_niedrig");
-				return true;
+						@Override
+						protected void onOKAction() {
+							dismiss();
+						}
+					};
+					zaehlerstandNiedrig.show(getFragmentManager(), "zaehlerstand_niedrig");
+					return true;
+				}
 			}
-		}
-		Database db = new Database(this);
-		this.zaehlerstand.setZaehlerstand(zaehlerstand);
-		db.updateZaehlerstand(this.zaehlerstand);
-		Intent returnIntent = new Intent();
-		returnIntent.putExtra("zaehlerstand", this.zaehlerstand.getZaehlerstand());
-		returnIntent.putExtra("id", this.zaehlerstand.getId());
-		returnIntent.putExtra("datum", this.zaehlerstand.getDate());
-		setResult(RESULT_OK,returnIntent); 
+			Database db = new Database(this);
+			this.zaehlerstand.setZaehlerstand(zaehlerstand);
+			db.updateZaehlerstand(this.zaehlerstand);
+			Intent returnIntent = new Intent();
+			returnIntent.putExtra("zaehlerstand", this.zaehlerstand.getZaehlerstand());
+			returnIntent.putExtra("id", this.zaehlerstand.getId());
+			returnIntent.putExtra("datum", this.zaehlerstand.getDate());
+			setResult(RESULT_OK,returnIntent); 
 
-		this.finish();
-		return true;
+			this.finish();
+			return true;
+		} else {
+			this.finish();
+			return false;
+		}
 	}
 
 }

@@ -123,12 +123,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.fu.swphcc.wattnglueck.HomeScreen" />
         </activity>
-         <activity
+        <activity
             android:name="org.fu.swphcc.wattnglueck.ZaehlerstandUpdate"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/title_activity_zaehlerstand_manuell"
             android:parentActivityName="org.fu.swphcc.wattnglueck.ZaehlerstandActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.Light.Dialog" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.fu.swphcc.wattnglueck.ZaehlerstandActivity" />

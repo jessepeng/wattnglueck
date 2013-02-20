@@ -19,9 +19,9 @@ public class ZaehlerstandKamera extends WattnActivity {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		Intent startIntent = getIntent();
-		String z‰hlerstand = startIntent.getExtras().getString("value");
+		String z√§hlerstand = startIntent.getExtras().getString("value");
 		
-		((TextView)findViewById(R.id.textKameraZaehlerstand)).setText(z‰hlerstand);
+		((TextView)findViewById(R.id.textKameraZaehlerstand)).setText(z√§hlerstand);
 		
 		initViews();
 		
