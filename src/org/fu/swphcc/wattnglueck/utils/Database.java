@@ -35,9 +35,9 @@ public class Database extends SQLiteOpenHelper{
 	}
 
 	/**
-	 * Fügt einen Zählerstand zur Datenbank, als Datum wird das aktuelle verwendet
+	 * FÃ¼gt einen ZÃ¤hlerstand zur Datenbank, als Datum wird das aktuelle verwendet
 	 * 
-	 * @param stand der Zählerstand in KWh
+	 * @param stand der Zï¿½hlerstand in KWh
 	 */
 	public void addZaehlerstand(Float stand) {
 
@@ -50,7 +50,7 @@ public class Database extends SQLiteOpenHelper{
 	}
 
 	/**
-	 * Fügt einen Zählerstand zur Datenbank ein, als Datum wird date genommen
+	 * Fï¿½gt einen Zï¿½hlerstand zur Datenbank ein, als Datum wird date genommen
 	 * @param stand Zaehlerstand in kWh
 	 * @param date Date im DBFormat
 	 */
@@ -63,7 +63,7 @@ public class Database extends SQLiteOpenHelper{
 	}
 
 	/**
-	 * Ändert einen sich bereits in der Datenbank befindlichen Zählerstand
+	 * Ã„ndert einen sich bereits in der Datenbank befindlichen ZÃ¤hlerstand
 	 * @param date
 	 * @param stand
 	 */
@@ -76,8 +76,8 @@ public class Database extends SQLiteOpenHelper{
 	}
 
 	/**
-	 * Ändert einen sich bereits in der Datenbank befindlichen Zählerstand
-	 * @param z der Zählerstand
+	 * ï¿½ndert einen sich bereits in der Datenbank befindlichen ZÃ¤hlerstand
+	 * @param z der Zï¿½hlerstand
 	 */
 	public void updateZaehlerstand(Zaehlerstand z) {
 		if(z.getId()>=0) {
@@ -90,7 +90,7 @@ public class Database extends SQLiteOpenHelper{
 	}
 
 	/**
-	 * Ändert einen sich bereits in der Datenbank befindlichen Zählerstand
+	 * ï¿½ndert einen sich bereits in der Datenbank befindlichen ZÃ¤hlerstand
 	 * @param date
 	 * @param stand
 	 */
@@ -104,9 +104,9 @@ public class Database extends SQLiteOpenHelper{
 
 
 	/**
-	 * Holt alle Zählerstände aus der Datenbank und gibt sie Sortiert nach dem Datum zurück
+	 * Holt alle ZÃ¤hlerstÃ¤nde aus der Datenbank und gibt sie Sortiert nach dem Datum zurÃ¼ck
 	 * 
-	 * @return Liste aller Zählerstände
+	 * @return Liste aller ZÃ¤hlerstÃ¤nde
 	 */
 	public List<Zaehlerstand> getAll() {
 		SQLiteDatabase readDB = getReadableDatabase();
@@ -131,10 +131,10 @@ public class Database extends SQLiteOpenHelper{
 	}
 
 	/**
-	 * Holt einen Datensatz, der per Id definiert ist, aus der Datenbank und gibt ihn zurück
+	 * Holt einen Datensatz, der per Id definiert ist, aus der Datenbank und gibt ihn zurÃ¼ck
 	 * 
 	 * @param id die Id des Datensatz
-	 * @return der Datensatz verpackt in ein Zählerstand Object
+	 * @return der Datensatz verpackt in ein Zï¿½hlerstand Object
 	 */
 	public Zaehlerstand getById(Integer id) {
 		SQLiteDatabase readDB = getReadableDatabase();
@@ -158,11 +158,11 @@ public class Database extends SQLiteOpenHelper{
 	}
 
 	/**
-	 * Gibt alle Zählerstände zurück die in einem Zeitraum liegen
+	 * Gibt alle Zï¿½hlerstï¿½nde zurï¿½ck die in einem Zeitraum liegen
 	 * 
 	 * @param von Datum im Format Constants.DBDateFormatString
 	 * @param bis Datum im Format Constants.DBDateFormatString
-	 * @return Liste der Zählerstände
+	 * @return Liste der Zï¿½hlerstï¿½nde
 	 * 
 	 */
 	public List<Zaehlerstand> getByRange(String von, String bis) {
@@ -198,7 +198,7 @@ public class Database extends SQLiteOpenHelper{
 	}
 
 	/**
-	 * Füllt die DB mit zwei Dummy Einträgen
+	 * Fï¿½llt die DB mit zwei Dummy Eintrï¿½gen
 	 */
 	public void setDummyValues() {
 
@@ -229,7 +229,7 @@ public class Database extends SQLiteOpenHelper{
 	}
 
 	/**
-	 * Löscht den übergebenen Zaehlerstand aus der Datenbank
+	 * Lï¿½scht den ï¿½bergebenen Zaehlerstand aus der Datenbank
 	 * @param z
 	 */
 	public void deleteZaehlerstand(Zaehlerstand z) {

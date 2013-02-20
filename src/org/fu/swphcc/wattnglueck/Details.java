@@ -51,9 +51,12 @@ public class Details extends WattnActivity{
 		if(data.size()>0) {
 			for(Zaehlerstand z : data) {
 				if(oldz!=null) {
-					float tage = (z.getDate().getTime()-oldz.getDate().getTime())/ 86400000f;
-					if(tage>0) {
-						series.add(z.getDate(), Math.round(((z.getZaehlerstand()-oldz.getZaehlerstand())/tage)*100.0)/100.0);
+					if(z.getDate().getTime()>oldz.getDate().getTime()) {
+						float tage = (z.getDate().getTime()-oldz.getDate().getTime())/ 86400000f;
+						if(tage>0) {
+							
+							series.add(z.getDate(), Math.round(((z.getZaehlerstand()-oldz.getZaehlerstand())/tage)*100.0)/100.0);
+						}
 					}
 				}
 				oldz=z;
@@ -62,8 +65,8 @@ public class Details extends WattnActivity{
 
 			XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
 			dataset.addSeries(series);
-			
-			
+
+
 			XYSeriesRenderer renderer = new XYSeriesRenderer();
 			renderer.setColor(Color.parseColor("#5e625b"));
 			renderer.setDisplayChartValues(false);
@@ -84,11 +87,11 @@ public class Details extends WattnActivity{
 			mrenderer.setLabelsTextSize(30);
 			mrenderer.setAxisTitleTextSize(35);
 			mrenderer.setLegendTextSize(25);
-			
+
 			mrenderer.setTextTypeface("BebasNeue", Typeface.NORMAL);
-			
+
 			mrenderer.setMargins(new int[] { 50, 75, 75, 30 });
-			
+
 			mrenderer.setZoomButtonsVisible(true);
 			mrenderer.setPointSize(10);
 
@@ -103,7 +106,7 @@ public class Details extends WattnActivity{
 			GraphicalView view = ChartFactory.getTimeChartView(ctx, dataset, mrenderer,"dd.MM.yyyy");
 
 			initViews();
-			
+
 			return view;
 		}
 		return null;
