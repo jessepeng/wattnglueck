@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="24dp"
         android:text="@string/abschlag_beginn"
-        android:textSize="28sp" />
+        android:textSize="24sp" />
     
    	<RelativeLayout
 	    android:id="@+id/abschlagLayout"
@@ -53,7 +53,7 @@
 	        android:layout_toRightOf="@+id/abschlagNum3"
 	        android:gravity="center_vertical"
 	        android:text="@string/generic_euro"
-	        android:textSize="20sp" />
+	        android:textSize="24sp" />
 	    
     </RelativeLayout>
     
@@ -68,6 +68,6 @@
         android:clickable="true"
         android:text="@string/generic_weiter"
         android:textColor="#ffffff"
-        android:textSize="28sp" />
+        android:textSize="24sp" />
     
 </RelativeLayout>

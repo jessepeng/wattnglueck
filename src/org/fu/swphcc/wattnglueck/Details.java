@@ -15,6 +15,7 @@ import org.fu.swphcc.wattnglueck.utils.Zaehlerstand;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -33,7 +34,7 @@ public class Details extends WattnActivity{
 
 	/**
 	 * 
-	 * Erstellt eine View mit dem Graphen über die vergangenen dokumentierten Zählerständen
+	 * Erstellt eine View mit dem Graphen ï¿½ber die vergangenen dokumentierten Zï¿½hlerstï¿½nden
 	 * 
 	 * @param ctx der aktuelle Context
 	 * @return GraphicalView die einen Linearen Graphen beinhaltet
@@ -64,12 +65,13 @@ public class Details extends WattnActivity{
 			
 			
 			XYSeriesRenderer renderer = new XYSeriesRenderer();
-			renderer.setColor(Color.parseColor("#68A423"));
+			renderer.setColor(Color.parseColor("#5e625b"));
 			renderer.setDisplayChartValues(false);
 			renderer.setChartValuesTextSize(25);
+			renderer.setLineWidth(5);
 			renderer.setPointStyle(PointStyle.POINT);
 			renderer.setFillBelowLine(true);
-			renderer.setFillBelowLineColor(Color.parseColor("#97FF82"));
+			renderer.setFillBelowLineColor(Color.parseColor("#68A423"));
 
 			XYMultipleSeriesRenderer mrenderer = new XYMultipleSeriesRenderer();
 			mrenderer.addSeriesRenderer(renderer);
@@ -82,6 +84,9 @@ public class Details extends WattnActivity{
 			mrenderer.setLabelsTextSize(30);
 			mrenderer.setAxisTitleTextSize(35);
 			mrenderer.setLegendTextSize(25);
+			
+			mrenderer.setTextTypeface("BebasNeue", Typeface.NORMAL);
+			
 			mrenderer.setMargins(new int[] { 50, 75, 75, 30 });
 			
 			mrenderer.setZoomButtonsVisible(true);

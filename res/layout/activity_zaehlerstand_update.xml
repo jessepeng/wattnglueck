@@ -5,10 +5,10 @@
     android:paddingBottom="24dp"
     android:paddingLeft="24dp"
     android:paddingRight="24dp"
-    tools:context=".ZaehlerstandManuell" >
+    tools:context=".ZaehlerstandUpdate" >
 
     <TextView
-        android:id="@+id/textManuellZaehlerAnfang"
+        android:id="@+id/textUpdateZaehlerAnfang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -18,58 +18,58 @@
         android:textSize="26sp" />
 
     <NumberPicker
-        android:id="@+id/manuellNumberPicker1"
+        android:id="@+id/UpdateNumberPicker1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textManuellZaehlerAnfang"
-        android:layout_below="@+id/textManuellZaehlerAnfang"
+        android:layout_alignLeft="@+id/textUpdateZaehlerAnfang"
+        android:layout_below="@+id/textUpdateZaehlerAnfang"
         android:layout_marginTop="14dp" />
 
     <NumberPicker
-        android:id="@+id/manuellNumberPicker2"
+        android:id="@+id/UpdateNumberPicker2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/manuellNumberPicker1"
-        android:layout_toRightOf="@+id/manuellNumberPicker1" />
+        android:layout_alignTop="@+id/UpdateNumberPicker1"
+        android:layout_toRightOf="@+id/UpdateNumberPicker1" />
 
     <NumberPicker
-        android:id="@+id/manuellNumberPicker3"
+        android:id="@+id/UpdateNumberPicker3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/manuellNumberPicker2"
-        android:layout_toRightOf="@+id/manuellNumberPicker2" />
+        android:layout_alignTop="@+id/UpdateNumberPicker2"
+        android:layout_toRightOf="@+id/UpdateNumberPicker2" />
 
     <NumberPicker
-        android:id="@+id/manuellNumberPicker4"
+        android:id="@+id/UpdateNumberPicker4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/manuellNumberPicker3"
-        android:layout_toRightOf="@+id/manuellNumberPicker3" />
+        android:layout_alignTop="@+id/UpdateNumberPicker3"
+        android:layout_toRightOf="@+id/UpdateNumberPicker3" />
 
     <NumberPicker
-        android:id="@+id/manuellNumberPicker5"
+        android:id="@+id/UpdateNumberPicker5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/manuellNumberPicker4"
-        android:layout_toRightOf="@+id/manuellNumberPicker4" />
+        android:layout_alignTop="@+id/UpdateNumberPicker4"
+        android:layout_toRightOf="@+id/UpdateNumberPicker4" />
 
     <TextView
-        android:id="@+id/textManuellZaehlerEnde"
+        android:id="@+id/textUpdateZaehlerEnde"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/manuellNumberPicker1"
-        android:layout_below="@+id/manuellNumberPicker1"
+        android:layout_alignLeft="@+id/UpdateNumberPicker1"
+        android:layout_below="@+id/UpdateNumberPicker1"
         android:layout_marginRight="50dp"
         android:layout_marginTop="14dp"
         android:text="@string/manuell_zaehler_ende"
         android:textSize="26sp" />
 
     <TextView
-        android:id="@+id/textManuellCancel"
+        android:id="@+id/textUpdateCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textManuellZaehlerEnde"
-        android:layout_below="@+id/textManuellZaehlerEnde"
+        android:layout_alignLeft="@+id/textUpdateZaehlerEnde"
+        android:layout_below="@+id/textUpdateZaehlerEnde"
         android:layout_marginRight="15dp"
         android:layout_marginTop="14dp"
         android:background="@drawable/button_background"
@@ -79,12 +79,12 @@
         android:textSize="26sp" />
 
     <TextView
-        android:id="@+id/textManuellOK"
+        android:id="@+id/textUpdateOK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textManuellZaehlerEnde"
+        android:layout_below="@+id/textUpdateZaehlerEnde"
         android:layout_marginTop="14dp"
-        android:layout_toRightOf="@+id/textManuellCancel"
+        android:layout_toRightOf="@+id/textUpdateCancel"
         android:background="@drawable/button_background"
         android:clickable="true"
         android:text="@string/OK"

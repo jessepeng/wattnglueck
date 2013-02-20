@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="24dp"
         android:text="@string/manuell_zaehler_anfang"
-        android:textSize="36sp" />
+        android:textSize="38sp" />
 
     <NumberPicker
         android:id="@+id/manuellNumberPicker1"
@@ -60,7 +60,7 @@
         android:layout_below="@+id/manuellNumberPicker1"
         android:layout_marginTop="24dp"
         android:text="@string/manuell_zaehler_ende"
-        android:textSize="36sp" />
+        android:textSize="38sp" />
 
     <TextView
         android:id="@+id/textManuellWeiter"
@@ -73,6 +73,6 @@
         android:clickable="true"
         android:text="@string/generic_weiter"
         android:textColor="#ffffff"
-        android:textSize="36sp" />
+        android:textSize="38sp" />
 
 </RelativeLayout>

@@ -6,12 +6,18 @@ import org.fu.swphcc.wattnglueck.utils.Database;
 import org.fu.swphcc.wattnglueck.utils.Preferences;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.NavUtils;
+import android.util.AttributeSet;
+import android.view.InflateException;
+import android.view.LayoutInflater;
+import android.view.LayoutInflater.Factory;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -80,8 +86,39 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 		if (showOptionsMenu()) {
 			// Inflate the menu; this adds items to the action bar if it is present.
 			getMenuInflater().inflate(R.menu.options_menu, menu);
+			
+			getLayoutInflater().setFactory(new Factory() {
+		            public View onCreateView(String name, Context context,
+		                    AttributeSet attrs) {
+		            	System.out.println(name);
+		                if (name.equalsIgnoreCase(
+		                        "TextView")) {
+		                    try {
+		                        LayoutInflater li = LayoutInflater.from(context);
+		                        final View view = li.createView(name, null, attrs);
+		                        new Handler().post(new Runnable() {
+		                            public void run() {
+		                                ((TextView) view).setTextSize(20); 
+		                                
+		                                // set the text color
+		                                Typeface face = Typeface.createFromAsset(
+		                                        getAssets(),getString(R.string.setting_fontfilename));     
+		                                ((TextView) view).setTypeface(face);
+		                                ((TextView) view).setTextColor(Color.parseColor("#5e625b"));
+		                            }
+		                        });
+		                        return view;
+		                    } catch (InflateException e) {
+		                        //Handle any inflation exception here
+		                    } catch (ClassNotFoundException e) {
+		                        //Handle any ClassNotFoundException here
+		                    }
+		                }
+		                return null;
+		            }
+		        });
 		}
-		return true;
+		return super.onCreateOptionsMenu(menu);
 	}
 	
 	@Override
@@ -105,14 +142,14 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 			Preferences pref = new Preferences(this);
 			pref.setDummyValues();
 			db.setDummyValues();
-			Toast.makeText(this, "Dummy-Values eingefügt.", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Dummy-Values eingefï¿½gt.", Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.itemDevDeleteDatabase:
 			db = new Database(this);
 			pref = new Preferences(this);
 			db.clearDatabase();
 			pref.clearPreferences();
-			OKMessageDialog prefsDeleted = new OKMessageDialog("Datenbank und Einstellungen wurden gelöscht.") {
+			OKMessageDialog prefsDeleted = new OKMessageDialog("Datenbank und Einstellungen wurden gelï¿½scht.") {
 				
 				@Override
 				protected void onOKAction() {

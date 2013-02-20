@@ -13,7 +13,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="24dp"
         android:text="@string/zaehlerstand_beginn_beginn"
-        android:textSize="28sp" />
+        android:textSize="24sp" />
 
     <NumberPicker
         android:id="@+id/zaehlerNum1"
@@ -59,7 +59,7 @@
         android:layout_below="@+id/zaehlerNum1"
         android:layout_marginTop="24dp"
         android:text="@string/zaehlerstand_beginn_ende"
-        android:textSize="28sp" />
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textZahlerBeginnWeiter"
@@ -72,7 +72,7 @@
         android:clickable="true"
         android:text="@string/generic_weiter"
         android:textColor="#ffffff"
-        android:textSize="28sp" />
+        android:textSize="24sp" />
 
 
 </RelativeLayout>

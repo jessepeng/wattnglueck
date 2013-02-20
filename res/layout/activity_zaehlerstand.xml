@@ -29,17 +29,25 @@
 
                 <TextView
                     android:id="@+id/zaehlerstand_datum"
-                    android:layout_gravity="left"
+                    android:gravity="left"
                     android:text="Datum"
                     android:textColor="#5e625b"
-                    android:textSize="24sp" />
+                    android:textSize="24sp"
+                    android:layout_weight="1.0" />
 
                 <TextView
                     android:id="@+id/zaehlerstand_stand"
-                    android:layout_gravity="left"
+                    android:gravity="left"
                     android:text="Zählerstand"
                     android:textColor="#5e625b"
-                    android:textSize="24sp" />
+                    android:textSize="24sp" 
+                    android:layout_weight="1.0"/>
+                
+                <TextView
+                    android:id="@+id/zaehlerstand_dummy"
+                    android:textColor="#5e625b"
+                    android:textSize="24sp" 
+                    android:layout_weight="1.0"/>
             </TableRow>
         </TableLayout>
     </LinearLayout>

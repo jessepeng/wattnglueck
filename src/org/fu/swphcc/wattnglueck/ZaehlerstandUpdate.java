@@ -27,14 +27,14 @@ public class ZaehlerstandUpdate extends WattnActivity {
 		setContentView(R.layout.activity_zaehlerstand_update);
 		// Show the Up button in the action bar.
 		//		getActionBar().setDisplayHomeAsUpEnabled(true);
-		((TextView) findViewById(R.id.textManuellOK)).setOnTouchListener(this);
-		((TextView) findViewById(R.id.textManuellCancel)).setOnTouchListener(this);
+		((TextView) findViewById(R.id.textUpdateOK)).setOnTouchListener(this);
+		((TextView) findViewById(R.id.textUpdateCancel)).setOnTouchListener(this);
 		
-		NumberPicker num1 = (NumberPicker) findViewById(R.id.manuellNumberPicker1);
-		NumberPicker num2 = (NumberPicker) findViewById(R.id.manuellNumberPicker2);
-		NumberPicker num3 = (NumberPicker) findViewById(R.id.manuellNumberPicker3);
-		NumberPicker num4 = (NumberPicker) findViewById(R.id.manuellNumberPicker4);
-		NumberPicker num5 = (NumberPicker) findViewById(R.id.manuellNumberPicker5);
+		NumberPicker num1 = (NumberPicker) findViewById(R.id.UpdateNumberPicker1);
+		NumberPicker num2 = (NumberPicker) findViewById(R.id.UpdateNumberPicker2);
+		NumberPicker num3 = (NumberPicker) findViewById(R.id.UpdateNumberPicker3);
+		NumberPicker num4 = (NumberPicker) findViewById(R.id.UpdateNumberPicker4);
+		NumberPicker num5 = (NumberPicker) findViewById(R.id.UpdateNumberPicker5);
 		num1.setMinValue(0);
 		num1.setMaxValue(9);
 		num2.setMinValue(0);
@@ -92,11 +92,11 @@ public class ZaehlerstandUpdate extends WattnActivity {
 
 	@Override
 	protected List<TextView> getTextViewsForFont() {
-		return Arrays.asList((TextView) findViewById(R.id.textManuellWeiter), 
-				(TextView) findViewById(R.id.textManuellCancel), 
-				(TextView) findViewById(R.id.textManuellOK), 
-				(TextView) findViewById(R.id.textManuellZaehlerAnfang),
-				(TextView) findViewById(R.id.textManuellZaehlerEnde)
+		return Arrays.asList(
+				(TextView) findViewById(R.id.textUpdateCancel), 
+				(TextView) findViewById(R.id.textUpdateOK), 
+				(TextView) findViewById(R.id.textUpdateZaehlerAnfang),
+				(TextView) findViewById(R.id.textUpdateZaehlerEnde)
 				);
 	}
 
@@ -107,18 +107,18 @@ public class ZaehlerstandUpdate extends WattnActivity {
 
 	@Override
 	protected List<TextView> getButtonTextViews() {
-		return Arrays.asList((TextView) findViewById(R.id.textManuellWeiter));
+		return null;
 	}
 
 	@Override
 	public boolean onClick(View arg0, MotionEvent arg1) {
-		if(arg1.getSource()==R.id.textManuellOK) {
+		if(arg1.getSource()==R.id.textUpdateOK) {
 			Float zaehlerstand = 0f;
-			NumberPicker num1 = (NumberPicker) findViewById(R.id.manuellNumberPicker1);
-			NumberPicker num2 = (NumberPicker) findViewById(R.id.manuellNumberPicker2);
-			NumberPicker num3 = (NumberPicker) findViewById(R.id.manuellNumberPicker3);
-			NumberPicker num4 = (NumberPicker) findViewById(R.id.manuellNumberPicker4);
-			NumberPicker num5 = (NumberPicker) findViewById(R.id.manuellNumberPicker5);
+			NumberPicker num1 = (NumberPicker) findViewById(R.id.UpdateNumberPicker1);
+			NumberPicker num2 = (NumberPicker) findViewById(R.id.UpdateNumberPicker2);
+			NumberPicker num3 = (NumberPicker) findViewById(R.id.UpdateNumberPicker3);
+			NumberPicker num4 = (NumberPicker) findViewById(R.id.UpdateNumberPicker4);
+			NumberPicker num5 = (NumberPicker) findViewById(R.id.UpdateNumberPicker5);
 			zaehlerstand += 10000f * num1.getValue();
 			zaehlerstand += 1000f * num2.getValue(); 
 			zaehlerstand += 100f * num3.getValue(); 
