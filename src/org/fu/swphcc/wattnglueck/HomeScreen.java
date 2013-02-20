@@ -41,22 +41,6 @@ public class HomeScreen extends WattnActivity {
 					vertragDialog.show(getFragmentManager(), "vertrag");
 				}
 
-				Date today = new Date();
-				String todayString = Constants.ViewDateFormat.format(today);
-				String showDate = getString(R.string.home_status).replace("$date", todayString);
-				
-				Database db = new Database(getBaseContext());
-				List<Zaehlerstand> zaehlerList = db.getByRange(pref.getBeginn(), Constants.DBDateFormat.format(new Date()));
-				if (zaehlerList != null) {
-					Zaehlerstand zaehlerstand = zaehlerList.get(zaehlerList.size() - 1);
-					if (zaehlerstand != null) {
-						showDate = getString(R.string.home_status).replace("$date", Constants.ViewDateFormat.format(zaehlerstand.getDate()));
-					}
-				}
-				
-				TextView statusView = (TextView) findViewById(R.id.textStatus); 
-				statusView.setText(showDate);
-
 				initViews();
 			}
 			
@@ -75,6 +59,39 @@ public class HomeScreen extends WattnActivity {
 			break;
 		}
 		return true;
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		
+		Preferences pref = new Preferences(getBaseContext());
+		
+		Date today = new Date();
+		String todayString = Constants.ViewDateFormat.format(today);
+		String showDate = getString(R.string.home_status).replace("$date", todayString);
+		
+		Database db = new Database(getBaseContext());
+		List<Zaehlerstand> zaehlerList = db.getByRange(pref.getBeginn(), Constants.DBDateFormat.format(new Date()));
+		boolean zaehlerVorhanden = false;
+		if (zaehlerList != null) {
+			Zaehlerstand zaehlerstand = zaehlerList.get(zaehlerList.size() - 1);
+			if (zaehlerstand != null) {
+				showDate = getString(R.string.home_status).replace("$date", Constants.ViewDateFormat.format(zaehlerstand.getDate()));
+				zaehlerVorhanden = true;
+			}
+		}
+		
+		TextView statusView = (TextView) findViewById(R.id.textStatus); 
+		statusView.setText(showDate);
+		
+		if (!zaehlerVorhanden) {
+			statusView.setVisibility(View.INVISIBLE);
+			findViewById(R.id.textStatusAnfang).setVisibility(View.INVISIBLE);
+			findViewById(R.id.textStatusEnde).setVisibility(View.INVISIBLE);
+		}
+		
+		
 	}
 
 	/**

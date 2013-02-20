@@ -32,7 +32,7 @@
     <string name="ok_dialog_ok">OK</string>
     <string name="zaehlerstand_choose_kamera">Kamera</string>
     <string name="zaehlerstand_choose_text">Text</string>
-    <string name="title_activity_zaehlerstand_manuell">Zählerstand manuell eingeben</string>
+    <string name="title_activity_zaehlerstand_manuell">Zählerstand</string>
     <string name="manuell_zaehler_anfang">Mein Zählerstand beträgt heute</string>
     <string name="manuell_zaehler_ende">Kilowattstunden.</string>
     <string name="generic_weiter">Weiter</string>
@@ -48,7 +48,7 @@
     <string name="abschlag_beginn">Mein monatlicher Abschlag beträgt</string>
     <string name="zaehlerstand_beginn_beginn">Mein Zählerstand bei Beginn des Abrechnungs-\nzeitraumes betrug</string>
     <string name="zaehlerstand_beginn_ende">Kilowattstunden.</string>
-    <string name="title_activity_zaehlerstand_kamera">Zaehlerstand mittels Kamera erfassen</string>
+    <string name="title_activity_zaehlerstand_kamera">Zählerstand</string>
     <string name="kamera_zaehler_anfang">Ist dieser Zählerstand richtig?</string>
     <string name="generic_ja">Ja.</string>
     <string name="kamera_nein_mache">Nein, ich mache ein</string>
@@ -56,15 +56,12 @@
     <string name="kamera_nein_eingeben">Nein, ich gebe den</string>
     <string name="kamera_nein_zaehlerstand">Zählerstand ein.</string>
     <string name="kamera_beispiel_zaehler">78410</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_details">Details</string>
     <string name="title_activity_zaehlerstand">Zählerstände</string>
     <string name="title_activity_kamera">Kamera</string>
     <string name="editdialog_zaehlerstand">Zählerstand</string>
     <string name="cancel">Cancel</string>
     <string name="OK">OK</string>
-    <string name="title_activity_date_picker">DatePicker</string>
     <string name="update_zaehler_anfang">Zählerstand aktualisieren</string>
     <string name="status_rueckzahlung_meldung">Glückwunsch!</string>
     <string name="status_nachzahlung_meldung">Schade!</string>

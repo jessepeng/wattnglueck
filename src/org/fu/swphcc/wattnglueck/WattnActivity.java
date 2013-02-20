@@ -135,24 +135,18 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 		case R.id.itemVertrag:
 			startActivity(new Intent(this, Vertrag.class));
 			return true;
-		case R.id.itemDevDummyValues:
+		case R.id.itemDevDeleteDatabase:
 			Database db = new Database(this);
 			Preferences pref = new Preferences(this);
-			pref.setDummyValues();
-			db.setDummyValues();
-			Toast.makeText(this, "Dummy-Values eingefï¿½gt.", Toast.LENGTH_SHORT).show();
-			return true;
-		case R.id.itemDevDeleteDatabase:
-			db = new Database(this);
-			pref = new Preferences(this);
 			db.clearDatabase();
 			pref.clearPreferences();
-			OKMessageDialog prefsDeleted = new OKMessageDialog("Datenbank und Einstellungen wurden gelï¿½scht.") {
+			OKMessageDialog prefsDeleted = new OKMessageDialog("Datenbank und Einstellungen wurden gelöscht.") {
 				
 				@Override
 				protected void onOKAction() {
 					dismiss();
 					finish();
+					System.exit(0);
 				}
 			};
 			prefsDeleted.show(getFragmentManager(), "prefs_deleted");

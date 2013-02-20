@@ -189,6 +189,8 @@ public class Kamera extends WattnActivity implements KameraPreview.KameraTapActi
 				Engine.destroyInstance();
 				
 				result = recognitionResult.getText();
+				
+				result = result.replaceAll("[^0-9]*", "");
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (BadLicenseException e) {
