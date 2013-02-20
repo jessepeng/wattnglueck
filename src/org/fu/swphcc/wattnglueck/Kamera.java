@@ -8,8 +8,14 @@ import java.util.List;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.MotionEvent;
@@ -111,19 +117,45 @@ public class Kamera extends WattnActivity implements KameraPreview.KameraTapActi
 			int height = (int)(origHeight * (5.0/11.0));
 			int width = (int)(origWidth * (3.0/4.0));
 			
-			Matrix matrix = new Matrix();
+			/*Matrix matrix = new Matrix();
 			matrix.postScale((float)(500.0 / origWidth), (float)(220.0 / origHeight));
 			
 			Bitmap newBitmap = Bitmap.createBitmap(bitmap, left, top, width, height);
 			bitmap = null;
 			System.gc();
 			newBitmap = Bitmap.createScaledBitmap(newBitmap, 500, 220, false);
-			newBitmap = invert(newBitmap);
+			newBitmap = invert(newBitmap);*/
+			
+			Rect src = new Rect(left, top, left + width, top + height);
+			Rect dst = new Rect(100, 400, 600, 620);
+			
+			float invert[] =
+				{
+				-1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 
+				0.0f, -1.0f, 0.0f, 1.0f, 0.0f,
+				0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 
+				1.0f, 1.0f, 1.0f, 1.0f, 0.0f
+				};
+			
+			ColorMatrix cm = new ColorMatrix(invert);
+			//cm.setSaturation(0);
+			Paint invertPaint = new Paint();
+			invertPaint.setColorFilter(new ColorMatrixColorFilter(cm));
+			Paint whitePaint = new Paint();
+			whitePaint.setColor(Color.WHITE);
+			
+			Bitmap whiteBitmap = Bitmap.createBitmap(700, 1000, Config.ARGB_8888);
+			Canvas whiteCanvas = new Canvas(whiteBitmap);
+			
+			whiteCanvas.drawPaint(whitePaint);
+			whiteCanvas.drawBitmap(bitmap, src, dst, invertPaint);
+			//whiteCanvas = null;
+			System.gc();
 			
 			try {
 				String root = Environment.getExternalStorageDirectory().toString();
 				FileOutputStream fos = new FileOutputStream(root + "/wattnglueck/picture_crop.jpg");
-				newBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+				whiteBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
 				fos.close();
 				
 				Engine.loadNativeLibrary();
@@ -137,7 +169,7 @@ public class Kamera extends WattnActivity implements KameraPreview.KameraTapActi
 				config.setRecognitionLanguages(config.getRecognitionLanguages());
 				
 				RecognitionManager recognitionManager = ocrEngine.getRecognitionManager(config);
-				MocrLayout recognitionResult = recognitionManager.recognizeText(newBitmap, this);
+				MocrLayout recognitionResult = recognitionManager.recognizeText(whiteBitmap, this);
 				
 				Engine.destroyInstance();
 				
@@ -159,8 +191,6 @@ public class Kamera extends WattnActivity implements KameraPreview.KameraTapActi
 			startActivity(kameraIntent);
 			finish();
 		}
-		
-
 		
 		public Bitmap invert(Bitmap src) {
 	        Bitmap output = Bitmap.createBitmap(src.getWidth(), src.getHeight(), src.getConfig());

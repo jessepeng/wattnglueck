@@ -67,6 +67,7 @@ public class Vertrag extends WattnActivity {
 
 	@Override
 	protected List<TextView> getTextViewsForFont() {
+		if (currentFragment != null) return currentFragment.getTextViewsForFont();
 		return null;
 	}
 
@@ -183,6 +184,14 @@ public class Vertrag extends WattnActivity {
 			parentActivity.currentFragment = this;
 	        parentActivity.initViews();
 		}
+
+		@Override
+		public List<TextView> getTextViewsForFont() {
+			return Arrays.asList(
+					(TextView) getActivity().findViewById(R.id.textVertragBeginn),
+					(TextView) getActivity().findViewById(R.id.textVertragBeginnWeiter)
+					);
+		}
 	}
 	
 	public static class Gebuehren extends WattnFragment  {
@@ -298,6 +307,19 @@ public class Vertrag extends WattnActivity {
 			View v = inflater.inflate(layoutID, container, false);
 			return v;
 		}
+
+		@Override
+		public List<TextView> getTextViewsForFont() {
+			return Arrays.asList(
+					(TextView) getActivity().findViewById(R.id.textGebuehrenBeginn),
+					(TextView) getActivity().findViewById(R.id.textGebuehrenKomma1),
+					(TextView) getActivity().findViewById(R.id.textGebuehrenKomma2),
+					(TextView) getActivity().findViewById(R.id.textGebuehrenEuro1),
+					(TextView) getActivity().findViewById(R.id.textGebuehrenEuro2),
+					(TextView) getActivity().findViewById(R.id.textGebuehrenKilowatt),
+					(TextView) getActivity().findViewById(R.id.textGebuehrenWeiter)
+					);
+		}
 	}
 	
 	public static class Abschlag extends WattnFragment  {
@@ -394,6 +416,15 @@ public class Vertrag extends WattnActivity {
 			
 			parentActivity.superAbschlag = abschlag;
 			this.abschlag = abschlag;
+		}
+
+		@Override
+		public List<TextView> getTextViewsForFont() {
+			return Arrays.asList(
+					(TextView) getActivity().findViewById(R.id.textAbschlagBeginn),
+					(TextView) getActivity().findViewById(R.id.textAbschlagEuro1),
+					(TextView) getActivity().findViewById(R.id.textAbschlagWeiter)
+					);
 		}
 	}
 
@@ -507,6 +538,15 @@ public class Vertrag extends WattnActivity {
 			
 			zaehlerstand = zaehler1.getValue() * 10000f + zaehler2.getValue() * 1000f + zaehler3.getValue() * 100f + zaehler4.getValue() * 10f + zaehler5.getValue();
 			parentActivity.superZaehlerstand = zaehlerstand;
+		}
+
+		@Override
+		public List<TextView> getTextViewsForFont() {
+			return Arrays.asList(
+					(TextView) getActivity().findViewById(R.id.textZaehlerstandBeginnAnfang),
+					(TextView) getActivity().findViewById(R.id.textManuellZaehlerEnde),
+					(TextView) getActivity().findViewById(R.id.textZahlerBeginnWeiter)
+					);
 		}
 	}
 	
