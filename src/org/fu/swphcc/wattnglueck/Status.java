@@ -50,25 +50,7 @@ public class Status extends WattnActivity {
 			initViews();
 		} else {
 			// Kein Ergebnis von Berechnung (null)
-			YesNoMessageDialog dialog = new YesNoMessageDialog(getString(R.string.status_dialog)) {
-
-				@Override
-				protected void onYesAction() {
-					startActivity(new Intent(getActivity(), ZaehlerstandChooseMethodDialog.class));
-					this.dismiss();
-				}
-
-				@Override
-				protected void onNoAction() {
-					NavUtils.navigateUpFromSameTask(getActivity());
-				}
-
-				@Override
-				public void onCancel(DialogInterface dialog) {
-					NavUtils.navigateUpFromSameTask(getActivity());
-				}
-			};
-			dialog.show(getFragmentManager(), "status_dialog");
+			NavUtils.navigateUpFromSameTask(this);
 		}
 	}
 

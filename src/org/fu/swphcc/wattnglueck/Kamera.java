@@ -163,10 +163,10 @@ public class Kamera extends WattnActivity implements KameraPreview.KameraTapActi
 			System.gc();
 			
 			try {
-				String root = Environment.getExternalStorageDirectory().toString();
+				/*String root = Environment.getExternalStorageDirectory().toString();
 				FileOutputStream fos = new FileOutputStream(root + "/wattnglueck/picture_crop.jpg");
 				whiteBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-				fos.close();
+				fos.close();*/
 				
 				Engine.loadNativeLibrary();
 				
