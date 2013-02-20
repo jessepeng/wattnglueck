@@ -117,7 +117,7 @@ public class ZaehlerstandManuell extends WattnActivity {
 		zaehlerstand += 1f * num5.getValue(); 
 		if (this.zaehlerstand != null) {
 			if (this.zaehlerstand.getZaehlerstand() > zaehlerstand) {
-				OKMessageDialog zaehlerstandNiedrig = new OKMessageDialog("Du hast einen Zï¿½hlerstand eingegeben, der niedriger als dein letzter Zï¿½hlerstand ist. Bitte gebe einen hï¿½heren Wert ein.") {
+				OKMessageDialog zaehlerstandNiedrig = new OKMessageDialog("Du hast einen Zählerstand eingegeben, der niedriger als dein letzter Zählerstand ist. Bitte gib einen höheren Wert ein.") {
 
 					@Override
 					protected void onOKAction() {

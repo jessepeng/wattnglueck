@@ -1,6 +1,5 @@
 <!--     <item android:id="@+id/itemDevDummyValues" android:title="@string/menu_dev_dummy"></item> -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-
     <group android:id="@+id/groupMenu" >
         <item
             android:id="@+id/itemZaehlerstaende"
