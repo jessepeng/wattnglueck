@@ -135,19 +135,21 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 		case R.id.itemVertrag:
 			startActivity(new Intent(this, Vertrag.class));
 			return true;
-		case R.id.itemDevDummyValues:
+//		case R.id.itemDevDummyValues:
+//			Database db = new Database(this);
+//			Preferences pref = new Preferences(this);
+//			pref.setDummyValues();
+//			db.setDummyValues();
+//			Toast.makeText(this, "Dummy-Values eingefügt.", Toast.LENGTH_SHORT).show();
+//			return true;
+		case R.id.itemDevDeleteDatabase:
 			Database db = new Database(this);
 			Preferences pref = new Preferences(this);
-			pref.setDummyValues();
-			db.setDummyValues();
-			Toast.makeText(this, "Dummy-Values eingef�gt.", Toast.LENGTH_SHORT).show();
-			return true;
-		case R.id.itemDevDeleteDatabase:
 			db = new Database(this);
 			pref = new Preferences(this);
 			db.clearDatabase();
 			pref.clearPreferences();
-			OKMessageDialog prefsDeleted = new OKMessageDialog("Datenbank und Einstellungen wurden gel�scht.") {
+			OKMessageDialog prefsDeleted = new OKMessageDialog("Datenbank und Einstellungen wurden gelöscht.") {
 				
 				@Override
 				protected void onOKAction() {
@@ -159,6 +161,10 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 			return true;
 		case R.id.itemZaehlerstaende:
 			startActivity(new Intent(this,ZaehlerstandActivity.class));
+			return true;
+			
+		case R.id.itemAbout:
+			startActivity(new Intent(this,Ueber.class));
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

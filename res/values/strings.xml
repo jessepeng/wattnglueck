@@ -68,5 +68,9 @@
     <string name="update_zaehler_anfang">Zählerstand aktualisieren</string>
     <string name="status_rueckzahlung_meldung">Glückwunsch!</string>
     <string name="status_nachzahlung_meldung">Schade!</string>
+    <string name="title_activity_ueber">Ueber</string>
+    <string name="action_settings">Settings</string>
+    <string name="wattnteam">Das Watt\'n\'Glück Team</string>
+    <string name="das_team">Das Team</string>
 
 </resources>
