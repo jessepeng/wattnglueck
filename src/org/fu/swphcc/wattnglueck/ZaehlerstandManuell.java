@@ -87,7 +87,9 @@ public class ZaehlerstandManuell extends WattnActivity {
 
 	@Override
 	protected List<TextView> getTextViewsForFont() {
-		return null;
+		return Arrays.asList((TextView) findViewById(R.id.textManuellWeiter),
+				(TextView) findViewById(R.id.textManuellZaehlerAnfang),
+				(TextView) findViewById(R.id.textManuellZaehlerEnde));
 	}
 
 	@Override
@@ -97,9 +99,7 @@ public class ZaehlerstandManuell extends WattnActivity {
 
 	@Override
 	protected List<TextView> getButtonTextViews() {
-		return Arrays.asList((TextView) findViewById(R.id.textManuellWeiter),
-				(TextView) findViewById(R.id.textManuellZaehlerAnfang),
-				(TextView) findViewById(R.id.textManuellZaehlerEnde));
+		return Arrays.asList((TextView) findViewById(R.id.textManuellWeiter));
 	}
 
 	@Override
