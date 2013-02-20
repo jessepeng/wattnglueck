@@ -2,7 +2,9 @@ package org.fu.swphcc.wattnglueck;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EnumSet;
 import java.util.List;
 
 import android.app.ProgressDialog;
@@ -13,7 +15,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,9 +36,11 @@ import com.abbyy.mobile.ocr4.License;
 import com.abbyy.mobile.ocr4.License.BadLicenseException;
 import com.abbyy.mobile.ocr4.RecognitionConfiguration;
 import com.abbyy.mobile.ocr4.RecognitionFailedException;
+import com.abbyy.mobile.ocr4.RecognitionLanguage;
 import com.abbyy.mobile.ocr4.RecognitionManager;
 import com.abbyy.mobile.ocr4.RecognitionManager.RecognitionCallback;
 import com.abbyy.mobile.ocr4.RecognitionManager.RotationType;
+import com.abbyy.mobile.ocr4.UserRecognitionLanguage;
 import com.abbyy.mobile.ocr4.layout.MocrLayout;
 import com.abbyy.mobile.ocr4.layout.MocrPrebuiltLayoutInfo;
 
@@ -106,16 +110,22 @@ public class Kamera extends WattnActivity implements KameraPreview.KameraTapActi
 			int origWidth = bitmap.getWidth();
 			
 			/**
-			 * Im Kamerainterface werden 3/11 des Bildes von oben und unten abgeschnitten
+			 * Im Kamerainterface werden 5/12 des Bildes von oben und unten abgeschnitten
 			 * sowie 1/8 links und rechts.
 			 * 
 			 * 
 			 */
 			
-			int top = (int)(origHeight * (3.0/11.0));
-			int left = (int)(origWidth * (1.0 / 8.0));
-			int height = (int)(origHeight * (5.0/11.0));
-			int width = (int)(origWidth * (3.0/4.0));
+			RelativeLayout kameraWrapper = (RelativeLayout) findViewById(R.id.kamera_wrapper);
+			int wrapperWidth = kameraWrapper.getWidth();
+			int wrapperHeight = kameraWrapper.getHeight();
+					
+			
+			
+			int top = (int)(origHeight * (0.36));
+			int left = (int)(origWidth * (1.0/4.0));
+			int right = (int)(origWidth * (3.0/4.0));
+			int bottom = (int)(origHeight * (0.64));
 			
 			/*Matrix matrix = new Matrix();
 			matrix.postScale((float)(500.0 / origWidth), (float)(220.0 / origHeight));
@@ -126,8 +136,8 @@ public class Kamera extends WattnActivity implements KameraPreview.KameraTapActi
 			newBitmap = Bitmap.createScaledBitmap(newBitmap, 500, 220, false);
 			newBitmap = invert(newBitmap);*/
 			
-			Rect src = new Rect(left, top, left + width, top + height);
-			Rect dst = new Rect(100, 400, 600, 620);
+			Rect src = new Rect(left, top, right, bottom);
+			Rect dst = new Rect(100, 400, (int) (100 + (right - left) * 0.2), (int) (400 + (bottom - top) * 0.2));
 			
 			float invert[] =
 				{
@@ -149,7 +159,7 @@ public class Kamera extends WattnActivity implements KameraPreview.KameraTapActi
 			
 			whiteCanvas.drawPaint(whitePaint);
 			whiteCanvas.drawBitmap(bitmap, src, dst, invertPaint);
-			//whiteCanvas = null;
+			whiteCanvas = null;
 			System.gc();
 			
 			try {
@@ -166,7 +176,12 @@ public class Kamera extends WattnActivity implements KameraPreview.KameraTapActi
 				Engine ocrEngine = Engine.createInstance(Arrays.asList(dataSource), license, new DataFilesExtensions(".mp3", ".mp3", ".mp3"));
 				
 				RecognitionConfiguration config = new RecognitionConfiguration();
-				config.setRecognitionLanguages(config.getRecognitionLanguages());
+				config.setRecognitionLanguages(EnumSet.noneOf(RecognitionLanguage.class));
+				
+				List<UserRecognitionLanguage> userLanguages = new ArrayList<UserRecognitionLanguage>();
+				userLanguages.add(NumberLanguage.Numbers);
+
+				config.setUserRecognitionLanguages("Numbers", userLanguages);
 				
 				RecognitionManager recognitionManager = ocrEngine.getRecognitionManager(config);
 				MocrLayout recognitionResult = recognitionManager.recognizeText(whiteBitmap, this);
@@ -186,35 +201,15 @@ public class Kamera extends WattnActivity implements KameraPreview.KameraTapActi
 
 			progress.dismiss();
 			
+			whiteBitmap = null;
+			System.gc();
+			
 			Intent kameraIntent = new Intent(getApplicationContext(), ZaehlerstandKamera.class);
 			kameraIntent.putExtra("value", result);
 			startActivity(kameraIntent);
 			finish();
 		}
 		
-		public Bitmap invert(Bitmap src) {
-	        Bitmap output = Bitmap.createBitmap(src.getWidth(), src.getHeight(), src.getConfig());
-	        int A, R, G, B;
-	        int pixelColor;
-	        int height = src.getHeight();
-	        int width = src.getWidth();
-	
-		    for (int y = 0; y < height; y++) {
-		        for (int x = 0; x < width; x++) {
-		            pixelColor = src.getPixel(x, y);
-		            A = Color.alpha(pixelColor);
-		            
-		            R = 255 - Color.red(pixelColor);
-		            G = 255 - Color.green(pixelColor);
-		            B = 255 - Color.blue(pixelColor);
-		            
-		            output.setPixel(x, y, Color.argb(A, R, G, B));
-		        }
-		    }
-	
-	    return output;
-		}
-	
 		@Override
 		public void onPrebuiltWordsInfoReady(MocrPrebuiltLayoutInfo arg0) {
 			// TODO Auto-generated method stub

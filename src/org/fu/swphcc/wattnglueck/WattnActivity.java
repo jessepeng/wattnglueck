@@ -85,7 +85,6 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 	public boolean onCreateOptionsMenu(Menu menu) {
 		if (showOptionsMenu()) {
 			// Inflate the menu; this adds items to the action bar if it is present.
-			getMenuInflater().inflate(R.menu.options_menu, menu);
 			
 			getLayoutInflater().setFactory(new Factory() {
 		            public View onCreateView(String name, Context context,
@@ -96,17 +95,14 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 		                    try {
 		                        LayoutInflater li = LayoutInflater.from(context);
 		                        final View view = li.createView(name, null, attrs);
-		                        new Handler().post(new Runnable() {
-		                            public void run() {
-		                                ((TextView) view).setTextSize(20); 
-		                                
-		                                // set the text color
-		                                Typeface face = Typeface.createFromAsset(
-		                                        getAssets(),getString(R.string.setting_fontfilename));     
-		                                ((TextView) view).setTypeface(face);
-		                                ((TextView) view).setTextColor(Color.parseColor("#5e625b"));
-		                            }
-		                        });
+		                        ((TextView) view).setTextSize(20); 
+                                
+                                // set the text color
+                                Typeface face = Typeface.createFromAsset(
+                                        getAssets(),getString(R.string.setting_fontfilename));     
+                                ((TextView) view).setTypeface(face);
+                                ((TextView) view).setTextColor(Color.parseColor("#5e625b"));
+		                       
 		                        return view;
 		                    } catch (InflateException e) {
 		                        //Handle any inflation exception here
@@ -117,6 +113,8 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 		                return null;
 		            }
 		        });
+			
+			getMenuInflater().inflate(R.menu.options_menu, menu);
 		}
 		return super.onCreateOptionsMenu(menu);
 	}
