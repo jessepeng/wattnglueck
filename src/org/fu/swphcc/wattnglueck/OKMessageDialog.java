@@ -18,23 +18,7 @@ public abstract class OKMessageDialog extends DialogFragment {
 		this.message = message;
 	}
 
-	@Override
-	public void onCreate(Bundle bundle) {
-		super.onCreate(bundle);
-		TextView textView = (TextView) getActivity().findViewById(android.R.id.message);
 
-		Typeface customFont = Typeface.createFromAsset(getActivity().getAssets(), getString(R.string.setting_fontfilename));
-		textView.setTypeface(customFont);
-		Button b1 = (Button) getActivity().findViewById(android.R.id.button1);
-		Button b2 = (Button) getActivity().findViewById(android.R.id.button2);
-		Button b3 = (Button) getActivity().findViewById(android.R.id.button3);
-		if(b1!=null)
-			b1.setTypeface(customFont);
-		if(b2!=null)
-			b2.setTypeface(customFont);
-		if(b3!=null)
-			b3.setTypeface(customFont);
-	}
 	
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
