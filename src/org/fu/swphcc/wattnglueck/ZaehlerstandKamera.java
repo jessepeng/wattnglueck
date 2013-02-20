@@ -30,12 +30,12 @@ public class ZaehlerstandKamera extends WattnActivity {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		Intent startIntent = getIntent();
-		String zählerstand = startIntent.getExtras().getString("value");
+		String zÃ¤hlerstand = startIntent.getExtras().getString("value");
 		
-		((TextView)findViewById(R.id.textKameraZaehlerstand)).setText(zählerstand);
+		((TextView)findViewById(R.id.textKameraZaehlerstand)).setText(zÃ¤hlerstand);
 		
 		try {
-			zaehlerstand = Float.valueOf(zählerstand);
+			zaehlerstand = Float.valueOf(zÃ¤hlerstand);
 		} catch (NumberFormatException e) {
 			zaehlerstand = 0;
 		}
@@ -91,7 +91,7 @@ public class ZaehlerstandKamera extends WattnActivity {
 		case R.id.textKameraJa:
 			if (alterZaehlerstand != null) {
 				if (alterZaehlerstand.getZaehlerstand() > zaehlerstand) {
-					OKMessageDialog zaehlerstandNiedrig = new OKMessageDialog("Es wurde ein Zählerstand erkannt, der niedriger als dein letzter Zählerstand ist. Bitte gib einen höheren Wert ein.") {
+					OKMessageDialog zaehlerstandNiedrig = new OKMessageDialog("Es wurde ein Zï¿½hlerstand erkannt, der niedriger als dein letzter Zï¿½hlerstand ist. Bitte gib einen hï¿½heren Wert ein.") {
 
 						@Override
 						protected void onOKAction() {
