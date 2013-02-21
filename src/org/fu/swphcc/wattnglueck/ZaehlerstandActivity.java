@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import org.fu.swphcc.wattnglueck.utils.Constants;
 import org.fu.swphcc.wattnglueck.utils.Database;
@@ -76,7 +75,7 @@ public class ZaehlerstandActivity extends WattnActivity {
 
 				final OnDateSetListener odsl=new OnDateSetListener()
 				{
-					Zaehlerstand zstand=z;
+//					Zaehlerstand zstand=z;
 					public void onDateSet(DatePicker arg0, int year, int month, int dayOfMonth) {
 						if(edited!=null) {
 							try {
@@ -162,7 +161,7 @@ public class ZaehlerstandActivity extends WattnActivity {
 				tv.setPadding(10, 0, 4, 3);
 				tv.setClickable(true);
 				tv.setOnClickListener(new OnClickListener() {
-					Zaehlerstand zstand=z;
+//					Zaehlerstand zstand=z;
 
 					@Override
 					public void onClick(View v) {
@@ -189,7 +188,7 @@ public class ZaehlerstandActivity extends WattnActivity {
 				ib.setPadding(10, 3, 7, 3);
 				ib.setBackground(null);
 				ib.setOnClickListener(new OnClickListener() {
-					Zaehlerstand zstand=z;
+//					Zaehlerstand zstand=z;
 
 					@Override
 					public void onClick(View v) {

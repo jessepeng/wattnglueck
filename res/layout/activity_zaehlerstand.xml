@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical" >
 
         <TableLayout
@@ -30,7 +30,7 @@
                 <TextView
                     android:id="@+id/zaehlerstand_datum"
                     android:gravity="left"
-                    android:text="Datum"
+                    android:text="@string/zaehlerstand_datum"
                     android:textColor="#5e625b"
                     android:textSize="24sp"
                     android:layout_weight="1.0" />
@@ -38,7 +38,7 @@
                 <TextView
                     android:id="@+id/zaehlerstand_stand"
                     android:gravity="left"
-                    android:text="Zählerstand"
+                    android:text="@string/zaehlerstand_zaehlerstand"
                     android:textColor="#5e625b"
                     android:textSize="24sp" 
                     android:layout_weight="1.0"/>

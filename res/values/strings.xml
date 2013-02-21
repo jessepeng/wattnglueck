@@ -69,5 +69,7 @@
     <string name="action_settings">Settings</string>
     <string name="wattnglueck">Watt\'n\'Glück</string>
     <string name="das_team">Das Team</string>
+    <string name="zaehlerstand_datum">Datum</string>
+    <string name="zaehlerstand_zaehlerstand">Zählerstand</string>
 
 </resources>

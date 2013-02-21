@@ -6,7 +6,6 @@ import java.util.List;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Ueber extends WattnActivity {
