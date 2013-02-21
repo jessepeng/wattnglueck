@@ -18,8 +18,8 @@
     <string name="menu_dev_clear_db">Datenbank leeren</string>
     <string name="home_font">Hier wird eine benutzerdefinierte Font genutzt.</string>
     <string name="title_activity_status">Status</string>
-    <string name="status_rueckzahlung_start">Du wirst vermutlich $betrag € zurückgezahlt bekommen.</string>
-    <string name="status_nachzahlung_start">Du musst wahrscheinlich $betrag € nachzahlen.</string>
+    <string name="status_rueckzahlung_start">Du wirst vermutlich\n$betrag € zurückgezahlt bekommen.</string>
+    <string name="status_nachzahlung_start">Du musst wahrscheinlich\n$betrag € nachzahlen.</string>
     <string name="status_detail_anfang">Mein Stromverbrauch</string>
     <string name="status_detail">im Detail</string>
     <string name="status_detail_ende">.</string>
