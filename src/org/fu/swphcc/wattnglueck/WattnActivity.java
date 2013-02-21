@@ -12,7 +12,6 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.NavUtils;
 import android.util.AttributeSet;
 import android.view.InflateException;
@@ -26,7 +25,6 @@ import android.view.View.OnTouchListener;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * Abstrakte Oberklasse fuer alle Activitys. Diese organisiert beispielsweise
@@ -148,7 +146,7 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 			pref = new Preferences(this);
 			db.clearDatabase();
 			pref.clearPreferences();
-			OKMessageDialog prefsDeleted = new OKMessageDialog("Datenbank und Einstellungen wurden gelöscht.") {
+			OKMessageDialog prefsDeleted = new OKMessageDialog("Datenbank und Einstellungen wurden gelï¿½scht.") {
 				
 				@Override
 				protected void onOKAction() {

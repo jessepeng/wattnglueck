@@ -20,7 +20,6 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -90,7 +89,7 @@ public class Kamera extends WattnActivity implements KameraPreview.KameraTapActi
 	@Override
 	public void kameraTap() {
 		progress = new ProgressDialog(this, ProgressDialog.THEME_HOLO_LIGHT);
-		progress.setMessage("Zählerstand wird erkannt...");
+		progress.setMessage("Zï¿½hlerstand wird erkannt...");
 		progress.setCancelable(false);
 		progress.show();
 		
