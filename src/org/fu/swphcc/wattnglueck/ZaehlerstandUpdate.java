@@ -109,7 +109,9 @@ public class ZaehlerstandUpdate extends WattnActivity {
 
 	@Override
 	protected List<TextView> getButtonTextViews() {
-		return null;
+		return Arrays.asList(
+				(TextView) findViewById(R.id.buttonUpdateOK)
+				);
 	}
 
 	@Override
