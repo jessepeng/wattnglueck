@@ -115,12 +115,6 @@ public class Kamera extends WattnActivity implements KameraPreview.KameraTapActi
 			 * 
 			 */
 			
-			RelativeLayout kameraWrapper = (RelativeLayout) findViewById(R.id.kamera_wrapper);
-			int wrapperWidth = kameraWrapper.getWidth();
-			int wrapperHeight = kameraWrapper.getHeight();
-					
-			
-			
 			int top = (int)(origHeight * (0.36));
 			int left = (int)(origWidth * (1.0/4.0));
 			int right = (int)(origWidth * (3.0/4.0));

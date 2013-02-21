@@ -148,7 +148,7 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 			pref = new Preferences(this);
 			db.clearDatabase();
 			pref.clearPreferences();
-			OKMessageDialog prefsDeleted = new OKMessageDialog("Datenbank und Einstellungen wurden gelÃ¶scht.") {
+			OKMessageDialog prefsDeleted = new OKMessageDialog("Datenbank und Einstellungen wurden gelöscht.") {
 				
 				@Override
 				protected void onOKAction() {
