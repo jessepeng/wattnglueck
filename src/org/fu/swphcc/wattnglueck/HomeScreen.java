@@ -9,6 +9,7 @@ import org.fu.swphcc.wattnglueck.utils.Database;
 import org.fu.swphcc.wattnglueck.utils.Preferences;
 import org.fu.swphcc.wattnglueck.utils.Zaehlerstand;
 
+import android.app.AlertDialog.Builder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -36,6 +37,11 @@ public class HomeScreen extends WattnActivity {
 							vertragIntent.putExtra("init", true);
 							startActivity(vertragIntent);
 							dismiss();
+						}
+
+						@Override
+						protected void additionalBuilderOperations(
+								Builder builder) {
 						}
 					};
 					vertragDialog.show(getFragmentManager(), "vertrag");

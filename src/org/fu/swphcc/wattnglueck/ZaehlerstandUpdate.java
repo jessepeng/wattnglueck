@@ -7,11 +7,15 @@ import java.util.List;
 import org.fu.swphcc.wattnglueck.utils.Database;
 import org.fu.swphcc.wattnglueck.utils.Zaehlerstand;
 
+import android.app.AlertDialog.Builder;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
@@ -27,8 +31,6 @@ public class ZaehlerstandUpdate extends WattnActivity {
 		setContentView(R.layout.activity_zaehlerstand_update);
 		// Show the Up button in the action bar.
 		//		getActionBar().setDisplayHomeAsUpEnabled(true);
-		((TextView) findViewById(R.id.textUpdateOK)).setOnTouchListener(this);
-		((TextView) findViewById(R.id.textUpdateCancel)).setOnTouchListener(this);
 		
 		NumberPicker num1 = (NumberPicker) findViewById(R.id.UpdateNumberPicker1);
 		NumberPicker num2 = (NumberPicker) findViewById(R.id.UpdateNumberPicker2);
@@ -86,6 +88,9 @@ public class ZaehlerstandUpdate extends WattnActivity {
 
 		}
 
+		Typeface customFont = Typeface.createFromAsset(getAssets(), getString(R.string.setting_fontfilename));
+		((Button)findViewById(R.id.buttonUpdateOK)).setTypeface(customFont);
+		((Button)findViewById(R.id.buttonUpdateOK)).setTextColor(Color.parseColor("#5e625b"));
 
 		initViews();
 	}
@@ -93,9 +98,6 @@ public class ZaehlerstandUpdate extends WattnActivity {
 	@Override
 	protected List<TextView> getTextViewsForFont() {
 		return Arrays.asList(
-				(TextView) findViewById(R.id.textUpdateCancel), 
-				(TextView) findViewById(R.id.textUpdateOK), 
-				(TextView) findViewById(R.id.textUpdateZaehlerAnfang),
 				(TextView) findViewById(R.id.textUpdateZaehlerEnde)
 				);
 	}
@@ -112,7 +114,7 @@ public class ZaehlerstandUpdate extends WattnActivity {
 
 	@Override
 	public boolean onClick(View arg0, MotionEvent arg1) {
-		if(arg1.getSource()==R.id.textUpdateOK) {
+		if(arg0.getId()==R.id.buttonUpdateOK) {
 			Float zaehlerstand = 0f;
 			NumberPicker num1 = (NumberPicker) findViewById(R.id.UpdateNumberPicker1);
 			NumberPicker num2 = (NumberPicker) findViewById(R.id.UpdateNumberPicker2);
@@ -126,11 +128,18 @@ public class ZaehlerstandUpdate extends WattnActivity {
 			zaehlerstand += 1f * num5.getValue(); 
 			if (this.zaehlerstand != null) {
 				if (this.zaehlerstand.getZaehlerstand() > zaehlerstand) {
-					OKMessageDialog zaehlerstandNiedrig = new OKMessageDialog("Du hast einen ZÃ¤hlerstand eingegeben, der niedriger als dein letzter ZÃ¤hlerstand ist. Bitte gebe einen hÃ¶heren Wert ein.") {
+					OKMessageDialog zaehlerstandNiedrig = new OKMessageDialog("Du hast einen Zählerstand eingegeben, der niedriger als dein letzter Zählerstand ist. Bitte gebe einen höheren Wert ein.") {
 
 						@Override
 						protected void onOKAction() {
 							dismiss();
+						}
+
+						@Override
+						protected void additionalBuilderOperations(
+								Builder builder) {
+							// TODO Auto-generated method stub
+							
 						}
 					};
 					zaehlerstandNiedrig.show(getFragmentManager(), "zaehlerstand_niedrig");

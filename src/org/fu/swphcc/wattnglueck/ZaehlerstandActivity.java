@@ -15,13 +15,19 @@ import org.fu.swphcc.wattnglueck.utils.Zaehlerstand;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.AttributeSet;
+import android.view.InflateException;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.LayoutInflater.Factory;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -104,6 +110,36 @@ public class ZaehlerstandActivity extends WattnActivity {
 						DatePickerDialog datePickDiag=new DatePickerDialog(ZaehlerstandActivity.this,odsl,cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.get(Calendar.DAY_OF_MONTH));
 						datePickDiag.getDatePicker().setCalendarViewShown(false);
 						datePickDiag.setCancelable(true);
+						datePickDiag.setTitle("");
+						datePickDiag.getLayoutInflater().setFactory(new Factory() {
+
+							@Override
+							public View onCreateView(String name, Context context,
+									AttributeSet attrs) {
+								if (name.equalsIgnoreCase("Button")) {
+				                	try {
+				                        LayoutInflater li = LayoutInflater.from(context);
+				                        final View view = li.createView(name, null, attrs);
+				                        ((Button) view).setTextSize(20); 
+				                        
+				                        // set the text color
+				                        Typeface face = Typeface.createFromAsset(
+				                                getAssets(),getString(R.string.setting_fontfilename));     
+				                        ((Button) view).setTypeface(face);
+				                        ((Button) view).setTextColor(Color.parseColor("#5e625b"));
+				                       
+				                        return view;
+				                    } catch (InflateException e) {
+				                        //Handle any inflation exception here
+				                    } catch (ClassNotFoundException e) {
+				                        //Handle any ClassNotFoundException here
+				                    }
+				                }
+				                return null;
+							}
+							
+						});
+						
 						datePickDiag.show();
 
 					}

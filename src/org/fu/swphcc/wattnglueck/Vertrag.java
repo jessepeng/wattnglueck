@@ -11,6 +11,7 @@ import org.fu.swphcc.wattnglueck.utils.Database;
 import org.fu.swphcc.wattnglueck.utils.Preferences;
 import org.fu.swphcc.wattnglueck.utils.Zaehlerstand;
 
+import android.app.AlertDialog.Builder;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -353,6 +354,10 @@ public class Vertrag extends WattnActivity {
 					protected void onOKAction() {
 						dismiss();
 					}
+
+					@Override
+					protected void additionalBuilderOperations(Builder builder) {
+					}
 				};
 				negativeAbschlagDialog.show(getFragmentManager(), "negative_abschlag");
 			} else {
@@ -466,6 +471,10 @@ public class Vertrag extends WattnActivity {
 					protected void onOKAction() {
 						dismiss();
 						parentActivity.saveAndFinish();
+					}
+
+					@Override
+					protected void additionalBuilderOperations(Builder builder) {
 					}
 				};
 				stromzaehler.show(getFragmentManager(), "zaehler");

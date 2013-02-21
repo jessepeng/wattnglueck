@@ -9,6 +9,7 @@ import org.fu.swphcc.wattnglueck.utils.Database;
 import org.fu.swphcc.wattnglueck.utils.Preferences;
 import org.fu.swphcc.wattnglueck.utils.Zaehlerstand;
 
+import android.app.AlertDialog.Builder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -98,6 +99,11 @@ public class ZaehlerstandKamera extends WattnActivity {
 							dismiss();
 							startActivity(new Intent(getBaseContext(), ZaehlerstandManuell.class));
 							finish();
+						}
+
+						@Override
+						protected void additionalBuilderOperations(
+								Builder builder) {
 						}
 					};
 					zaehlerstandNiedrig.show(getFragmentManager(), "zaehlerstand_niedrig");

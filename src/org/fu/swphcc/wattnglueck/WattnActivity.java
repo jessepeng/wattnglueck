@@ -6,6 +6,7 @@ import org.fu.swphcc.wattnglueck.utils.Database;
 import org.fu.swphcc.wattnglueck.utils.Preferences;
 
 import android.app.Activity;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -155,6 +156,10 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 					dismiss();
 					finish();
 					System.exit(0);
+				}
+
+				@Override
+				protected void additionalBuilderOperations(Builder builder) {
 				}
 			};
 			prefsDeleted.show(getFragmentManager(), "prefs_deleted");

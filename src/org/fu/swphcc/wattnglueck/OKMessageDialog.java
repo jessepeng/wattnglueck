@@ -25,7 +25,7 @@ public abstract class OKMessageDialog extends DialogFragment {
 		this.message = message;
 	}
 
-
+	protected abstract void additionalBuilderOperations(AlertDialog.Builder builder);
 	
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -41,7 +41,10 @@ public abstract class OKMessageDialog extends DialogFragment {
 			}
 		});
 
+		additionalBuilderOperations(builder);
+		
 		Dialog dialog = builder.create();
+		
 		
 		dialog.getLayoutInflater().setFactory(new Factory() {
 
