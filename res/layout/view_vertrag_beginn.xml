@@ -13,13 +13,13 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="24dp"
         android:text="@string/vertrag_beginn"
-        android:textSize="24sp" />
+        android:lineSpacingExtra="-7dip"
+        android:textSize="38sp" />
     
     <DatePicker
 	    android:id="@+id/dateVertragBeginn"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_marginTop="12dp"
 	    android:layout_alignLeft="@+id/textVertragBeginn"
 	    android:layout_below="@+id/textVertragBeginn"
 	    android:spinnersShown="true"
@@ -31,12 +31,11 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/dateVertragBeginn"
         android:layout_below="@+id/dateVertragBeginn"
-        android:layout_marginTop="12dp"
         android:background="@drawable/button_background"
         android:clickable="true"
         android:text="@string/generic_weiter"
         android:textColor="#ffffff"
-        android:textSize="24sp" />
+        android:textSize="38sp" />
 
 	
     

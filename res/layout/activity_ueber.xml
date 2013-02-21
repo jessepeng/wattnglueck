@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="24dp"
     android:paddingRight="24dp"
-    android:paddingBottom="24dp"
+    android:paddingBottom="12dp"
     android:paddingTop="24dp"
     tools:context=".Ueber" >
 
@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:contentDescription="@string/das_team"
+        android:contentDescription="@string/wattnglueck"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         android:src="@drawable/team" />
@@ -24,8 +24,21 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/team"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="14dp"
         android:text="@string/wattnglueck" 
-        android:textSize="56sp"/>
+        android:textSize="42sp"/>
+
+    <TextView
+        android:id="@+id/textUeberUns"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textUeberWattnGlueck"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:lineSpacingExtra="-4dip"
+        android:gravity="center_horizontal"
+        android:text="@string/ueber_uns"
+        android:textSize="24sp" />
 
 </RelativeLayout>

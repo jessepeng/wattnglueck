@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -17,13 +18,14 @@ public class Ueber extends WattnActivity {
 		
 		initViews();
 		
-		
+		((TextView) findViewById(R.id.textUeberUns)).setMovementMethod(LinkMovementMethod.getInstance());
 	}
 
 	@Override
 	protected List<TextView> getTextViewsForFont() {
 		return Arrays.asList(
-				(TextView) findViewById(R.id.textUeberWattnGlueck)
+				(TextView) findViewById(R.id.textUeberWattnGlueck),
+				(TextView) findViewById(R.id.textUeberUns)
 				);
 	}
 

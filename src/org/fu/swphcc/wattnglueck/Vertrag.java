@@ -60,7 +60,7 @@ public class Vertrag extends WattnActivity {
 		
 		WattnFragment vertragBeginn = VertragBeginn.newInstance(R.layout.view_vertrag_beginn, superDate, this);
 		FragmentTransaction ft = getFragmentManager().beginTransaction();
-		ft.add(R.id.vertrag_fragment, vertragBeginn).commit();
+		ft.replace(R.id.vertrag_fragment, vertragBeginn).commit();
 		
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);

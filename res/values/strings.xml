@@ -43,10 +43,10 @@
     <string name="dialog_stromzaehler">Bitte gehe jetzt zu Deinem Stromzähler.</string>
     <string name="title_activity_vertrag">Vertrag</string>
     <string name="vertrag_beginn">Mein Abrechnungs-\nzeitraum beginnt am</string>
-    <string name="gebuehren_beginn">Meine Grundgebühr beträgt</string>
-    <string name="gebuehren_kilowatt">Pro Kilowattstunde zahle ich</string>
+    <string name="gebuehren_beginn">Meine Grundgebühr ist</string>
+    <string name="gebuehren_kilowatt">Pro kWh zahle ich</string>
     <string name="abschlag_beginn">Mein monatlicher Abschlag beträgt</string>
-    <string name="zaehlerstand_beginn_beginn">Mein Zählerstand bei Beginn des Abrechnungs-\nzeitraumes betrug</string>
+    <string name="zaehlerstand_beginn_beginn">Mein Zählerstand \nbei der letzten\nAbrechnung betrug</string>
     <string name="zaehlerstand_beginn_ende">Kilowattstunden.</string>
     <string name="title_activity_zaehlerstand_kamera">Zählerstand</string>
     <string name="kamera_zaehler_anfang">Ist dieser Zählerstand richtig?</string>
@@ -68,7 +68,7 @@
     <string name="title_activity_ueber">Über</string>
     <string name="action_settings">Settings</string>
     <string name="wattnglueck">Watt\'n\'Glück</string>
-    <string name="das_team">Das Team</string>
+    <string name="ueber_uns">Der Stromzähler ist ein Projekt von Watt\'n\'Glück.\n\nDas sind <a href="mailto:jan-christopher.pien@fu-berlin.de">Jan-Christopher Pien</a>,\n<a href="mailto:eric.zetzsche@googlemail.com">Eric Zetsche</a> und <a href="http://www.joannadauner.de">Joanna Dauner</a>.\n\nwir sind Studenten der\nFreien Universität Berlin und der\nUniversität der Künste.</string>
     <string name="zaehlerstand_datum">Datum</string>
     <string name="zaehlerstand_zaehlerstand">Zählerstand</string>
 

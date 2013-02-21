@@ -15,7 +15,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="24dp"
         android:text="@string/gebuehren_beginn"
-        android:textSize="24sp" />
+        android:lineSpacingExtra="-7dip"
+        android:textSize="38sp" />
     
     <RelativeLayout
 	    android:id="@+id/gebuehrenLayout"
@@ -46,7 +47,7 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_alignTop="@+id/gebuehrenGrund1"
-	        android:layout_toRightOf="@+id/textGebuehrenKomma1" />
+	        android:layout_toRightOf="@+id/gebuehrenGrund1" />
 	
 	    <NumberPicker
 	        android:id="@+id/gebuehrenGrund3"
@@ -75,7 +76,8 @@
         android:layout_alignLeft="@+id/gebuehrenLayout"
 	    android:layout_below="@+id/gebuehrenLayout"
         android:text="@string/gebuehren_kilowatt"
-        android:textSize="24sp" />
+        android:lineSpacingExtra="-7dip"
+        android:textSize="38sp" />
     
     <RelativeLayout
 	    android:id="@+id/kilowattLayout"
@@ -131,7 +133,7 @@
 	        android:layout_toRightOf="@+id/gebuehrenKWH4"
 	        android:gravity="center_vertical"
 	        android:text="@string/generic_cent"
-	        android:textSize="24sp" />
+	        android:textSize="20sp" />
     
     </RelativeLayout>
     
@@ -146,7 +148,7 @@
         android:clickable="true"
         android:text="@string/generic_weiter"
         android:textColor="#ffffff"
-        android:textSize="24sp" />
+        android:textSize="38sp" />
 
 
 </RelativeLayout>

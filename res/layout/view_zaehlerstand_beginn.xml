@@ -13,15 +13,15 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="24dp"
         android:text="@string/zaehlerstand_beginn_beginn"
-        android:textSize="24sp" />
+        android:lineSpacingExtra="-7dip"
+        android:textSize="38sp" />
 
     <NumberPicker
         android:id="@+id/zaehlerNum1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textZaehlerstandBeginnAnfang"
-        android:layout_below="@+id/textZaehlerstandBeginnAnfang"
-        android:layout_marginTop="24dp" />
+        android:layout_below="@+id/textZaehlerstandBeginnAnfang" />
 
     <NumberPicker
         android:id="@+id/zaehlerNum2"
@@ -57,9 +57,9 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/zaehlerNum1"
         android:layout_below="@+id/zaehlerNum1"
-        android:layout_marginTop="24dp"
         android:text="@string/zaehlerstand_beginn_ende"
-        android:textSize="24sp" />
+        android:lineSpacingExtra="-7dip"
+        android:textSize="38sp" />
 
     <TextView
         android:id="@+id/textZahlerBeginnWeiter"
@@ -67,12 +67,12 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textManuellZaehlerEnde"
         android:layout_below="@+id/textManuellZaehlerEnde"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/button_background"
         android:clickable="true"
         android:text="@string/generic_weiter"
         android:textColor="#ffffff"
-        android:textSize="24sp" />
+        android:textSize="38sp" />
 
 
 </RelativeLayout>

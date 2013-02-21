@@ -14,12 +14,13 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
-public class ZaehlerstandUpdate extends WattnActivity {
+public class ZaehlerstandUpdate extends WattnActivity implements OnClickListener {
 
 	private Zaehlerstand zaehlerstand;
 
@@ -92,6 +93,7 @@ public class ZaehlerstandUpdate extends WattnActivity {
 		((Button)findViewById(R.id.buttonUpdateOK)).setTypeface(customFont);
 		((Button)findViewById(R.id.buttonUpdateOK)).setTextColor(Color.parseColor("#5e625b"));
 		((Button)findViewById(R.id.buttonUpdateOK)).setText("Fertig");
+		((Button)findViewById(R.id.buttonUpdateOK)).setOnClickListener(this);
 
 		initViews();
 	}
@@ -110,13 +112,11 @@ public class ZaehlerstandUpdate extends WattnActivity {
 
 	@Override
 	protected List<TextView> getButtonTextViews() {
-		return Arrays.asList(
-				(TextView) findViewById(R.id.buttonUpdateOK)
-				);
+		return null;
 	}
 
 	@Override
-	public boolean onClick(View arg0, MotionEvent arg1) {
+	public void onClick(View arg0) {
 		if(arg0.getId()==R.id.buttonUpdateOK) {
 			Float zaehlerstand = 0f;
 			NumberPicker num1 = (NumberPicker) findViewById(R.id.UpdateNumberPicker1);
@@ -129,26 +129,6 @@ public class ZaehlerstandUpdate extends WattnActivity {
 			zaehlerstand += 100f * num3.getValue(); 
 			zaehlerstand += 10f * num4.getValue(); 
 			zaehlerstand += 1f * num5.getValue(); 
-			if (this.zaehlerstand != null) {
-				if (this.zaehlerstand.getZaehlerstand() > zaehlerstand) {
-					OKMessageDialog zaehlerstandNiedrig = new OKMessageDialog("Du hast einen Zählerstand eingegeben, der niedriger als dein letzter Zählerstand ist. Bitte gebe einen höheren Wert ein.") {
-
-						@Override
-						protected void onOKAction() {
-							dismiss();
-						}
-
-						@Override
-						protected void additionalBuilderOperations(
-								Builder builder) {
-							// TODO Auto-generated method stub
-							
-						}
-					};
-					zaehlerstandNiedrig.show(getFragmentManager(), "zaehlerstand_niedrig");
-					return true;
-				}
-			}
 			Database db = new Database(this);
 			this.zaehlerstand.setZaehlerstand(zaehlerstand);
 			db.updateZaehlerstand(this.zaehlerstand);
@@ -159,11 +139,14 @@ public class ZaehlerstandUpdate extends WattnActivity {
 			setResult(RESULT_OK,returnIntent); 
 
 			this.finish();
-			return true;
 		} else {
 			this.finish();
-			return false;
 		}
+	}
+
+	@Override
+	public boolean onClick(View arg0, MotionEvent arg1) {
+		return false;
 	}
 
 }

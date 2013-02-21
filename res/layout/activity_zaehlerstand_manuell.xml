@@ -14,6 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="24dp"
         android:text="@string/manuell_zaehler_anfang"
+        android:lineSpacingExtra="-7dip"
         android:textSize="38sp" />
 
     <NumberPicker
@@ -21,8 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textManuellZaehlerAnfang"
-        android:layout_below="@+id/textManuellZaehlerAnfang"
-        android:layout_marginTop="24dp" />
+        android:layout_below="@+id/textManuellZaehlerAnfang" />
 
     <NumberPicker
         android:id="@+id/manuellNumberPicker2"
@@ -58,7 +58,6 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/manuellNumberPicker1"
         android:layout_below="@+id/manuellNumberPicker1"
-        android:layout_marginTop="24dp"
         android:text="@string/manuell_zaehler_ende"
         android:textSize="38sp" />
 
@@ -68,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textManuellZaehlerEnde"
         android:layout_below="@+id/textManuellZaehlerEnde"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/button_background"
         android:clickable="true"
         android:text="@string/generic_weiter"

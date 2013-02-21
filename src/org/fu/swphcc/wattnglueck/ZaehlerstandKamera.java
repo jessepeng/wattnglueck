@@ -31,15 +31,16 @@ public class ZaehlerstandKamera extends WattnActivity {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		Intent startIntent = getIntent();
-		String z√§hlerstand = startIntent.getExtras().getString("value");
-		
-		((TextView)findViewById(R.id.textKameraZaehlerstand)).setText(z√§hlerstand);
+		String z‰hlerstand = startIntent.getExtras().getString("value");
 		
 		try {
-			zaehlerstand = Float.valueOf(z√§hlerstand);
+			zaehlerstand = Float.valueOf(z‰hlerstand);
 		} catch (NumberFormatException e) {
 			zaehlerstand = 0;
+			z‰hlerstand = "0";
 		}
+
+		((TextView)findViewById(R.id.textKameraZaehlerstand)).setText(z‰hlerstand);
 		
 		new Thread(new Runnable() {
 
