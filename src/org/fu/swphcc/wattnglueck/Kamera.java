@@ -103,6 +103,8 @@ public class Kamera extends WattnActivity implements KameraPreview.KameraTapActi
 			String result = "Fehler";
 			
 			Bitmap bitmap = preview.mBitmap;
+			preview.mBitmap = null;
+			System.gc();
 
 			int origHeight = bitmap.getHeight();
 			int origWidth = bitmap.getWidth();
@@ -152,6 +154,7 @@ public class Kamera extends WattnActivity implements KameraPreview.KameraTapActi
 			whiteCanvas.drawPaint(whitePaint);
 			whiteCanvas.drawBitmap(bitmap, src, dst, invertPaint);
 			whiteCanvas = null;
+			bitmap = null;
 			System.gc();
 			
 			try {

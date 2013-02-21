@@ -148,6 +148,8 @@ public class KameraPreview extends SurfaceView implements SurfaceHolder.Callback
 		            @Override
 		            public void onPictureTaken(byte[] data, Camera camera) {
 
+		            	mBitmap = null;
+		            	System.gc();
 		                BitmapFactory.Options options = new BitmapFactory.Options();
 		                mBitmap = BitmapFactory.decodeByteArray(data, 0, data.length, options);
 		        		if (tapAction != null) tapAction.kameraTap();
