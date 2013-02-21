@@ -89,7 +89,7 @@ public class Kamera extends WattnActivity implements KameraPreview.KameraTapActi
 	@Override
 	public void kameraTap() {
 		progress = new ProgressDialog(this, ProgressDialog.THEME_HOLO_LIGHT);
-		progress.setMessage("Zï¿½hlerstand wird erkannt...");
+		progress.setMessage("Zählerstand wird erkannt...");
 		progress.setCancelable(false);
 		progress.show();
 		

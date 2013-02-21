@@ -92,7 +92,7 @@ public class ZaehlerstandKamera extends WattnActivity {
 		case R.id.textKameraJa:
 			if (alterZaehlerstand != null) {
 				if (alterZaehlerstand.getZaehlerstand() > zaehlerstand) {
-					OKMessageDialog zaehlerstandNiedrig = new OKMessageDialog("Es wurde ein Zï¿½hlerstand erkannt, der niedriger als dein letzter Zï¿½hlerstand ist. Bitte gib einen hï¿½heren Wert ein.") {
+					OKMessageDialog zaehlerstandNiedrig = new OKMessageDialog("Es wurde ein Zählerstand erkannt, der niedriger als dein letzter Zählerstand ist. Bitte gib einen höheren Wert ein.") {
 
 						@Override
 						protected void onOKAction() {
