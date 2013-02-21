@@ -91,6 +91,7 @@ public class ZaehlerstandUpdate extends WattnActivity {
 		Typeface customFont = Typeface.createFromAsset(getAssets(), getString(R.string.setting_fontfilename));
 		((Button)findViewById(R.id.buttonUpdateOK)).setTypeface(customFont);
 		((Button)findViewById(R.id.buttonUpdateOK)).setTextColor(Color.parseColor("#5e625b"));
+		((Button)findViewById(R.id.buttonUpdateOK)).setText("Fertig");
 
 		initViews();
 	}
