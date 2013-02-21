@@ -99,7 +99,7 @@ public class ZaehlerstandUpdate extends WattnActivity {
 	@Override
 	protected List<TextView> getTextViewsForFont() {
 		return Arrays.asList(
-				(TextView) findViewById(R.id.textUpdateZaehlerEnde)
+				(TextView) findViewById(R.id.textUpdateZaehler)
 				);
 	}
 

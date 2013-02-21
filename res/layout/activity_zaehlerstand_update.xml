@@ -6,6 +6,12 @@
     android:layout_marginRight="0dp"
     tools:context=".ZaehlerstandUpdate" >
 
+    <RelativeLayout
+      	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:id="@+id/UpdateNumberGroup"
+    	android:layout_centerHorizontal="true"  >
+    
     <NumberPicker
         android:id="@+id/UpdateNumberPicker1"
         android:layout_width="wrap_content"
@@ -39,26 +45,27 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/UpdateNumberPicker4"
         android:layout_toRightOf="@+id/UpdateNumberPicker4" />
-
+    
+    
     <TextView
-        android:id="@+id/textUpdateZaehlerEnde"
+        android:id="@+id/textUpdateZaehler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/UpdateNumberPicker1"
-        android:layout_below="@+id/UpdateNumberPicker1"
-        android:layout_marginRight="50dp"
-         android:layout_marginLeft="6dp"
+        android:layout_below="@+id/UpdateNumberPicker5"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="14dp"
-        android:text="@string/manuell_zaehler_ende"
+        android:text="@string/update_zaehler_ende"
         android:textSize="26sp" />
 
+    </RelativeLayout>
+    
     <View
         android:id="@+id/updateLine"
         android:layout_width="fill_parent"
         android:layout_height="2px"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textUpdateZaehlerEnde"
+        android:layout_below="@+id/UpdateNumberGroup"
         android:layout_marginTop="6dp"
         android:background="#dcdcdc" />
 
@@ -67,8 +74,8 @@
         style="?android:attr/buttonBarButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/updateLine"
         android:text="@string/OK"
         android:textSize="20sp" />

@@ -62,7 +62,7 @@
     <string name="editdialog_zaehlerstand">Zählerstand</string>
     <string name="cancel">Abbrechen</string>
     <string name="OK">OK</string>
-    <string name="update_zaehler_anfang">Zählerstand aktualisieren</string>
+    <string name="update_zaehler_ende">Kilowattstunden</string>
     <string name="status_rueckzahlung_meldung">Glückwunsch!</string>
     <string name="status_nachzahlung_meldung">Schade!</string>
     <string name="title_activity_ueber">Über</string>
