@@ -89,7 +89,6 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 			getLayoutInflater().setFactory(new Factory() {
 		            public View onCreateView(String name, Context context,
 		                    AttributeSet attrs) {
-		            	System.out.println(name);
 		                if (name.equalsIgnoreCase(
 		                        "TextView")) {
 		                    try {
@@ -155,6 +154,7 @@ public abstract class WattnActivity extends Activity implements OnTouchListener 
 				protected void onOKAction() {
 					dismiss();
 					finish();
+					System.exit(0);
 				}
 			};
 			prefsDeleted.show(getFragmentManager(), "prefs_deleted");

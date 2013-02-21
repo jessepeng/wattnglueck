@@ -2,20 +2,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:paddingBottom="24dp"
+    android:paddingTop="24dp"
     tools:context=".Ueber" >
 
     <ImageView
         android:id="@+id/team"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:contentDescription="@string/das_team"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
         android:src="@drawable/team" />
 
     <TextView
-        android:id="@+id/team_text"
+        android:id="@+id/textUeberWattnGlueck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/team"
-        android:text="@string/wattnteam" />
+        android:layout_below="@+id/team"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="@string/wattnglueck" 
+        android:textSize="56sp"/>
 
 </RelativeLayout>

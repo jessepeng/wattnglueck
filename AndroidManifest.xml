@@ -19,7 +19,7 @@
         android:hardwareAccelerated="true"
         android:icon="@drawable/ic_logo"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme" android:supportsRtl="false">
         <activity
             android:name="org.fu.swphcc.wattnglueck.HomeScreen"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -113,16 +113,6 @@
                 android:value="org.fu.swphcc.wattnglueck.HomeScreen" />
         </activity>
         <activity
-            android:name="org.fu.swphcc.wattnglueck.EditZaehlerstandDialog"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:parentActivityName="org.fu.swphcc.wattnglueck.HomeScreen"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.fu.swphcc.wattnglueck.HomeScreen" />
-        </activity>
-        <activity
             android:name="org.fu.swphcc.wattnglueck.ZaehlerstandUpdate"
             android:parentActivityName="org.fu.swphcc.wattnglueck.ZaehlerstandActivity"
             android:screenOrientation="portrait"
@@ -132,8 +122,14 @@
                 android:value="org.fu.swphcc.wattnglueck.ZaehlerstandActivity" />
         </activity>
         <activity
-            android:name="org.fu.swphcc.wattnglueck.Ueber"
-            android:label="@string/title_activity_ueber" >
+            android:name="Ueber"
+            android:label="@string/title_activity_ueber"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:parentActivityName="org.fu.swphcc.wattnglueck.HomeScreen"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.fu.swphcc.wattnglueck.HomeScreen" />
         </activity>
     </application>
 

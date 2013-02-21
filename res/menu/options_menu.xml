@@ -8,15 +8,12 @@
             android:id="@+id/itemVertrag"
             android:title="@string/menu_vertrag"/>
         <item
-            android:id="@+id/itemAbrechnung"
-            android:title="@string/menu_abrechnung"/>
-        <item
-            android:id="@+id/itemAbout"
-            android:title="@string/menu_about"/>
-        <item
             android:id="@+id/itemDevDeleteDatabase"
             android:title="@string/menu_dev_clear_db">
         </item>
+        <item
+            android:id="@+id/itemAbout"
+            android:title="@string/menu_about"/>
     </group>
 
 </menu>
