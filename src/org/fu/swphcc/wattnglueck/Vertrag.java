@@ -479,6 +479,7 @@ public class Vertrag extends WattnActivity {
 				};
 				stromzaehler.show(getFragmentManager(), "zaehler");
 			}
+			parentActivity.saveAndFinish();
 			return true;
 		}
 		
